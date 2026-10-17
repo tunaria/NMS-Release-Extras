@@ -1,0 +1,5 @@
+diff --git a/eqgame_dll/MQ2Pulse.cpp b/eqgame_dll/MQ2Pulse.cpp
+--- a/eqgame_dll/MQ2Pulse.cpp
++++ b/eqgame_dll/MQ2Pulse.cpp
+@@ -371,0 +372,1 @@
++    { extern void NMSLoNPulse(); NMSLoNPulse(); } // NMS: Legends of Norrath -- close the session login box

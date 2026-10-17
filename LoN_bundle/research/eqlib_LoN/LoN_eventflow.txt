@@ -1,0 +1,230 @@
+# Legends of Norrath -- UI event flow: which code POSTS each custom event and which widget HANDLES it
+# Generated 2026-10-06 (an event-flow script, capstone over LegendsOfNorrath.dll; (internal tool, not included)).
+# Poster = callers of the event poster RVA 0xAC810 (event id = its pushed argument); the
+# poster is named by the message class whose vtable holds that function, else by RTTI.
+# Handler = eventFilter/customEvent code that reads the id through RVA 0xAC800 and compares
+# it (direct compares, sub/je chains and switch jump tables are all decoded).
+# Use: a command's execute posts event N; the widget listed under HANDLED BY reacts.
+# e.g. 0xA3 posted by ECommCommand_RedeemItemGrant, handled by WARedemptionConfirmDialog.
+
+EVENT  POSTED BY                                                    HANDLED BY
+0x000  -                                                            EQGameScreen
+0x001  -                                                            EQGameScreen
+0x002  FUN_10150C00, FUN_101514B0, FUN_10154CD0, LobbyCommand_ChallengeLeaguePlayerResponse, LobbyCommand_SetDraft, TradeCommand_AddCardToTrade, TradeCommand_LockTrade, TradeCommand_RemoveCardFromTrade EQGameScreen, FUN_103C34B0
+0x003  -                                                            EQGame/EQMainController, EQGameScreen, WALobbyManager
+0x004  LobbyCommand_RemoveGroups                                    EQGame/EQMainController, WALobbyManager
+0x005  LobbyCommand_Join                                            EQGame/EQMainController, WALobbyManager
+0x006  FUN_10146370                                                 EQGame/EQMainController, WALobbyManager
+0x007  LobbyCommand_SendText, UChatCommand                          EQGame/EQMainController, FUN_103C34B0
+0x008  LobbyCommand_ConfigureGroup                                  EQGame/EQMainController, EQMatchGraphicsItem/WAMatchGraphicsItem, WAMatchPlayer
+0x009  NetworkCommand_ErrorMsg                                      EQGame/EQMainController, WAMainWindow
+0x00A  LobbyCommand_AddBuddies                                      EQGame/EQMainController, WAFriendsManager
+0x00B  LobbyCommand_RemoveBuddies                                   EQGame/EQMainController, WAFriendsManager
+0x00C  LobbyCommand_AddIgnore                                       EQGame/EQMainController, WAFriendsManager
+0x00D  LobbyCommand_RemoveIgnore                                    EQGame/EQMainController, WAFriendsDialog, WAFriendsManager
+0x00E  -                                                            EQGame/EQMainController, WALoginDialog, WASessionLoginDialog
+0x00F  LobbyCommand_SendText                                        EQGame/EQMainController, FUN_103C34B0
+0x010  AccountCommand_IntroduceAccount, FUN_1000BCB0, LobbyCommand_BulkJoin, LobbyCommand_Join EQGame/EQMainController, WAAccountManager, WAMainWindow, WAUserInfoDialog
+0x011  EQMatchCommand_LaunchGame, FUN_102C2EA0                      EQGame/EQMainController, WALobbyManager
+0x012  AccountCommand_SetPreferences                                EQGame/EQMainController, EQNavigator/WANavigator, WAAccountManager, WAGuildDialog
+0x013  -                                                            EQGame/EQMainController, WANetworkManager
+0x014  EQGameCommand_SetupGame, Game@CTP, GameCommand_LostPlayer    EQGame/EQMainController, WAMainWindow
+0x015  EQGame, EQGameTurn, Game@CTP, GameTurn                       WAGameScreen
+0x017  -                                                            WANetworkManager
+0x018  FUN_1006ADC0                                                 WAMainWindow
+0x019  LobbyCommand_BulkJoin, LobbyCommand_ChangeBulkStatus, LobbyCommand_ChangeStatus WALobbyManager
+0x01A  LobbyCommand_GameServiceError                                WAMainWindow
+0x01B  -                                                            WASynchronizationManager
+0x01C  FUN_101B39D0                                                 WASynchronizationManager
+0x01D  -                                                            WASynchronizationManager
+0x01E  -                                                            WASynchronizationManager
+0x01F  -                                                            WASynchronizationManager
+0x020  -                                                            EQGame/EQMainController, WAGameScreen
+0x021  TradeCommand_IssueTradeRequest                               WATradeManager
+0x022  TradeCommand_AcceptTradeRequest                              WATradeManager
+0x023  TradeCommand_CancelTradeRequest                              WATradeManager
+0x024  -                                                            WATradeScreen
+0x025  -                                                            WATradeScreen
+0x026  -                                                            WATradeScreen
+0x027  -                                                            WATradeScreen
+0x028  -                                                            WATradeScreen
+0x029  -                                                            WATradeScreen
+0x02A  TradeCommand_SetupFinalTradeAccept                           WATradeScreen
+0x02B  -                                                            WATradeScreen
+0x02C  -                                                            WAGameScreen
+0x02D  -                                                            WAGameScreen
+0x02E  -                                                            WAGameScreen
+0x02F  -                                                            WAGameScreen
+0x031  FUN_101514B0                                                 FUN_1039BC30
+0x035  -                                                            WATradeScreen
+0x036  LobbyCommand_SetDraft                                        WADeckBuilderScreen, WADraftScreen, WATradeScreen
+0x037  -                                                            WATradeScreen
+0x038  LobbyCommand_BulkJoin                                        WALobbyManager
+0x03B  LobbyCommand_SendPing                                        WANetworkManager
+0x03C  LobbyCommand_NotifyOfIgnore                                  WAFriendsManager
+0x03E  LobbyCommand_RequestAddBuddy                                 WAFriendsManager
+0x03F  LobbyCommand_RespondAddBuddy                                 WAFriendsManager
+0x040  LobbyCommand_AddIgnoreByNameResponse                         WAFriendsDialog
+0x042  LobbyCommand_NotifyOfBuddy                                   WAFriendsManager
+0x043  AccountCommand_BulkBriefIntroduceAccount, LobbyCommand_AddGroups, LobbyCommand_AddIgnoreByNameResponse WAFriendsDialog
+0x044  EQGame, Game@CTP                                             WAGameScreen
+0x045  EQGame                                                       WAGameScreen
+0x046  LobbyCommand_ChangeLobbyDisplay                              WALobbyManager
+0x047  LobbyCommand_DisplayStats                                    WATournamentManager
+0x048  LobbyCommand_UpdateTournament                                -
+0x04A  FUN_1006B6B0                                                 -
+0x04B  AccountCommand_GetAccountInfo                                WAAccountManager
+0x04C  FUN_1006B560                                                 WATournamentManager
+0x04D  FUN_1006B6B0                                                 -
+0x04F  FUN_1006CA20                                                 -
+0x050  FUN_1006B6B0                                                 -
+0x051  -                                                            WALobbyManager
+0x052  LobbyCommand_SetDraft                                        WALobbyManager
+0x053  LobbyCommand_SetupDraft                                      WADraftOrder, WALobbyManager
+0x054  -                                                            WAMainWindow
+0x055  -                                                            WANetworkManager
+0x056  NetworkCommand_ErrorMsg                                      WAMainWindow
+0x057  LobbyCommand_ChallengeLeaguePlayer                           -
+0x058  LobbyCommand_ChallengeLeaguePlayerResponse                   -
+0x059  LobbyCommand_AddLeagueCards                                  WASynchronizationManager
+0x05A  -                                                            WATradeManager
+0x05B  -                                                            WAFriendsManager
+0x05C  FUN_1006AF70                                                 WAMainWindow
+0x05D  FUN_1006AF70, FUN_1006B1A0                                   WAMainWindow
+0x05E  -                                                            EQGame/EQMainController
+0x05F  FUN_102C2EA0                                                 WAGameScreen
+0x060  EQGame                                                       EQGame/EQMainController, WAGameScreen
+0x061  LobbyCommand_InfoEnumMessage                                 FUN_103C34B0
+0x065  CommandObject_EmitSound                                      EQGameScreen, WAGameScreen
+0x066  EQGame, FUN_1026ED90                                         EQGameScreen
+0x067  EQGame                                                       WAGameScreen
+0x068  EQCard                                                       -
+0x069  -                                                            EQCardSprite/WACardSprite, WAEventSink, WAGameScreen
+0x06A  FUN_100E2310, Game@CTP                                       WAGameScreen
+0x06B  EQGame, RevealState                                          WAGameScreen
+0x06C  RevealState                                                  WAGameScreen
+0x06D  FUN_10066610, FUN_101DA530, RevealState                      WAGameScreen
+0x06E  CommandObject_ReadyCard                                      -
+0x06F  CommandObject_UnreadyCard, EQGame                            -
+0x070  FUN_102FDED0                                                 WAGameScreen
+0x071  ActionNode, EQCombatState/EQMeleeCombatState/EQRangedCombatState, EQGame, Game@CTP WAGameScreen
+0x072  EQGame                                                       WAGameScreen
+0x073  EQGame                                                       WAGameScreen
+0x074  EQGame, EQGameScreen                                         EQGameScreen
+0x075  CommandObject_AddToken/EQCommandObject_AddToken              -
+0x076  CommandObject_RemoveToken/EQCommandObject_RemoveToken        -
+0x077  FUN_10066610                                                 WAGameScreen
+0x078  FUN_1017BDC0                                                 WAGameScreen
+0x079  -                                                            WAGameScreen
+0x07A  CommandObject_Clone                                          WAGameScreen
+0x07B  -                                                            EQGame/EQMainController
+0x07D  LobbyCommand_SelectTournamentDeck                            WADeckBuilderScreen
+0x07E  -                                                            EQGame/EQMainController, WALobbyManager
+0x080  -                                                            WAGameScreen
+0x082  -                                                            WAGuildDialog
+0x083  PollCommand_AddPoll                                          -
+0x084  PollCommand_AddPollControl                                   -
+0x086  EQGame, FUN_102C4130                                         WAGameScreen
+0x087  -                                                            WAGameScreen
+0x088  -                                                            WANetworkManager
+0x089  -                                                            WANetworkManager
+0x08A  TradeCommand_AcceptPostedTrade                               -
+0x08B  -                                                            WAPostedTradesDialog
+0x08C  TradeCommand_CancelPostedTrade                               WAPostedTradesDialog
+0x08D  TradeCommand_EndPostedTrades                                 WAPostedTradesDialog
+0x08E  TradeCommand_StartPostedTrades                               WAPostedTradesDialog
+0x08F  TradeCommand_TransferPostedTrade                             WAPostedTradesDialog
+0x090  TradeCommand_PostedTradeError                                WAPostedTradeBuilder, WAPostedTradeDetailDialog
+0x091  LoginCommand_RegisterUsernameResults                         WAUsernameRegistrationDialog
+0x094  -                                                            FUN_103C34B0
+0x095  GatewayCommand_GetConnectionServer                           WALoginDialog, WASessionLoginDialog
+0x096  GatewayCommand_GetConnectionServer                           -
+0x097  GuildCommand_EndGuilds                                       WAGuildDialog
+0x098  GuildCommand_StartGuilds                                     WAGuildDialog
+0x099  GuildCommand_TransferGuild                                   WAGuildDialog, WAGuildInfoDialog
+0x09A  -                                                            WAGuildDialog, WAGuildInfoDialog
+0x09B  GuildCommand_Notify                                          WAFriendsManager
+0x09C  -                                                            EQAvatarCreationDialog, WAFriendsManager
+0x09D  GuildCommand_Remove                                          WAGuildDialog
+0x09F  AccountCommand_RedeemCode                                    WARedeemCodeDialog
+0x0A0  LoginCommand_ForgotPasswordResults                           -
+0x0A1  EQCommandObject_UIEffect                                     WAGameScreen
+0x0A3  ECommCommand_RedeemItemGrant                                 WARedemptionConfirmDialog
+0x0A5  AccountCommand_SetOptIn                                      -
+0x0A6  -                                                            FUN_103C34B0
+0x0A7  LobbyCommand_SendUChatError                                  FUN_103C34B0
+0x0A8  ActionNode                                                   WAGameScreen
+0x0A9  ActionNode                                                   WAGameScreen
+0x0AA  ArchCommand_GetArchetypeID                                   EQAvatarCreationDialog
+0x0AB  EQGame                                                       WAGameScreen
+0x0AC  EQActionNode, EQStateMachine                                 WAGameScreen
+0x0AD  NetworkCommand_EULA                                          WANetworkManager
+0x0AE  NetworkCommand_LeaderBoardData                               WAMapScreen
+0x0AF  NetworkCommand_News                                          -
+0x0B0  ArchCommand_ValidateUsername                                 EQAvatarCreationDialog
+0x0B1  AccountCommand_GetAccountsByPartialName                      WAPostedTradeBuilder
+0x0B2  GuildCommand_GetGuildsByPartialName                          -
+0x0B3  LobbyCommand_StartTournamentMsg                              WAMainWindow
+0x0B4  LobbyCommand_SetDraftedCards                                 EQDraftedCardsDialog/WADraftedCardsDialog
+0x0B5  GuildCommand_Chat                                            FUN_103C34B0
+0x0B6  GuildCommand_ShowMOTD                                        WAFriendsManager
+0x0B7  ArchCommand_SetEnabledArchetypes                             -
+0x0B8  GuildCommand_SetMOTDResponse                                 -
+0x0B9  EQGame                                                       WAGameScreen
+0x0BA  EQActionNode                                                 WAGameScreen
+0x0BB  -                                                            WAGameScreen
+0x0BC  EQGame                                                       WAGameScreen
+0x0BD  -                                                            WAGameScreen
+0x0BE  FUN_1000F920                                                 EQGameScreen, WAAchievementManager, WAGameScreen
+0x0BF  AccountCommand_SendAchievementList                           EQGameScreen, WAAchievementManager, WAGameScreen
+0x0C0  AccountCommand_ValidateUsername                              -
+0x0C1  MatchCommand_InitiateChallenge                               WAMainWindow
+0x0C2  FUN_100A5FF0                                                 WASynchronizationManager, WATransitionToScenarioDialog
+0x0C3  AccountCommand_SendAvatarImage                               WAAccountManager
+0x0C4  UChatCommand_OnReceiveFriendConfirmReciprocateRequest, UChatCommand_OnReceiveFriendConfirmRequest -
+0x0C5  UChatCommand_OnReceiveFriendConfirmReciprocateResponse, UChatCommand_OnReceiveFriendConfirmResponse -
+0x0C6  UChatCommand_OnReceiveFriendLogin                            -
+0x0C7  UChatCommand_OnReceiveFriendLogout                           -
+0x0C8  UChatCommand_RequestAddFriend, UChatCommand_RequestAddFriendReciprocate -
+0x0C9  UChatCommand_RequestAddIgnore                                -
+0x0CA  FUN_101CB260                                                 -
+0x0CC  UChatCommand_RequestRemoveFriend, UChatCommand_RequestRemoveFriendReciprocate -
+0x0CD  UChatCommand_RequestRemoveIgnore                             -
+0x0CE  UChatCommand_RequestSetFriendComment                         -
+0x0CF  NetworkCommand_SessionKick                                   WANetworkManager
+0x0D0  -                                                            WANetworkManager
+0x0D1  UChatCommand_RequestFriendConfirm, UChatCommand_RequestFriendConfirmReciprocate -
+0x0D2  LobbyCommand_UpdateLobbyStats                                -
+0x0D3  EventCommand_NextMatchingTime                                WAEventScreen
+0x0D4  -                                                            WAEventManager
+0x0D5  -                                                            WAEventManager
+0x0D6  EventCommand_RespondEventTotalPlayers                        WAEventScreen
+0x0D7  EventCommand_RequestTimedDeckSelection                       WAEventScreen
+0x0D8  EventCommand_SendByeNotification                             WAEventScreen
+0x0D9  EventCommand_RespondPlayerStats                              -
+0x0DA  -                                                            WAEventScreen
+0x0DB  EventCommand_SendReadyStatus                                 WAEventManager
+0x0DC  EventCommand_SendEventPlayerFlags                            WALobbyManager
+0x0DD  EventCommand_RespondCurrentSessionInfo                       WAEventManager
+0x0DE  EventCommand_RespondEventSessionsOnDay                       WAEventManager
+0x0DF  AccountCommand_RespondActivateStadiumPiece                   -
+0x0E0  AccountCommand_RespondStadiumInfo                            -
+0x0E1  AccountCommand_RespondUpdateStadium                          -
+0x0E2  EventCommand_NotifyMatchEnded                                WAEventScreen
+0x0E3  FUN_10008BC0                                                 -
+0x11171  FUN_10230470                                                 -
+0x11172  EQCommandObject_Destroy                                      -
+0x11174  FUN_10230470                                                 -
+0x11175  EQCombatState/EQMeleeCombatState/EQRangedCombatState         -
+0x11176  EQCombatState/EQMeleeCombatState/EQRangedCombatState         -
+0x11177  EQGame, FUN_102BD5F0                                         -
+0x11179  EQGame                                                       -
+0x1117B  EQCommandObject_RemoveDamage                                 -
+0x1117D  FUN_102CE340                                                 -
+0x1117E  EQCommandObject_RevealCard                                   -
+0x1117F  EQStartOfGameState                                           -
+0x11180  FUN_102657B0                                                 -
+0x11182  EQCombatState/EQMeleeCombatState/EQRangedCombatState         -
+0x11184  EQCommandObject_Shift                                        -
+0x11185  EQCommandObject_Shift                                        -
+0x44C7CE8B  EQCard, FUN_1021E790                                         -

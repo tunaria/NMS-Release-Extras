@@ -1,0 +1,441 @@
+# Legends of Norrath -- every campaign and scenario the client ships (data/campaign.dat)
+# Decoded 2026-10-06 with a generic codec (internal tool, not included): varint count (78), then that many
+# Campaign objects (class 0x1C5 v4), each holding CampaignScenario objects (0x1C6 v7). The whole
+# file parses (368,221 of 368,221 bytes).
+#
+# Campaign fields: +04 id, +08 Enabled, +0C Title, +28 ImageName, +44 Description,
+#   +60 scenarios, +70 AccountKey (780xx -- the account property that unlocks it: the adventure
+#   pack entitlement), +09 Premium Only, +74 Archetype ID.
+# Scenario fields (no labels in the client; read from the data): +04 id, +08 campaign id,
+#   +0C title, +44 summary incl. the REWARD text, +60 intro HTML, +7C script name (the game
+#   script it loads), +B8 a per-scenario AccountKey (3 scenarios), +B5 flag (3 scenarios).
+#
+# LIVE REWARD RULE (from the summaries): "Receive one reward for winning this scenario with each
+# different archetype on Easy, Medium, or Hard difficulty (12 possible). Rewards for Hard
+# difficulty are foil cards." The client reports a finished game with
+# AccountCommand_RecordSinglePlayerGame (0x1E7) and campaign progress with
+# AccountCommand_SetCampaignStatus (0x19F: Campaign ID, Status, Difficulty Level, CustomInt).
+
+CAMPAIGN 1   key 78011  Oathbound Chapter 1: The Adventure Begins
+   scen 1    Scenario01     Scenario 1: Fight the Darkpaw
+        reward: Reward card - Fippy Darkpaw, Blackburrow Hero.   -> Fippy Darkpaw=100004475/100005064/100007585/100021204
+   scen 2    Scenario02     Scenario 2: The Vulture Root
+        reward: Reward card - Turtleshell Helm.   -> Turtleshell Helm=100004406
+   scen 3    Scenario03     Scenario 3: Cyclopean Chase
+        reward: Reward card - Hamstring.   -> Hamstring=100004429
+   scen 4    Scenario04     Scenario 4: Through the Caves
+        reward: Reward card - Aged Bloodwine.   -> Aged Bloodwine=100004385
+   scen 5    Scenario05     Scenario 5: The Harder They Fall (Optional)   key 78015
+        reward: Reward card - Cyclops Eye.   -> Cyclops Eye=100004391
+   scen 6    Scenario06     Scenario 6: Journey to Qeynos
+        reward: Reward card - Fascinate.   -> Fascinate=100004544
+CAMPAIGN 2   key 78012  Oathbound Chapter 2: The Black Burrow Ruse
+   scen 1    Scenario07     Scenario 7: Barbarian Chieftain
+        reward: Reward card - Moon Shaman.   -> Moon Shaman=100004503
+   scen 2    Scenario08     Scenario 8: Chimeras Attack
+        reward: Reward card - Firiona's Blessing.   -> Firiona's Blessing=100004304
+   scen 3    Scenario09     Scenario 9: Prayer of Forgiveness (Optional)   key 78016
+        reward: Reward card - Glacier Bear.   -> Glacier Bear=100004482
+   scen 4    Scenario10     Scenario 10: Defeat the Harbinger
+        reward: Reward card - Deftdance.   -> Deftdance=100004675
+   scen 5    Scenario11     Scenario 11: Chaos Ambush
+        reward: Reward card - Bloodlust Maul.   -> Bloodlust Maul=100004635
+CAMPAIGN 3   key 78013  Oathbound Chapter 3: The Drunder Rift
+   scen 1    Scenario12     Scenario 12: Race Against Time
+        reward: Reward card - Clockwork Talisman.   -> Clockwork Talisman=100004389
+   scen 2    Scenario13     Scenario 13: The Gatekeeper
+        reward: Reward card - Gargoyle.   -> Gargoyle=100004480
+   scen 3    Scenario14     Scenario 14: Destroy the Rift
+        reward: Reward card - Rage Filled Gem.   -> Rage Filled Gem=100004401
+   scen 4    Scenario15     Scenario 15: Miragul's Lair (Optional)   key 78017
+        reward: Reward card - Necromantic Orb.   -> Necromantic Orb=100004400
+CAMPAIGN 4   key 78026  Forsworn Chapter 1: Forest and Woods
+   scen 1    Set2Scenario01 Scenario 1: Breach the Citadel
+        reward: Reward card - Trick of the Hunter.   -> Trick of the Hunter=100005673
+   scen 2    Set2Scenario02 Scenario 2: Dark Times in Kithicor
+        reward: Reward card - Undead Tide.   -> Undead Tide=100005671
+   scen 3    Set2Scenario03 Scenario 3: Explore the Creep
+        reward: Reward card - Protective Faith.   -> Protective Faith=100005672
+   scen 4    Set2Scenario04 Scenario 4: Clockwork Escape
+        reward: Reward card - Belt of Clockworks.   -> Belt of Clockworks=100005675
+CAMPAIGN 5   key 78027  Forsworn Chapter 2: Flame and Frost
+   scen 1    Set2Scenario05 Scenario 5: Into the Mountains
+        reward: Reward card - Swooping Dragon.   -> Swooping Dragon=100005670
+   scen 2    Set2Scenario06 Scenario 6: King of Fire
+        reward: Reward card - Cloak of Flames.   -> Cloak of Flames=100005677
+   scen 3    Set2Scenario07 Scenario 7: Queen of Ice
+        reward: Reward card - Tobrin's Mystical Eyepatch.   -> Tobrin's Mystical Eyepatch=100005678
+CAMPAIGN 6   key 78028  Forsworn Chapter 3: Hatred and Warfare
+   scen 1    Set2Scenario08 Scenario 8: Daughter of Hate
+        reward: Reward card - Bloodwine Cask.   -> Bloodwine Cask=100005674
+   scen 2    Set2Scenario09 Scenario 9: Avatar of War
+        reward: Reward card - Black Collar of Boundless Might.   -> Black Collar of Boundless Might=100005676
+   scen 3    Set2Scenario10 Scenario 10: The Lich Revealed (Optional)
+        reward: Reward card - Quill of the Arch Lich.   -> Quill of the Arch Lich=100005679
+CAMPAIGN 7   key 78029  Holiday Scenario: Saving Santug!
+   scen 1    SavingSantug   Saving Santug
+CAMPAIGN 8   key 78030  Inquisitor Chapter 1: Journey Into Kunark
+   scen 1    Set3Scenario01 Scenario 1: Timorous Deep
+        reward: Reward card - Banshee Hoop.   -> Banshee Hoop=100006829
+   scen 2    Set3Scenario02 Scenario 2: Field of Bone
+        reward: Reward card - Blood Prophet's Band.   -> Blood Prophet's Band=100006824/100022456
+   scen 3    Set3Scenario03 Scenario 3: Frontier Mountains
+        reward: Reward card - Ring of the Bastion.   -> Ring of the Bastion=100006819
+   scen 4    Set3Scenario04 Scenario 4: Warsliks Woods
+        reward: Reward card - Band of the Relentless.   -> Band of the Relentless=100006834
+CAMPAIGN 9   key 78031  Inquisitor Chapter 2: Putting the Question
+   scen 1    Set3Scenario05 Scenario 5: Baron of the Crypt
+        reward: Reward card - Terin, Stalwart Servant.   -> Terin=100004759/100006841/100007373/100023259
+   scen 2    Set3Scenario06 Scenario 6: Giant of the Mountains
+        reward: Reward card - Eluviel, Scourge of the Tribunal.   -> Eluviel=100004761/100006843/100022461/100023261
+   scen 3    Set3Scenario07 Scenario 7: Master of the Golems
+        reward: Reward card - Karlemayn, Elemental Mistress.   -> Karlemayn=100004760/100006842/100023260
+   scen 4    Set3Scenario08 Scenario 8: Lord of the Reavers
+        reward: Reward card - Cyndra, Ruthless Rogue.   -> Cyndra=100004762/100006844/100007370/100023262
+CAMPAIGN 10  key 78032  Inquisitor Chapter 3: Masters of Chaos
+   scen 1    Set3Scenario09 Scenario 9: Master of Carnage
+        reward: Reward card - Cloak of Vigor.   -> Cloak of Vigor=100006839
+   scen 2    Set3Scenario10 Scenario 10: Mistress of Verse
+        reward: Reward card - Ring of the Ancients.   -> Ring of the Ancients=100006840
+CAMPAIGN 11  key 78039  Oathbreaker Chapter 1: A Distasteful Task
+   scen 1    Set4Scenario01 Scenario 1: The Supreme Ruler
+        reward: Reward card - Robe of Ishva Mal.   -> Robe of Ishva Mal=100007325
+   scen 2    Set4Scenario02 Scenario 2: Land of the Shaman
+        reward: Reward card - Bone Legplates.   -> Bone Legplates=100007326
+   scen 3    Set4Scenario03 Scenario 3: The Corrupted Village
+        reward: Reward card - Wayfarer's Bread.   -> Wayfarer's Bread=100007321
+   scen 4    Set4Scenario04 Scenario 4: The Burning Camp
+        reward: Reward card - Gypsy Wine.   -> Gypsy Wine=100007322
+CAMPAIGN 12  key 78040  Oathbreaker Chapter 2: Against the Oathbound
+   scen 1    Set4Scenario05 Scenario 5: Finding the Dark Elf
+        reward: Reward card - Heristine's Cape.   -> Heristine's Cape=100007323
+   scen 2    Set4Scenario06 Scenario 6: Dangerous Assassins
+        reward: Reward card - Cyndra's Phoenix Feathers.   -> Cyndra's Phoenix Feathers=100007324
+   scen 3    Set4Scenario07 Scenario 7: Oathbound Justice
+        reward: Reward card - Terin's Platemail Boots.   -> Terin's Platemail Boots=100007329
+CAMPAIGN 13  key 78041  Oathbreaker Chapter 3: To Save the Tribunal
+   scen 1    Set4Scenario08 Scenario 8: Lords of Chaos
+        reward: Reward card - Oathbound Banner.   -> Oathbound Banner=100005727/100007330
+   scen 2    Set4Scenario09 Scenario 9: Mistress of Chaos
+        reward: Reward card - Karlemayn's Thaumaturgical Cloak.   -> Karlemayn's Thaumaturgical Cloak=100007327
+   scen 3    Set4Scenario10 Scenario 10: Final Trial
+        reward: Reward card - Eluviel's Reinforced Legplates.   -> Eluviel's Reinforced Legplates=100007328
+CAMPAIGN 14  key 78046  Living Legacy
+   scen 1    LivingLegacy   Living Legacy Scenario
+CAMPAIGN 15  key 78048  Ethernauts Chapter 1: Exiles
+   scen 1    Set5Scenario01 Scenario 1: An Ogre's Revenge
+        reward: Loot card - Pings Palliative Potion Pack (EQ) or Draught of Vitality (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - City of Ruin (Fighter, Scout, or Generic) or Book of Wizardry (Mage or Priest).
+   scen 2    Set5Scenario02 Scenario 2: The Eternal Prism
+        reward: Reward card - Village Warfare (Fighter, Scout, or Generic) or Fighting the Trolls (Mage or Priest).
+   scen 3    Set5Scenario03 Scenario 3: Faltering Faith
+        reward: Loot card - Discordian War Hammer Ornament (EQ) or Wand of Forgiveness (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Finding Treasure (Fighter, Scout, or Generic) or Grand Party (Mage or Priest).
+   scen 4    Set5Scenario04 Scenario 4: Ruins of the Kedge
+        reward: Reward card - Sword-Crossed Lovers (Fighter, Scout, or Generic) or Ransomed Return (Mage or Priest).
+   scen 5    Set5Scenario05 Scenario 5: The First Rift Opens
+        reward: Loot card - Discordian Great Blade Ornament (EQ) or Legends Display Case (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Staff of Theer (Fighter, Scout, or Generic) or Amulet of the Gnoll (Mage or Priest).
+CAMPAIGN 16  key 78049  Ethernauts Chapter 2: Exodus
+   scen 1    Set5Scenario06 Scenario 6: Across the Plains
+        reward: Reward card - Tracking Them Down (Fighter, Scout, or Generic) or Blasphemy (Mage or Priest).
+   scen 2    Set5Scenario07 Scenario 7: A Bard in the Tavern
+        reward: Loot card - Familiar of Valik the Cruel (EQ) or Painting: The War Scout (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Share the Discovery (Fighter, Scout, or Generic) or Stealing the Prize (Mage or Priest).
+   scen 3    Set5Scenario08 Scenario 8: Trees in the Forest
+        reward: Reward card - Eternal Prism (Fighter, Scout, or Generic) or Tossed in the Dungeon (Mage or Priest).
+CAMPAIGN 17  key 78050  Ethernauts Chapter 3: Escape
+   scen 1    Set5Scenario09 Scenario 9: Finding a Friend
+        reward: Reward card - Beast Attack (Fighter, Scout, or Generic) or Escape the Guards (Mage or Priest).
+   scen 2    Set5Scenario10 Scenario 10: A Momentous Choice
+        reward: Loot card - Visage of the Hooded Scrykin (EQ) or Personal Theme Music: Cazic Thule (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Lefty's Tankard (Fighter, Scout, or Generic) or Scryona (Mage or Priest).
+CAMPAIGN 18  key 78051  Nights of the Dead Scenario
+   scen 1    ScaryScarecrows Scary Scarecrows
+        reward: Loot card - Nimbus of the Burning Prince (EQ) or Painting: Mayong Mistmoore (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario. Reward card - Scary Scarecrow. Receive one reward card for winning this scenario with each different archetype (5 possible).
+CAMPAIGN 19  key 78052  Frostfell Scenario
+   scen 1    SavingFrostfell Saving Frostfell
+        reward: Loot card - Staff Ornament of the Void (EQ) or Superior Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Frostfell Snowglobe. Receive one reward card for winning this scenario with each different archetype (5 possible).
+CAMPAIGN 20  key 78053  The Shadow Odyssey
+   scen 1    ShadowOdyssey  The Shadow Odyssey
+        reward: Loot card - Ping's Poignant Potion Pack (EQ) or Draught of the Vigilant (EQ2). Receive one loot card (based on your loot preference) and access to the EQII The Shadow Odyssey Beta (if your loot preference is EQII) the first time you win this scenario.
+CAMPAIGN 21  key 78054  Ring of Scale
+   scen 1    RingOfScale    Ring of Scale
+CAMPAIGN 22  key 78056  Against the Void Chapter 1: The Party Is Complete
+   scen 1    Set6Scenario01 Scenario 1: Prison Break
+        reward: Loot card - Ping's Pinning Potion Package (EQ) or Draught of Ingenuity (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Flannery's Mockery (Fighter, Scout, or Generic) or Forcibly Detained (Mage or Priest).
+   scen 2    Set6Scenario02 Scenario 2: Finding Asharae
+        reward: Reward card - Unrivaled Challenge (Fighter, Scout, or Generic) or Return to Kaladim (Mage or Priest).
+   scen 3    Set6Scenario03 Scenario 3: Return to Neriak
+        reward: Loot card - Nimbus of the Frozen Gelidran (EQ) or Turtle Helm (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Oceangreen's Finest (Fighter, Scout, or Generic) or Tell Me What I Need to Know (Mage or Priest).
+   scen 4    Set6Scenario04 Scenario 4: Meet the High Elf
+        reward: Reward card - Archery Contest (Fighter, Scout, or Generic) or Home Again (Mage or Priest).
+CAMPAIGN 23  key 78057  Against the Void Chapter 2: Across Tunaria
+   scen 1    Set6Scenario05 Scenario 5: Elddar Forest
+        reward: Loot card - Visage of the Bixie Drone (EQ) or Guktan Apprentice (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Double Brewed Orcish Stout (Fighter, Scout, or Generic) or Skullreaver Mystic (Mage or Priest).
+   scen 2    Set6Scenario06 Scenario 6: Everfrost
+        reward: Reward card - Unsatisfying Result (Fighter, Scout, or Generic) or Uncivil Discourse (Mage or Priest).
+   scen 3    Set6Scenario07 Scenario 7: Test of Faith
+        reward: Loot card - Discordian Spikefist Ornament (EQ) or Painting: Staff of Detonation (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Test of Arms (Fighter, Scout, or Generic) or Be More Careful (Mage or Priest).
+   scen 4    Set6Scenario08 Scenario 8: Plainsman Challenge
+        reward: Reward card - One Way to Settle This (Fighter, Scout, or Generic) or Stubborn Refusal (Mage or Priest).
+CAMPAIGN 24  key 78058  Against the Void Chapter 3: Southeastern Beasts
+   scen 1    Set6Scenario09 Scenario 9: A Rift in Kunark
+        reward: Reward card - Support of the Plainsmen (Fighter, Scout, or Generic) or Sole Survivor (Mage or Priest).
+   scen 2    Set6Scenario10 Scenario 10: Wild Iksar
+        reward: Loot card - Tunarian Fist Ornamentation (EQ) or Tapestry of the Scale (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Kunzar Brawler (Fighter, Scout, or Generic) or Emerald Scrying Amulet (Mage or Priest).
+CAMPAIGN 25  key 78059  Hearts Aflutter
+   scen 1    HeartsAflutter Hearts Aflutter
+        reward: Loot card - Staff Ornament of the Void (EQ) or Painting - Kelpmaiden Mermaid (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Erollisi's Charm.
+CAMPAIGN 26  key 78060  The Master Brewer
+   scen 1    MasterBrewer   The Master Brewer
+        reward: Loot card - Great Axe Ornament of the Void (EQ) or Painting - Dauntless Stamina (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Gussie's Tankard.
+CAMPAIGN 27  key 78061  Master of Mischief
+   scen 1    MasterOfMischief Master of Mischief
+        reward: Loot card - Pike Ornament of the Void (EQ) or Painting - Kaltuk (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Bristlebane's Bewildering Bangle.
+CAMPAIGN 28  key 78062  Beware of Ogres
+   scen 1    BewareOfOgres  Beware of Ogres
+        reward: Loot card - Knuckle Ornament of the Void (EQ) or Painting - Nurgg (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Ogre Zealot.
+CAMPAIGN 29  key 78067  Mechamatic Guardian
+   scen 1    Mechamatic     Mechamatic Guardian
+        reward: Loot card - Mechamatic Remote Control (EQ) or A Clockwork Plushie (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Coilwork Spitter.
+CAMPAIGN 30  key 78068  Karnor's Castle
+   scen 1    KarnorsCastle  Karnor's Castle
+CAMPAIGN 31  key 78064  Storm Break Chapter 1: Dragons and Elves
+   scen 1    Set7Scenario01 Scenario 1: Dragon Bargain
+        reward: Loot card - Ping's Penetrating Potion Pack (EQ) or Draught of the Monarch (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Friends and Family (Fighter, Scout, or Generic) or Thoughtless Assault (Mage or Priest).
+   scen 2    Set7Scenario02 Scenario 2: Escape From Kunark
+        reward: Reward card - Vision Made Real (Fighter, Scout, or Generic) or Praying for Forgiveness (Mage or Priest).
+   scen 3    Set7Scenario03 Scenario 3: Forest Queen
+        reward: Loot card - Visage of the Hideous Harpy (EQ) or Unstable Void Tunnel (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Beyond Death (Fighter, Scout, or Generic) or Rise Again (Mage or Priest).
+CAMPAIGN 32  key 78065  Storm Break Chapter 2: Into the Void
+   scen 1    Set7Scenario04 Scenario 4: Bayle Is Missing
+        reward: Reward card - Bellowing Charge (Fighter, Scout, or Generic) or Complete the Task (Mage or Priest).
+   scen 2    Set7Scenario05 Scenario 5: Treachery Revealed
+        reward: Loot card - Familiar of the Zombie Doorman (EQ) or Emissary of the Void (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Faydark Wanderer (Fighter, Scout, or Generic) or Owlbear Feathered Spear (Mage or Priest).
+   scen 3    Set7Scenario06 Scenario 6: The Last Rift Is Closed
+        reward: Reward card - Elddar Escape (Fighter, Scout, or Generic) or Mend the Faithful (Mage or Priest).
+CAMPAIGN 33  key 78066  Storm Break Chapter 3: Miragul's Revenge
+   scen 1    Set7Scenario07 Scenario 7: Army of Skeletons
+        reward: Loot card - Magi Shield Ornamentation (EQ) or Painting: Arasai Favors (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Among His People (Fighter, Scout, or Generic) or Plotting Deceiver (Mage or Priest).
+   scen 2    Set7Scenario08 Scenario 8: The Mage Returns
+        reward: Reward card - Growing Intensity (Fighter, Scout, or Generic) or From the Fallen (Mage or Priest).
+   scen 3    Set7Scenario09 Scenario 9: A Beast Rises
+        reward: Reward card - Undying Rage (Fighter, Scout, or Generic) or Fighting the Beasts (Mage or Priest).
+   scen 4    Set7Scenario10 Scenario 10: The Final Reckoning
+        reward: Loot card - Shield of Scraps (EQ) or Golden Cockatrice (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Plainsman Patroller (Fighter, Scout, or Generic) or Soulsip Sceptre (Mage or Priest).
+CAMPAIGN 34  key 78069  Big Game Hunting
+   scen 1    BigGameHunting Big Game Hunting
+        reward: Loot card - Moonfang's Cub (EQ) or A Tamed Stag (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Nathsarian Ring of the Mighty.
+CAMPAIGN 35  key 78070  Spider Queen
+   scen 1    SpiderQueen    Spider Queen
+        reward: Loot card - Chalandria's Fang (EQ) or Cloak of the Arachnid (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Eye of Chalandria.
+CAMPAIGN 36  key 78071  Sporali Mind Meld
+   scen 1    SporaliMindMeld Sporali Mind Meld
+        reward: Loot card - Combine Arming Sword Ornament (EQ) or Painting - Arabesque (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Mindspore Thrall.
+CAMPAIGN 37  key 78072  Brraaaaainss
+   scen 1    Brraaaaainss   Brraaaaainss
+        reward: Loot card - Unscribed Glyph (EQ) or Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Zombie's Guide to Procreation.
+CAMPAIGN 38  key 78074  Travelers Chapter 1: The Five Travelers
+   scen 1    Set8Scenario01 Scenario 1: They're After You
+        reward: Reward card - Gaxan Bakar.   -> Gaxan Bakar=100013503/100013549/100015281/100020413
+   scen 2    Set8Scenario02 Scenario 2: Worlds of Trouble
+        reward: Reward card - Arith Theana.   -> Arith Theana=100013500/100013550/100015280/100022447
+   scen 3    Set8Scenario03 Scenario 3: No Choice But to Fight
+        reward: Loot card - Pings Peregrinating Potion Pack (EQ) or Draught of the Monarch (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Kenoch MacDunham.
+   scen 4    Set8Scenario04 Scenario 4: Stand and Deliver
+        reward: Reward card - Rinaya Zishlin.   -> Rinaya Zishlin=100013506/100013552/100015282
+CAMPAIGN 39  key 78075  Travelers Chapter 2: Men of Void and Mystery
+   scen 1    Set8Scenario05 Scenario 5: I've Been Expecting You
+        reward: Reward card - Missionary Jenson.   -> Missionary Jenson=100013553
+   scen 2    Set8Scenario06 Scenario 6: Flee, You Fool!
+        reward: Loot card - Tear of Tranquility (EQ) or Gigglegibber Giggle Giver (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Signet of Life.
+   scen 3    Set8Scenario07 Scenario 7: You Won't Be Leaving
+        reward: Reward card - Eclipsing Voidman.   -> Eclipsing Voidman=100013555
+CAMPAIGN 40  key 78076  Travelers Chapter 3: Avatars of the Gods
+   scen 1    Set8Scenario08 Scenario 8: Wounds Will Never Heal
+        reward: Reward card - Prichard Fizzburn.   -> Prichard Fizzburn=100013556
+   scen 2    Set8Scenario09 Scenario 9: Powerless to Stop Us
+        reward: Reward card - Lucanic Knight.   -> Lucanic Knight=100013557
+   scen 3    Set8Scenario10 Scenario 10: Avenge the Suffering
+        reward: Loot card - Archaeologist's Runic Belt (EQ) or Sabertooth Tiger Plushie (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Krajiva's Vindicator.
+CAMPAIGN 41  key 78077  Kaggy Krup
+   scen 1    KaggyKrup      Kaggy Krup
+        reward: Loot card - Unscribed Glyph (EQ) or Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Glowing Kunzar Amulet.
+CAMPAIGN 42  key 78078  Time to Sleigh... the Dragon!
+   scen 1    TimeToSleigh   Time to Sleigh... the Dragon!
+        reward: Loot card - Unscribed Glyph (EQ) or Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Ice Dragon.
+CAMPAIGN 43  key 78079  Giant Problems
+   scen 1    GiantProblems  Giant Problems
+        reward: Loot card - Unscribed Glyph (EQ) or Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Giant Helmet.
+CAMPAIGN 44  key 78080  Underfoot
+   scen 1    Underfoot      Underfoot
+CAMPAIGN 45  key 78082  Vengeful Gods Chapter 1: The Plan Revealed
+   scen 1    Set9Scenario01 Scenario 1: Schemes Revealed
+        reward: Reward card - Scheming Voidman.   -> Scheming Voidman=100017433
+   scen 2    Set9Scenario02 Scenario 2: Historian of the Gods
+        reward: Reward card - Mistrunner.   -> Mistrunner=100013554
+   scen 3    Set9Scenario03 Scenario 3: Unravel the Plot
+        reward: Loot card - Ping's Palliative Potion Pack (EQ) or Tapestry of Crystal Shards (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Enthralling Voidman.
+   scen 4    Set9Scenario04 Scenario 4: A Mysterious Clue
+        reward: Reward card - Earring of Anashti Sul.   -> Earring of Anashti Sul=100017435
+CAMPAIGN 46  key 78083  Vengeful Gods Chapter 2: Prophets and Avatars
+   scen 1    Set9Scenario05 Scenario 5: Beacon of Courage
+        reward: Reward card - Lordknight of Valor.   -> Lordknight of Valor=100017436
+   scen 2    Set9Scenario06 Scenario 6: Trials of the Truthbringer
+        reward: Loot card - Bladestorm Nimbus (EQ) or Glare of the Gazer (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Mark of Mithaniel Marr.
+   scen 3    Set9Scenario07 Scenario 7: Proof in Strength
+        reward: Reward card - Herald of Zek.   -> Herald of Zek=100017438
+   scen 4    Set9Scenario08 Scenario 8: A Savage Lesson
+        reward: Reward card - Zek's Fist.   -> Zek's Fist=100017439
+CAMPAIGN 47  key 78084  Vengeful Gods Chapter 3: Queen of the Forgotten
+   scen 1    Set9Scenario09 Scenario 9: The Master Planner
+        reward: Reward card - Disciple of Anashti.   -> Disciple of Anashti=100017440
+   scen 2    Set9Scenario10 Scenario 10: The Forgotten Goddess
+        reward: Loot card - Signet of Anashti Sul (EQ) or Squeeky the Boarfiend (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Ring of Anashti's Will.
+CAMPAIGN 48  key 78085  Spread the Word
+   scen 1    SpreadTheWord  Spread the Word
+CAMPAIGN 49  key 78086  Everlasting Brew
+   scen 1    EverlastingBrew Everlasting Brew
+CAMPAIGN 50  key 78087  Bristlebane's Day
+   scen 1    BristlebanesDay Bristlebane's Day
+CAMPAIGN 51  key 78088  The Night Shift
+   scen 1    TheNightShift  The Night Shift
+CAMPAIGN 52  key 78089  Fall of Erudin
+   scen 1    FallOfErudin   Fall of Erudin
+        reward: Loot cards - Ping's Poignant Potion Pack, Ping's Palliative Potion Pack, Ping's Protective Potion Pack, Ping's Practical Potion Pack, and Ping's Prodigious Potion Pack (EQ) or Draught of the Wise, Draught of the Skilled, Draught of the Versatile, Draught of the Vigilant, and Draught of the Monarch (EQII). Receive one each of five loot cards (based on your loot preference) the first time you win this scenario.   -> Ping's Palliative Potion Pack=100005295/100005296/100007475/100007478/100009235/100009236/100014018/100014019/100019566/100019567/100020446/100020447; Ping's Protective Potion Pack=100005297/100005298/100007485/100007486/100012371/100012372/100014026/100014027/100019564/100019565; Draught of the Skilled=100005225/100005226; Draught of the Versatile=100005227/100005228
+CAMPAIGN 53  key 78091  Doom of the Ancient Ones 1: Friends and Enemies
+   scen 1    Set10Scenario01 Scenario 1: Preying on the Weak
+        reward: Reward card - Warding Bannerman.   -> Warding Bannerman=100020375
+   scen 2    Set10Scenario02 Scenario 2: Thrall of the Void
+        reward: Reward card - Bellicose Bannerman.   -> Bellicose Bannerman=100020376
+   scen 3    Set10Scenario03 Scenario 3: Bound to the Master
+        reward: Loot card - Ping's Practical Potion Pack (EQ) or Tapestry of the Silver Guardian (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Shielding Bannerman.
+   scen 4    Set10Scenario04 Scenario 4: To Kill a Queen
+        reward: Reward card - Fierce Bannerman.   -> Fierce Bannerman=100020378
+CAMPAIGN 54  key 78092  Doom of the Ancient Ones 2: Shattered Shards
+   scen 1    Set10Scenario05 Scenario 5: Shard of Growth
+        reward: Reward card - Qeynos Scout.   -> Qeynos Scout=100020379
+   scen 2    Set10Scenario06 Scenario 6: Shard of Storms
+        reward: Loot card - Pike of Avanish Ornament (EQ) or Self Help Manual (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Qeynos Sentry.
+   scen 3    Set10Scenario07 Scenario 7: Shard of Valor
+        reward: Reward card - Bulwark of Stained Glass.   -> Bulwark of Stained Glass=100020381
+CAMPAIGN 55  key 78093  Doom of the Ancient Ones 3: The Masterminds
+   scen 1    Set10Scenario08 Scenario 8: The Undying
+        reward: Reward card - Wrapped Glass Shard.   -> Wrapped Glass Shard=100020382
+   scen 2    Set10Scenario09 Scenario 9: Sentinel of Balance
+        reward: Reward card - Mystery Box.   -> Mystery Box=100020383
+   scen 3    Set10Scenario10 Scenario 10: Godslayer
+        reward: Loot card - Crushbone Contract (EQ) or Blessing of Prexus (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Rundown Clockwork.
+CAMPAIGN 56  key 78094  Owlbear Nuisance
+   scen 1    OwlbearNuisance Owlbear Nuisance
+CAMPAIGN 57  key 78095  Growzzat Queen
+   scen 1    GrowzzatQueen  Growzzat Queen
+CAMPAIGN 58  key 78096  Boots of Zorash
+   scen 1    BootsOfZorash  Boots of Zorash
+CAMPAIGN 59  key 78097  Troll Troubles
+   scen 1    TrollTroubles  Troll Troubles
+CAMPAIGN 60  key 78099  Dragonbrood - The Anarchs 1: Arrival
+   scen 1    Set11Scenario01 Scenario 1: A Fiery Family
+        reward: Reward card - Eager Thrillseeker.   -> Eager Thrillseeker=100021169
+   scen 2    Set11Scenario02 Scenario 2: The Beast Outside
+        reward: Reward card - Balebri Estarim.   -> Balebri Estarim=100021126/100021174/100023273/100023912
+   scen 3    Set11Scenario03 Scenario 3: Bandit in the Brush
+        reward: Loot card - Ping's Practical Potion Pack (EQ) or Painting: Erollisi Marr (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Shadow Delver.
+   scen 4    Set11Scenario04 Scenario 4: Family Reunion
+        reward: Reward card - Meleen.   -> Meleen=100021123/100021171/100023274
+CAMPAIGN 61  key 78100  Dragonbrood - The Anarchs 2: Journey to the Temple
+   scen 1    Set11Scenario05 Scenario 5: Relentless Assault
+        reward: Reward card - Spy Drake.   -> Spy Drake=100021172
+   scen 2    Set11Scenario06 Scenario 6: To the Temple of Veeshan
+        reward: Loot card - Fist of the Emerald Dragon (EQ) or Tapestry of Emblematic Power(EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Violent Upstart.
+   scen 3    Set11Scenario07 Scenario 7: Battle at the Gates
+        reward: Reward card - Celestial Watch Priest.   -> Celestial Watch Priest=100013494
+   scen 4    Set11Scenario08 Scenario 8: Guardians of the Scale
+        reward: Reward card - Rhyan Estarim.   -> Rhyan Estarim=100021129/100021175/100022468
+CAMPAIGN 62  key 78101  Dragonbrood - The Anarchs 3: Battle the Anarch Lords
+   scen 1    Set11Scenario09 Scenario 9: Grothduul the Ravager
+        reward: Reward card - Temple Guardian.   -> Temple Guardian=100021177
+   scen 2    Set11Scenario10 Scenario 10: Sothzyir the Enslaver
+        reward: Loot card - Emblem of Druushk (EQ) or Helm of the Wyrmslayer (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Tahka Estarim.
+CAMPAIGN 63  key 78102  Nights of the Dead Scenario
+   scen 1    HauntedMansion Haunted Mansion
+        reward: Loot card - Unwritten Glyph or Superior Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario. Reward card - Bloodsucker. Receive one reward card for winning this scenario with each different archetype (5 possible).
+CAMPAIGN 64  key 78105  Anarchs Risen
+   scen 1    AnarchsRisen   Anarchs Risen
+        reward: Theskr the Damned. -- Loot card - Unwritten Glyph or Superior Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario. Reward card - Imposing Dragon. Receive one reward card for winning this scenario with each different archetype (5 possible).
+CAMPAIGN 65  key 78104  The Giftgiver's Dilemma
+   scen 1    TheGiftgiversDilemma The Giftgiver's Dilemma
+        reward: Loot card - Loot card - Unwritten Glyph or Superior Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario. Reward - Frostfell Holiday Pack. Receive one reward card for winning this scenario with each different archetype (5 possible).
+CAMPAIGN 66  key 78103  Fippy's Revenge
+   scen 1    FippysRevenge  Fippy's Revenge
+        reward: Loot card - Unwritten Glyph or Superior Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario. Reward card - Lucky Gnoll's Foot. Receive one reward card for winning this scenario with each different archetype (5 possible).
+CAMPAIGN 67  key 78107  Legacies Chapter 1: Coming Home
+   scen 1    Set12Scenario01 Scenario 1: Warm Welcome
+        reward: Reward card - Anointed Priest.   -> Anointed Priest=100022276
+   scen 2    Set12Scenario02 Scenario 2: The Town Wizard
+        reward: Reward card - Artful Frostmage.   -> Artful Frostmage=100022277
+   scen 3    Set12Scenario03 Scenario 3: Past Echoes
+        reward: Loot card - Ping's Practical Potion Pack (EQ) or Tapestry of the Arbor (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Impetuous Rover.
+   scen 4    Set12Scenario04 Scenario 4: An Old Friend
+        reward: Reward card - Mercenary Reaver.   -> Mercenary Reaver=100022279
+CAMPAIGN 68  key 78108  Legacies Chapter 2: Seeking the Truth
+   scen 1    Set12Scenario05 Scenario 5: Showdown
+        reward: Reward card - Lithe Duelist.   -> Lithe Duelist=100022280
+   scen 2    Set12Scenario06 Scenario 6: The Blacksmith
+        reward: Loot card - Painting: Strength of Ganak (EQ) or Shroud of Richness (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Lone Survivor.
+   scen 3    Set12Scenario07 Scenario 7: Bleeder's Ambush
+        reward: Reward card - Head Mercenary.   -> Head Mercenary=100022282
+CAMPAIGN 69  key 78109  Legacies Chapter 3: The Master Revealed
+   scen 1    Set12Scenario08 Scenario 8: The Retired Soldier
+        reward: Reward card - Sword of Runic Omens.   -> Sword of Runic Omens=100022283
+   scen 2    Set12Scenario09 Scenario 9: Priest of Swarms
+        reward: Reward card - Bog Snake.   -> Bog Snake=100022284
+   scen 3    Set12Scenario10 Scenario 10: Twisted Genius
+        reward: Loot card - Dragonflame Ring (EQ) or Circlet of Mystic Vision (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario with any archetype. Reward card - Venom Protector.
+CAMPAIGN 70  key 78110  A Necklace for Erollisi
+   scen 1    Set12Monthly01 A Necklace for Erollisi
+        reward: Loot card - Unwritten Glyph or Superior Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario. Reward card - Huvul Strategist. Receive one reward card for winning this scenario with each different archetype (5 possible).
+CAMPAIGN 71  key 78111  Bone Marrow Brew
+   scen 1    Set12Monthly02 Bone Marrow Brew
+        reward: Loot card - Unwritten Glyph or Superior Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario. Reward card - Huvul Commander. Receive one reward card for winning this scenario with each different archetype (5 possible).
+CAMPAIGN 72  key 78112  Sleight of Hand
+   scen 1    Set12Monthly03 Sleight of Hand
+        reward: Loot card - Unwritten Glyph or Superior Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario. Reward card - Huvul Lord. Receive one reward card for winning this scenario with each different archetype (5 possible).
+CAMPAIGN 73  key 78113  Venom Lord
+   scen 1    Set12Monthly04 Venom Lord
+        reward: Loot card - Unwritten Glyph or Superior Draught of the Brilliant (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario. Reward card - Venom Lord. Receive one reward card for winning this scenario with each different archetype (5 possible).
+CAMPAIGN 74  key 78115  Priestess of the Anarchs
+   scen 1    Set13Scenario01 Scenario 1: Happy Family
+        reward: Reward card - Pearl Destroyer.   -> Pearl Destroyer=100009916/100023340
+   scen 2    Set13Scenario02 Scenario 2: Ensorcelled
+        reward: Reward card - Runnyeye Warmonger.   -> Runnyeye Warmonger=100005687/100023341
+   scen 3    Set13Scenario03 Scenario 3: Confrontation
+        reward: Reward card - Wood Elf Shaman.
+   scen 4    Set13Scenario04 Scenario 4: Revelation
+        reward: Reward card - Lava Walker.   -> Lava Walker=100008399/100023343
+   scen 5    Set13Scenario05 Scenario 5: The Chosen One
+        reward: Reward card - Trakaraptor.   -> Trakaraptor=100008406/100023344
+CAMPAIGN 75  key 78119  Fall of the Estarim
+   scen 1    Set14Scenario01 Scenario 1: The Half Brother
+        reward: Reward card - Soonilur.   -> Soonilur=100023908
+   scen 2    Set14Scenario02 Scenario 2: The Family Defender
+        reward: Reward card - Viirdomaris.   -> Viirdomaris=100023909
+   scen 3    Set14Scenario03 Scenario 3: The Loving Father
+        reward: Reward card - Mathuun.   -> Mathuun=100023910
+   scen 4    Set14Scenario04 Scenario 4: The Mother of Deceit
+        reward: Reward card - Uthmaaran.   -> Uthmaaran=100023278/100023911
+   scen 5    Set14Scenario05 Scenario 5: The Daughter of Dragonbrood
+        reward: Reward card - Balebri Estarim, Anarch Queen.   -> Balebri Estarim=100021126/100021174/100023273/100023912
+CAMPAIGN 76  key -      Battle Deck: Firiona Vie
+   scen 1    BattleDeckFiriona Battle Deck: Firiona Vie
+        reward: Loot card - TBD (EQ) or TBD (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario.
+CAMPAIGN 77  key -      Battle Deck: Lanys T'Vyl
+   scen 1    BattleDeckLanys Battle Deck: Lanys T'Vyl
+        reward: Loot card - TBD (EQ) or TBD (EQII). Receive one loot card (based on your loot preference) the first time you win this scenario.
+CAMPAIGN 78  key 78123  Debt of the Ratonga
+   scen 1    Set15Scenario01 Scenario 1: None of Your Concern
+        reward: Reward card - Kovpak.   -> Kovpak=100024071/100024074
+   scen 2    Set15Scenario02 Scenario 2: Join the Fool in Death
+        reward: Reward card - Drizen.   -> Drizen=100024072/100024075
+   scen 3    Set15Scenario03 Scenario 3: Worry About Yourself
+        reward: Reward card - Gusev.   -> Gusev=100024073/100024145
+   scen 4    Set15Scenario04 Scenario 4: Can't Take Me Alive
+        reward: Reward card - Makash.   -> Makash=100024215/100024217
+   scen 5    Set15Scenario05 Scenario 5: Time For a Reckoning
+        reward: Reward card - Varenik.   -> Varenik=100024216/100024218

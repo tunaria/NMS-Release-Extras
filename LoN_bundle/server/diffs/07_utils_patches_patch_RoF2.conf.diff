@@ -1,0 +1,5 @@
+diff --git a/utils/patches/patch_RoF2.conf b/utils/patches/patch_RoF2.conf
+--- a/utils/patches/patch_RoF2.conf
++++ b/utils/patches/patch_RoF2.conf
+@@ -773,0 +775,1 @@
++OP_NMSLoNSession=0x141C	# Server->Client: Legends of Norrath one-time login token + relay host/port

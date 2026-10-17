@@ -1,0 +1,5 @@
+diff --git a/common/emu_oplist.h b/common/emu_oplist.h
+--- a/common/emu_oplist.h
++++ b/common/emu_oplist.h
+@@ -746,0 +748,1 @@
++N(OP_NMSLoNSession),       // Server->Client: 0x141C, the card game's one-time login token + where to relay it (world/lon_service.cpp)

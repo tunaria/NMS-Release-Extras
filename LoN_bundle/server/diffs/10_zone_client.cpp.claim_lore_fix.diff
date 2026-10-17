@@ -1,0 +1,42 @@
+diff --git a/zone/client.cpp b/zone/client.cpp
+--- a/zone/client.cpp
++++ b/zone/client.cpp
+@@ -7757,12 +7757,3 @@
+-	if (amt == 1) {
+-		query = StringFormat("DELETE FROM account_rewards "
+-					 "WHERE account_id = %i AND reward_id = %i",
+-					 AccountID(), claim_id);
+-		auto results = database.QueryDatabase(query);
+-	} else {
+-		query = StringFormat("UPDATE account_rewards SET amount = (amount-1) "
+-					 "WHERE account_id = %i AND reward_id = %i",
+-					 AccountID(), claim_id);
+-		auto results = database.QueryDatabase(query);
+-	}
+-
++	// Build the reward and check lore BEFORE spending the claim. Stock spent
++	// it first, so claiming a lore item this character already owns used the claim up and gave
++	// nothing. Now a lore conflict refuses the claim and keeps it for another character.
+@@ -7772,2 +7763,1 @@
+-		Save();
+-		return true;
++		return false;
+@@ -7776,0 +7767,3 @@
++	if (lore_conflict) {
++		DuplicateLoreMessage(ivr.items[0].item_id);
++	}
+@@ -7793,1 +7786,13 @@
+-		return true;
++		return false;
++	}
++
++	if (amt == 1) {
++		query = StringFormat("DELETE FROM account_rewards "
++					 "WHERE account_id = %i AND reward_id = %i",
++					 AccountID(), claim_id);
++		auto results = database.QueryDatabase(query);
++	} else {
++		query = StringFormat("UPDATE account_rewards SET amount = (amount-1) "
++					 "WHERE account_id = %i AND reward_id = %i",
++					 AccountID(), claim_id);
++		auto results = database.QueryDatabase(query);

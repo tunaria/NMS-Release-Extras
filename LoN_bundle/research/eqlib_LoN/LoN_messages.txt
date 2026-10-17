@@ -1,0 +1,3310 @@
+# Legends of Norrath -- every serialisable class, field by field, in WIRE ORDER
+# Generated 2026-10-06 by a catalog parser (internal tool, not included) from a bulk Ghidra
+# decompile of LegendsOfNorrath.dll (scripts: ghidra_scripts_lon7/8/9, not included).
+#
+# A message = [varint classId][varint version] once per class level, then the fields.
+# 'base X' = X's serializer runs here (its own header pair + its fields).
+# Types: int/bool = varint; string = varint len + bytes + NUL; object = flag (0 present,
+# 1 absent) + classId + body; vector = varint count + elements.
+# 'since vN' = the reader only reads it when the sender's version is >= N.
+# Labels are the client's own trace text (or its debugDump text when the trace has none).
+# Addresses are Ghidra VAs at image base 0x10000000 (RVA = VA - 0x10000000).
+# 'verified' = the vtable's own classId slot returns this id and its name slot
+# matches the RTTI name; 'factory' = taken from the registered factory's constructor.
+
+=== 0x0002  PersistentComponent   v1   [verified (not registered)]
+    vtable 105F4838  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0003  Archetype   v7   [verified]
+    vtable 105F79EC  write 10038520  read 1003D060  dump -
+    +0x08   int                    Archetype ID
+    +0x14   int                    Defining Archetype ID   (since v2)
+    +0x1C   int                    Card Display Style   (since v2)
+    +0x0C   object (nullable)      Format specific data
+    +0x20   bool                   No Foil.   (since v3)
+    +0x21   int                    Only Foil.   (since v4)
+
+=== 0x0005  RuleSetData   v2   [verified (not registered)]
+    vtable 1062156C  write 1019E4F0  read 1019E490  dump -
+    +0x04   int                    RuleSetID
+    +0x08   object (nullable)      Expression Tree
+
+=== 0x0012  Action   v9   [verified]
+    vtable 105F4AB4  write 1001F780  read 1001EF80  dump -
+    +0x08   int                    Action ID
+    +0x0C   object (nullable)      Presentation Name
+      ?     vector <int>           Inherits Map
+      ?     vector <int>           ?
+      ?     vector <int>           ?
+    +0x3C   map <int, object*>     mValueMap
+
+=== 0x0013  FormatSpecificData   v2   [verified]
+    vtable 10607C8C  write 100CE340  read 100CE160  dump -
+      ?     vector <int>           Inherits Map
+      ?     vector <int>           ?
+      ?     vector <int>           ?
+    +0x18   map <int, int>         AI Parameters
+
+=== 0x0016  ValueData   v4   [verified (not registered)]
+    vtable 105F795C  write 101D5DD0  read 101D7ED0  dump -
+    +0x08   int                    TypeID
+    +0x0C   bool                   mOwningReference
+    +0x04   bool                   ?
+    +0x04   int                    ?
+    +0x04   string                 ?
+    +0x04   object embedded        ?
+    +0x04   vector <int>           ?
+    +0x04   vector <string>        ?
+    +0x04   vector <object*>       ?
+    +0x04   object embedded        ?
+    +0x04   object embedded        ?
+    +0x04   map <int, int>         ?
+    +0x04   map <int, object*>     ?
+
+=== 0x0017  PropertySet   v1   [verified]
+    vtable 1061FE30  write 10191E30  read 10192B90  dump -
+    +0x04   map <int, object*>     PropertySet Map
+
+=== 0x0019  Expression   v1   [verified]
+    vtable 10607A4C  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x001A  AndExpression   v1   [verified]
+    vtable 105F7564  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x001B  OrExpression   v1   [verified]
+    vtable 1061D2A4  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x001C  IfThenExpression   v1   [verified]
+    vtable 1061179C  write 1012B310  read 1012B2C0  dump -
+    base Expression
+    +0x24   object (nullable)      Conditional
+
+=== 0x001D  LessThanExpression   v1   [verified]
+    vtable 10611F6C  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x001E  GreaterThanExpression   v1   [verified]
+    vtable 1060FAC4  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x001F  EqualToExpression   v1   [verified]
+    vtable 10605664  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0020  GreaterEqualExpression   v1   [verified]
+    vtable 1060FA0C  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0021  LessEqualExpression   v1   [verified]
+    vtable 10611EC4  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0022  NotEqualToExpression   v1   [verified]
+    vtable 1061D1F4  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0023  EachExpression   v1   [verified]
+    vtable 10605294  write 100B5DF0  read 100B5D70  dump -
+    +0x24   int                    CardListTarget
+    +0x28   int                    PlayArea
+    base Expression
+
+=== 0x0024  AddExpression   v1   [verified]
+    vtable 105F6E44  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0025  SubtractExpression   v1   [verified]
+    vtable 10622A5C  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0026  MultiplyExpression   v1   [verified]
+    vtable 1061B97C  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0027  ExpressionTreeNode   v1   [verified]
+    vtable 10607B9C  write 100CB1D0  read 100CB6A0  dump -
+    +0x04   map <int, object*>     NodeKeyValueMap
+
+=== 0x0028  ValueNode   v1   [verified]
+    vtable 10629504  write 101D93D0  read 101D9300  dump -
+    base ExpressionTreeNode
+    +0x20   int                    Property
+    +0x28   int                    NodeProperty
+    +0x24   int                    PlayArea
+    +0x28   int                    Value
+    +0x2C   int                    ?
+
+=== 0x0029  QueryNode   v1   [verified]
+    vtable 1061FEE4  write 101932C0  read 101935A0  dump -
+    base ExpressionTreeNode
+    +0x10   map <int, object*>     PropKeyValueMap
+
+=== 0x002B  QueryPropertiesNode   v1   [verified]
+    vtable 10620554  write 10194D80  read 10194CF0  dump -
+    base QueryNode
+    +0x1C   int                    Property
+    +0x20   int                    Comparison
+
+=== 0x002C  ActionNode   v3   [verified]
+    vtable 105F4ECC  write 100243D0  read 10024260  dump -
+    base ExpressionTreeNode
+    +0x10   int                    NodeTarget
+    +0x14   int                    Install Action Event
+    +0x18   int                    Install Action Phase
+    +0x1C   object (nullable)      Install Action
+    +0x20   object (nullable)      PreventBy_Text
+    +0x24   bool                   Force
+    +0x28   int                    PropertyKey   (since v3)
+
+=== 0x002E  Deck   v10   [verified (not registered)]
+    vtable 10602D4C  write 10098BB0  read 10099890  dump -
+    +0x04   string                 ?
+    +0x20   string                 ?
+    +0x3C   string                 ?
+    +0x58   string                 ?
+    +0x74   bool                   ?
+    +0x78   map <int, int>         ?
+    +0x88   bool                   ?   (since v2)
+    +0x89   int                    ?   (since v6)
+    +0x8A   int                    ?   (since v6)
+    +0x8C   int                    ?   (since v8)
+    +0x90   int                    ?   (since v10)
+
+=== 0x002F  LastActionQueryNode   v1   [verified]
+    vtable 10611C7C  write 1012C430  read 1012C3B0  dump -
+    base QueryNode
+    +0x1C   int                    Event ID
+    +0x20   int                    EventCausedBy
+
+=== 0x0030  EmitTextMessageNode   v2   [verified]
+    vtable 10605574  write 100B6F70  read 100B6E20  dump -
+    base ExpressionTreeNode
+    +0x10   object (nullable)      Message ID
+    +0x14   int                    Message target class
+
+=== 0x0031  ActionPlayNode   v4   [verified]
+    vtable 105F5FDC  write 1002B280  read 1002B0E0  dump -
+    base ExpressionTreeNode
+    +0x10   int                    PlayArea ID
+    +0x14   object (nullable)      Play_Text
+    +0x18   bool                   Playdefault   (since v3)
+    +0x19   int                    Playnoeffect   (since v4)
+
+=== 0x0032  NegateExpression   v1   [verified]
+    vtable 1061BA34  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0034  CollectionItem   v7   [verified]
+    vtable 105FB7CC  write 10075D80  read 10077D80  dump -
+    +0x04   int                    ArchetypeID
+    +0x08   int                    Quantity desired
+    +0x0C   bool                   Foils   (since v4)
+    +0x10   vector <object (inline, e.g. InstanceID)> Instances
+    +0x20   vector <object (inline, e.g. InstanceID)> NonTradableInstances
+
+=== 0x0035  QueryPlayabilityNode   v2   [verified]
+    vtable 1061FF44  write 10193B60  read 101939F0  dump -
+    base QueryNode
+    +0x1C   int                    Pile
+    +0x20   int                    Pile2
+    +0x24   object (nullable)      Target1_Text
+    +0x28   object (nullable)      Target2_Text
+
+=== 0x0036  NetworkCommand   v1   [verified (not registered)]
+    vtable 1061BB9C  write 1016C6A0  read 1016C670  dump -  execute 1016C480
+    (no fields of its own)
+
+=== 0x0037  GameCommand   v2   [verified]
+    vtable 1060AA0C  write 100FEFC0  read 100FF060  dump 100FEDD0  execute 100FEE90
+    base NetworkCommand
+    +0x04   int                    PlayerID
+    +0x0C   int                    GameID
+    +0x10   int64                  TimeStamp
+    +0x18   map <int, int>         ?
+
+=== 0x0038  GameCommand_IntroduceCard   v2   [verified]
+    vtable 1060CB8C  write 10106620  read 101065B0  dump 10106530  execute 10106440
+    base GameCommand
+    +0x24   int                    Introduced Card ID
+    +0x28   int                    Introduced Instance ID (first)
+    +0x2C   int                    Introduced Instance ID (second)
+
+=== 0x0039  GameCommand_CardPlayed   v2   [verified]
+    vtable 1060B7EC  write 10102070  read 10101FF0  dump 10101F50  execute 10101E60
+    base GameCommand
+    +0x24   int                    Origin Card ID
+    +0x28   int                    Origin Instance ID (first)
+    +0x2C   int                    Origin Instance ID (second)
+    +0x30   int                    Target ID
+
+=== 0x003A  GameCommand_SelectDeckForPlayer   v2   [verified]
+    vtable 1060DC5C  write 1010A1B0  read 1010A150  dump 10109F90  execute 1010A040
+    base GameCommand
+    +0x24   string                 Deck ID
+    +0x40   object (nullable)      Deck
+
+=== 0x003B  GameCommand_ActionPlayed   v3   [verified]
+    vtable 1060AD04  write 100FFF70  read 100FFE20  dump 101001C0  execute 10100370
+    base GameCommand
+    +0x24   int                    Origin Card ID
+    +0x28   int                    Origin Instance ID (first)
+    +0x2C   int                    Origin Instance ID (second)
+    +0x30   int                    Target 1 ID
+    +0x34   int                    Target 1 Instance ID (first)
+    +0x38   int                    Target 1 Instance ID (second)
+    +0x3C   int                    Target 1 Player ID
+    +0x40   int                    Target 2 ID
+    +0x44   int                    Target 2 Instance ID (first)
+    +0x48   int                    Target 2 Instance ID (second)
+    +0x4C   int                    Target 2 Player ID
+    +0x50   int                    Action ID
+    +0x54   int                    First Card Selected
+    +0x58   bool                   Select Set
+
+=== 0x003C  GameCommand_CardSelected   v3   [verified]
+    vtable 1060B92C  write 101025E0  read 10102540  dump 10102480  execute 101026B0
+    base GameCommand
+    +0x24   int                    Selected Card ID
+    +0x28   int                    Selected Card Instance ID (first)
+    +0x2C   int                    Selected Card Instance ID (second)
+    +0x30   int                    Selected Card Player ID
+    +0x34   bool                   SelectSet
+
+=== 0x003D  GameCommand_CardDeSelected   v2   [verified]
+    vtable 1060B684  write 10101C20  read 10101BD0  dump 10101B70  execute 10101C80
+    base GameCommand
+    +0x24   int                    DeSelected Card ID
+
+=== 0x003E  GameCommand_ButtonPressed   v3   [verified]
+    vtable 1060B334  write 101011F0  read 10101170  dump 101010D0  execute 10101280
+    base GameCommand
+    +0x24   int                    Button ID
+    +0x28   int                    TurnNumber
+    +0x2C   int                    State
+
+=== 0x003F  GameCommand_StateSpecificMessage   v3   [verified]
+    vtable 1060E4C4  write 1010C7C0  read 1010C6B0  dump 1010C250  execute 1010C3A0
+    base GameCommand
+    +0x30   object (nullable)      Number 1
+    +0x34   object (nullable)      Number 2
+    +0x24   int                    OriginatingClassID
+    +0x28   int                    ?
+    +0x2C   int                    ?
+
+=== 0x0040  GameCommand_OutOfSync   v2   [verified]
+    vtable 1060D26C  write 10107C10  read 10107BD0  dump -  execute 10107C60
+    base GameCommand
+
+=== 0x0041  GameCommand_SetPlayer   v2   [verified]
+    vtable 1060E07C  write 1010AF10  read 1010AED0  dump -  execute 1010AF60
+    base GameCommand
+
+=== 0x0042  GameCommand_SetObserverMode   v2   [verified]
+    vtable 1060DF64  write 1010AB50  read 1010AAE0  dump 1010AA60  execute 1010ABD0
+    base GameCommand
+    +0x24   bool                   Observer Mode
+    +0x28   int                    Account ID
+
+=== 0x0043  GameCommand_SetupGame   v10   [verified]
+    vtable 1060E44C  write 1010B5C0  read 1010B7C0  dump 1010B0A0  execute 1010B0A0
+    base GameCommand
+    +0x0C   int                    Game ID
+    +0x24   int                    Game Server ID
+    +0x24   int                    Server ID
+    +0x2C   int                    Player Count
+    +0x30   vector <int>           Player Order Data
+    +0x40   vector <int>           Ordered Account IDs
+    +0x50   int                    GameVersion
+    +0x54   int                    MatchID
+    +0x58   int                    Duration
+    +0x5C   int                    GameType
+    +0x60   int                    PlayType
+    +0x64   int                    ExtraFormatFlag
+    +0x68   int                    GameNum
+    +0x6C   vector <FUN_10006620,FUN_101781e0> ?
+    +0x78   int                    LeagueID
+    +0x7C   int                    MatchStructure
+    execute posts UI events: 0x14
+
+=== 0x0044  GameCommand_DrawCards   v2   [verified]
+    vtable 1060C16C  write 10104010  read 101043D0  dump 10103ED0  execute 10103CE0
+    base GameCommand
+    +0x38   vector <int>           ?
+    +0x28   map <int, int>         Drawn Card Instance Data
+    +0x24   int                    Source
+
+=== 0x0045  GameCommand_OutOfCards   v2   [verified]
+    vtable 1060D144  write 101077E0  read 101077A0  dump -  execute 101078D0
+    base GameCommand
+
+=== 0x0046  GameCommand_BeginCardPlayed   v2   [verified]
+    vtable 1060B1E4  write 10100D10  read 10100CC0  dump 10100C60  execute 10100E30
+    base GameCommand
+    +0x24   int                    Card ID
+
+=== 0x0047  GameCommand_DragStopped   v2   [verified]
+    vtable 1060BF54  write 10103B70  read 10103B20  dump 10103AC0  execute 10103BD0
+    base GameCommand
+    +0x24   int                    Card ID
+
+=== 0x0048  GameCommand_BatchControl   v2   [verified]
+    vtable 1060B084  write 10100990  read 10100940  dump 101008E0  execute 101007D0
+    base GameCommand
+    +0x24   int                    Batch control status
+
+=== 0x0049  GameCommand_SynchPoint   v4   [verified]
+    vtable 1060E76C  write 1010C9B0  read 1010CA30  dump 1010C910  execute 1010C8B0
+    base GameCommand
+    +0x24   int                    phaseID
+    +0x28   int                    stateID
+    +0x30   map <int, int>         ?
+    +0x2C   int                    turnNumber
+
+=== 0x004A  SetEnvironmentNode   v3   [verified]
+    vtable 1062161C  write 1019E9A0  read 1019E8F0  dump -
+    base ExpressionTreeNode
+    +0x10   int                    Target Playarea
+    +0x14   string                 StringValue
+    +0x30   int                    ?   (since v2)
+    +0x34   bool                   ?   (since v3)
+
+=== 0x004B  TargetQueryNode   v2   [verified]
+    vtable 1062437C  write 101B57A0  read 101B5600  dump -
+    base QueryNode
+    +0x1C   int                    Pile
+    +0x2C   bool                   Not
+    +0x24   object (nullable)      Target1_Text
+    +0x28   object (nullable)      Target2_Text
+    +0x30   int                    ModifierKey
+    +0x20   object (nullable)      AltPlayArea
+
+=== 0x004C  PileQueryNode   v1   [verified]
+    vtable 1061DB24  write 1017C800  read 1017C770  dump -
+    base QueryNode
+    +0x1C   int                    Pile
+    +0x20   int                    Comparison
+
+=== 0x004D  LoginCommand   v1   [verified]
+    vtable 10617D8C  write 10157040  read 10157000  dump -  execute 10156F40
+    base NetworkCommand
+
+=== 0x004E  LoginCommand_GetChallenge   v1   [verified]
+    vtable 10618284  write 10158160  read 10158110  dump 10158090  execute 10157FC0
+    base LoginCommand
+    +0x04   string                 Login name
+
+=== 0x004F  LoginCommand_SendChallenge   v2   [verified]
+    vtable 10618B94  write 1015C650  read 1015C5D0  dump 1015C520  execute 1015C030
+    base LoginCommand
+    +0x04   string                 Challenge
+    +0x20   string                 ?
+    +0x3C   bool                   ?
+
+=== 0x0050  LoginCommand_RespondToChallenge   v10   [verified]
+    vtable 10618984  write 1015ABD0  read 1015AE50  dump 1015A980  execute 1015A970
+    base LoginCommand
+    }
+    +0x14   map <int, int>         ?   (since v2)
+    +0x20   string                 Locale   (since v4)
+    +0x3C   string                 Serial Number   (since v5)
+    +0x58   string                 Registration Key   (since v5)
+    +0x74   string                 Platform   (since v5)
+    +0x90   string                 ?   (since v6)
+    +0xAC   string                 Match Challenge Key   (since v7)
+    +0xC8   string                 Login Client   (since v8)
+    +0xE4   string                 CharacterName   (since v9)
+    +0x100  string                 CharacterID   (since v10)
+    +0x11C  string                 Ticket   (since v10)
+
+=== 0x0051  LoginCommand_Results   v6   [verified]
+    vtable 10618A6C  write 1015B8F0  read 1015BC20  dump 1015B630  execute 1015B4E0
+    base LoginCommand
+    +0x14   bool                   Login Succeeded
+    +0x18   int                    Explanation
+    +0x1C   int                    AccountID
+    +0x20   bool                   UseExplanation   (since v2)
+    +0x24   int                    Server ID   (since v4)
+    +0x28   string                 Session ID   (since v5)
+    zlib block {   -- on the wire: varint rawLength, varint compressedLength, zlib bytes
+    +0x04   vector <int>           ?
+    }
+    execute posts UI events: 0xE, 0x88
+
+=== 0x0052  SynchronizationCommand   v1   [verified]
+    vtable 10622CE4  write 101AE810  read 101AE7D0  dump -  execute 101AE710
+    base NetworkCommand
+
+=== 0x0053  SynchronizationCommand_Start   v3   [verified]
+    vtable 10623C4C  write 101B1810  read 101B1780  dump -  execute 101B15B0
+    base SynchronizationCommand
+    +0x04   int                    AccountID  (as in SynchronizationCommand_StartInstances)   (since v2)
+    +0x08   int                    Collection Type  (as in SynchronizationCommand_StartInstances)   (since v2)
+    +0x0C   int                    Archetype Count  (as in SynchronizationCommand_StartInstances)   (since v2)
+    +0x10   int                    CollectionModID  (as in SynchronizationCommand_StartInstances)   (since v3)
+
+=== 0x0054  SynchronizationCommand_StartInstances   v2   [verified]
+    vtable 10623FF4  write 101B25C0  read 101B2530  dump 101B2450  execute 101B2340
+    base SynchronizationCommand
+    +0x04   int                    AccountID
+    +0x08   int                    Collection Type
+    +0x0C   int                    Archetype Count
+    +0x10   int                    CollectionModID   (since v2)
+
+=== 0x0055  SynchronizationCommand_SendInstances   v2   [verified]
+    vtable 1062380C  write 101B04B0  read 101B0C00  dump 101B0300  execute 101B02B0
+    base SynchronizationCommand
+    +0x08   int                    Base Archetype ID
+    +0x0C   int                    Archetype Count
+    +0x10   vector <object (inline, e.g. InstanceID)> Instances
+    +0x24   vector <object (inline, e.g. InstanceID)> NonTradable Instances
+    +0x04   int                    Delivery ID
+
+=== 0x0056  SynchronizationCommand_Complete   v2   [verified]
+    vtable 10622F14  write 101AEF60  read 101AEF00  dump 101AEE90  execute 101AEDA0
+    base SynchronizationCommand
+    +0x04   int                    DeliveryID   (since v2)
+
+=== 0x0057  SynchronizationCommand_Update   v1   [verified]
+    vtable 106241BC  write 101B2910  read 101B28D0  dump -  execute 101B27F0
+    base SynchronizationCommand
+
+=== 0x005B  LobbyCommand   v1   [verified]
+    vtable 1061291C  write 101384B0  read 10138460  dump 101383D0  execute 10138340
+    base NetworkCommand
+    +0x04   int                    AccountID
+
+=== 0x005C  LobbyCommand_Join   v4   [verified]
+    vtable 10614D54  write 101459F0  read 10145C40  dump 10145210  execute 10145340
+    base LobbyCommand
+    +0x08   int                    GroupID
+    +0x0C   int                    RoleType
+    +0x10   string                 Password   (since v2)
+    +0x2C   vector <int>           ?   (since v3)
+    +0x3C   string                 AccountName
+    +0x5C   object (nullable)      ?
+    +0x58   int                    Gender
+    execute posts UI events: 0x5, 0x10
+
+=== 0x005D  LobbyCommand_Leave   v3   [verified]
+    vtable 10614EE4  write 101461F0  read 10146540  dump 10146010  execute 10146380
+    base LobbyCommand
+    +0x08   int                    GroupID
+    +0x0C   int                    ?   (since v2)
+    +0x10   vector <int>           ?   (since v3)
+    execute posts UI events: 0x6
+
+=== 0x005E  LobbyCommand_AddGroups   v1   [verified]
+    vtable 10612FAC  write 101397F0  read 1013A510  dump 10139730  execute 101399D0
+    base LobbyCommand
+    +0x08   vector <object*>       ?
+    execute posts UI events: 0x3, 0x39, 0x3A, 0x43
+
+=== 0x005F  LobbyCommand_RemoveGroups   v1   [verified]
+    vtable 1061582C  write 10148410  read 101485D0  dump 101481D0  execute 10148040
+    base LobbyCommand
+    +0x08   vector <int>           IntegerList  (as in LobbyCommand_AddBuddies)
+    execute posts UI events: 0x4
+
+=== 0x0060  LobbyCommand_ConfigureGroup   v1   [verified]
+    vtable 1061447C  write 101414B0  read 10141420  dump -  execute 10141120
+    base LobbyCommand
+    +0x0C   int                    ?
+    +0x10   int                    ?
+    execute posts UI events: 0x8
+
+=== 0x0061  LobbyCommand_SendText   v4   [verified]
+    vtable 10616214  write 1014ABA0  read 1014AAC0  dump 1014A980  execute 1014A770
+    base LobbyCommand
+    +0x08   int                    GroupID
+    +0x0C   int                    Target User ID
+    +0x10   int                    Text disposition
+    +0x14   string                 Text
+    +0x30   bool                   Is Quick Chat   (since v2)
+    +0x34   int                    Chat ID   (since v3)
+    +0x38   int                    Locale ID   (since v4)
+    execute posts UI events: 0x7, 0xF
+
+=== 0x0062  MatchCommand   v1   [verified]
+    vtable 10619354  write 1015F8C0  read 1015F870  dump 1015F800  execute 1015F710
+    base LobbyCommand
+    +0x08   int                    Match ID
+
+=== 0x0063  MatchCommand_SetReady   v1   [verified]
+    vtable 1061A114  write 10162580  read 10162520  dump 101624A0  execute 10162300
+    base MatchCommand
+    +0x0C   bool                   Ready
+    execute posts UI events: 0x7B
+
+=== 0x0064  MatchCommand_SetBid   v1   [verified]
+    vtable 10619B34  write 10161350  read 10161300  dump 10161280  execute 10161100
+    base MatchCommand
+    +0x0C   int                    Bid
+
+=== 0x0065  MatchCommand_SelectDeck   v2   [verified]
+    vtable 1061981C  write 10160A00  read 10160980  dump 10160800  execute 101608D0
+    base MatchCommand
+    +0x0C   string                 Deck ID
+    +0x28   bool                   Deck ID Only
+    +0x2C   object (nullable)      ?
+
+=== 0x0066  MatchCommand_SelectStartPosition   v1   [verified]
+    vtable 106199EC  write 10160D00  read 10160FE0  dump 10160AE0  execute 10160E70
+    base MatchCommand
+    +0x0C   int                    SelectedPosition
+    +0x10   vector <int>           ?
+
+=== 0x0067  Lobby   v?   [UNVERIFIED (table says PersistentComponent)]
+    vtable 106128BC  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0068  Lobby   v?   [UNVERIFIED (table says Match)]
+    vtable 106128BC  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0069  NetworkCommand_UpdateLag   v1   [verified]
+    vtable 1061CB44  write 101730F0  read 10173160  dump 10173030  execute 10172FE0
+    base NetworkCommand
+    +0x04   map <int, int>         Account Lag Map
+
+=== 0x006A  LobbyCommand_BulkJoin   v3   [verified]
+    vtable 10613904  write 1013E6D0  read 1013E2D0  dump 1013CD00  execute 1013D640
+    base LobbyCommand
+    zlib block {   -- on the wire: varint rawLength, varint compressedLength, zlib bytes
+      ?     vector <int>           map entry [key 1]
+      ?     vector <int>           map entry [key 2]
+      ?     vector <int>           map entry [key 3]
+      ?     vector <int>           map entry [key 4]
+      ?     vector <int>           ?
+    +0x14   int                    Group ID
+    +0x18   vector <int>           ?
+    +0x28   vector <string>        ?
+    +0x38   vector <int>           ?
+    +0x48   vector <object*>       ?
+    +0x58   vector <int>           ?
+    }
+    execute posts UI events: 0x10, 0x19, 0x38
+
+=== 0x006B  NetworkCommand_ErrorMsg   v2   [verified]
+    vtable 1061BF9C  write 1016F220  read 1016F1B0  dump 1016F110  execute 1016EFB0
+    base NetworkCommand
+    +0x04   string                 ErrorMsg
+    +0x20   int                    ErrorCode
+    execute posts UI events: 0x9, 0x56
+
+=== 0x006C  LobbyCommand_AddBuddies   v1   [verified]
+    vtable 10612D9C  write 10139210  read 101393E0  dump 10138FF0  execute 10138F10
+    base LobbyCommand
+    +0x08   vector <int>           IntegerList
+    execute posts UI events: 0xA
+
+=== 0x006D  LobbyCommand_RemoveBuddies   v1   [verified]
+    vtable 106156D4  write 10147DD0  read 10147FA0  dump 10147BB0  execute 10147AD0
+    base LobbyCommand
+    +0x08   vector <int>           AccountID List
+    execute posts UI events: 0xB
+
+=== 0x006E  LobbyCommand_AddIgnore   v1   [verified]
+    vtable 10613074  write 1013A8A0  read 1013AA70  dump 1013A680  execute 1013A5A0
+    base LobbyCommand
+    +0x08   vector <int>           AccountID List
+    execute posts UI events: 0xC
+
+=== 0x006F  LobbyCommand_RemoveIgnore   v1   [verified]
+    vtable 1061597C  write 10148960  read 10148B30  dump 10148740  execute 10148660
+    base LobbyCommand
+    +0x08   vector <int>           AccountID List
+    execute posts UI events: 0xD
+
+=== 0x0070  NetworkCommand_Ping   v1   [verified]
+    vtable 1061C4AC  write 10171C00  read 10171BC0  dump 10171B40  execute 10171A60
+    +0x04   int                    Spoof Value
+
+=== 0x0071  AccountCommand   v1   [verified]
+    vtable 105F23B4  write 10009570  read 10009530  dump 100094B0  execute 100093D0
+    +0x04   int                    AccountID
+
+=== 0x0072  AccountCommand_IntroduceAccount   v1   [verified]
+    vtable 105F2D0C  write 1000EDF0  read 1000ED70  dump 1000EBC0  execute 1000EEA0
+    base AccountCommand
+    +0x08   string                 AccountName
+    +0x28   object (nullable)      Properties
+    +0x24   int                    AccountGender
+    execute posts UI events: 0x10
+
+=== 0x0073  MoveActionNode   v1   [verified]
+    vtable 1061A68C  write 101666E0  read 10166620  dump -
+    base ExpressionTreeNode
+    +0x10   int                    MoveTo Playarea
+    +0x14   int                    MoveFrom Playarea
+    +0x18   int                    MovePosition
+    +0x1C   int                    mNodeProperty
+    +0x20   int                    mEmitEvent
+
+=== 0x0074  MatchCommand_LaunchGame   v1   [verified]
+    vtable 106196B4  write 10160450  read 10160410  dump -  execute 10160220
+    base MatchCommand
+    execute posts UI events: 0x11
+
+=== 0x0075  GameCommand_ReadyForStartOfGame   v2   [verified]
+    vtable 1060D5E4  write 10108630  read 101085F0  dump -  execute 101084D0
+    base GameCommand
+
+=== 0x0076  AccountCommand_SetPreferences   v1   [verified]
+    vtable 105F441C  write 10016450  read 10016400  dump 100162E0  execute 10016140
+    base AccountCommand
+    +0x08   object (nullable)      ?
+    execute posts UI events: 0x12
+
+=== 0x0077  AccountCommand_ChangePassword   v1   [verified]
+    vtable 105F27FC  write 1000D920  read 1000D8D0  dump 1000D850  execute 1000D780
+    base AccountCommand
+    +0x08   string                 Password
+
+=== 0x007C  MatchCommand_SetMatchState   v1   [verified]
+    vtable 10619F9C  write 10162130  read 101620E0  dump 10162060  execute 10161EB0
+    base MatchCommand
+    +0x0C   int                    Match State
+    execute posts UI events: 0x7E
+
+=== 0x007D  MatchCommand_BidPlaced   v1   [verified]
+    vtable 10619454  write 1015FC70  read 1015FC30  dump -  execute 1015FA70
+    base MatchCommand
+    execute posts UI events: 0x5E
+
+=== 0x007F  MinExpression   v1   [verified]
+    vtable 1061A524  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0080  GameCommand_RevealCards   v2   [verified]
+    vtable 1060DB54  write 10109870  read 10109C60  dump 101095F0  execute 10109B00
+    base GameCommand
+    +0x24   vector <int>           ?
+
+=== 0x0082  GameCommand_DiscardCard   v2   [verified]
+    vtable 1060BC5C  write 10103000  read 10102F70  dump 10102ED0  execute 101032B0
+    base GameCommand
+    +0x24   int                    Discarded Card ID
+    +0x28   int                    Introduced Instance ID (first)
+    +0x2C   int                    Introduced Instance ID (second)
+    +0x4C   bool                   Cost Effect
+
+=== 0x0083  Exception   v1   [verified]
+    vtable 106077D8  write 100CA440  read 100CA3A0  dump -
+    +0x04   string                 ErrorMsg
+    +0x20   string                 FileName
+    +0x3C   int                    LineNumber
+    +0x40   string                 Expression
+    +0x5C   int                    PlayerID
+    +0x60   bool                   From Server
+
+=== 0x0084  GameCommand_FatalError   v3   [verified]
+    vtable 1060C44C  write 10105290  read 101051E0  dump 101050D0  execute 10104F70
+    base GameCommand
+    +0x8C   int                    Length
+    +0x90   int                    CompressedLength
+    }
+
+=== 0x0085  NetworkCommand_QueryDisconnect   v1   [verified]
+    vtable 1061C5AC  write 10171F70  read 10171F30  dump -  execute 10171DB0
+    base NetworkCommand
+    execute posts UI events: 0x16
+
+=== 0x0086  NetworkCommand_ConnectionTimedout   v1   [verified]
+    vtable 1061BBFC  write 1016CA50  read 1016CA10  dump -  execute 1016C890
+    base NetworkCommand
+    execute posts UI events: 0x17
+
+=== 0x0087  IsBorneByExpression   v1   [verified]
+    vtable 10611BB4  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0088  NetworkCommand_SystemMessage   v1   [verified]
+    vtable 1061C804  write 10172790  read 10172740  dump 101726C0  execute 10172580
+    base NetworkCommand
+    +0x04   string                 Message
+    execute posts UI events: 0x18
+
+=== 0x0089  LobbyCommand_ChangeStatus   v1   [verified]
+    vtable 106141EC  write 10140B80  read 10140B20  dump 10140AA0  execute 10140930
+    base LobbyCommand
+    +0x08   int                    Lobby Status
+    execute posts UI events: 0x19
+
+=== 0x008A  LobbyCommand_GameServiceError   v1   [verified]
+    vtable 1061490C  write 10144730  read 101446C0  dump 101445C0  execute 10144430
+    base LobbyCommand
+    +0x0C   int                    GroupID
+    +0x08   int                    Type
+    +0x10   string                 Explanation
+    execute posts UI events: 0x1A
+
+=== 0x008B  GameCommand_LostPlayer   v2   [verified]
+    vtable 1060CD7C  write 10106B10  read 10106AC0  dump 10106B70  execute 10106B70
+    base GameCommand
+    +0x24   int                    Account ID
+    execute posts UI events: 0x14
+
+=== 0x008C  GameCommand_EndObserverMode   v2   [verified]
+    vtable 1060C2F4  write 10104A90  read 10104A30  dump 101049D0  execute 10104AF0
+    base GameCommand
+    +0x24   int                    Observer Mode
+
+=== 0x008D  SynchronizationCommand_StartDelivery   v6   [verified]
+    vtable 10623F14  write 101B1BF0  read 101B2100  dump 101B1A90  execute 101B1A50
+    base SynchronizationCommand
+    +0x04   int                    Archetype Count
+    +0x34   int                    CollectionModID   (since v2)
+    +0x38   bool                   Silent   (since v3)
+    +0x08   int                    Delivery ID   (since v4)
+    +0x0C   int                    Transaction ID   (since v4)
+    +0x10   string                 Transaction Source   (since v4)
+    +0x2C   int                    Transaction Source ID   (since v4)
+    +0x30   int                    Transaction Source ID 2   (since v4)
+    +0x3C   vector <object (inline, e.g. InstanceID)> ?   (since v5)
+    +0x4C   vector <object (inline, e.g. InstanceID)> ?   (since v6)
+
+=== 0x008E  SynchronizationCommand_ProcessFulfillment   v1   [verified]
+    vtable 1062328C  write 101AF840  read 101AF7E0  dump 101AF760  execute 101AF690
+    base SynchronizationCommand
+    +0x08   int                    Instance
+    +0x10   int                    ?
+
+=== 0x008F  SynchronizationCommand_RemoveInstances   v1   [verified]
+    vtable 106234A4  write 101AFA60  read 101AFDF0  dump 101AF9A0  execute 101AF960
+    base SynchronizationCommand
+    +0x04   vector <object (inline, e.g. InstanceID)> Instances
+
+=== 0x0090  GameCommand_ReplaceCard   v3   [verified]
+    vtable 1060D874  write 10108E40  read 10108DC0  dump 10108D20  execute 101090B0
+    base GameCommand
+    +0x24   int                    Replace Card ID
+    +0x28   int                    Introduced Instance ID (first)
+    +0x2C   int                    Introduced Instance ID (second)
+    +0x30   int                    Target Card ID
+
+=== 0x0091  MaxExpression   v1   [verified]
+    vtable 1061A374  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0092  TradeCommand   v1   [verified]
+    vtable 1062509C  write 101B9D20  read 101B9CC0  dump 101B9C30  execute 101B9B80
+    base NetworkCommand
+    +0x04   int                    AccountID
+    +0x08   int                    TradeSessionID
+
+=== 0x0093  TradeCommand_IssueTradeRequest   v2   [verified]
+    vtable 1062645C  write 101BE190  read 101BE120  dump 101BE080  execute 101BDD40
+    base TradeCommand
+    +0x0C   int                    Issue To AccountID
+    +0x10   int                    GroupID   (since v2)
+    execute posts UI events: 0x2, 0x21
+
+=== 0x0094  TradeCommand_AcceptTradeRequest   v1   [verified]
+    vtable 1062537C  write 101BAC10  read 101BABB0  dump 101BAB10  execute 101BA7C0
+    base TradeCommand
+    +0x0C   int                    Issued From AccountID
+    +0x10   int                    Trade Lobby Id
+    execute posts UI events: 0x2, 0x22
+
+=== 0x0095  TradeCommand_AddCardToTrade   v1   [verified]
+    vtable 106255C4  write 101BB500  read 101BB490  dump 101BB3D0  execute 101BAF10
+    base TradeCommand
+    +0x10   int                    AddCardID archetype
+    +0x18   int                    AddCardID instance
+    +0x1C   int                    OriginAccountID
+    execute posts UI events: 0x2, 0x24
+
+=== 0x0096  TradeCommand_AcceptTrade   v1   [verified]
+    vtable 1062525C  write 101BA590  read 101BA530  dump 101BA4B0  execute 101BA380
+    base TradeCommand
+    +0x0C   bool                   Trade Button
+    execute posts UI events: 0x26
+
+=== 0x0097  TradeCommand_RemoveCardFromTrade   v3   [verified]
+    vtable 106268E4  write 101BF410  read 101BF380  dump 101BF2A0  execute 101BEDD0
+    base TradeCommand
+    +0x10   int                    RemoveCardID archetype
+    +0x18   int                    RemoveCardID instance
+    +0x1C   int                    OwnerAccountID   (since v2)
+    +0x20   int                    Error Code   (since v3)
+    execute posts UI events: 0x2, 0x25
+
+=== 0x0098  TradeCommand_CancelTradeRequest   v2   [verified]
+    vtable 10625B34  write 101BC5C0  read 101BC550  dump 101BC4B0  execute 101BC080
+    base TradeCommand
+    +0x0C   int                    Issued From AccountID
+    +0x10   int                    OriginAccountID   (since v2)
+    execute posts UI events: 0x2, 0x23
+
+=== 0x0099  TradeCommand_EndTradeSession   v1   [verified]
+    vtable 10626234  write 101BD6E0  read 101BD6A0  dump -  execute 101BD550
+    base TradeCommand
+    execute posts UI events: 0x27
+
+=== 0x009A  TradeCommand_ClearTrade   v1   [verified]
+    vtable 10626034  write 101BD060  read 101BD020  dump -  execute 101BCEC0
+    base TradeCommand
+    execute posts UI events: 0x28
+
+=== 0x009B  TradeCommand_FinalAcceptTrade   v1   [verified]
+    vtable 10626344  write 101BDAE0  read 101BDA80  dump 101BDA00  execute 101BD8D0
+    base TradeCommand
+    +0x0C   bool                   Trade Button
+    execute posts UI events: 0x29
+
+=== 0x009C  TradeCommand_SetupFinalTradeAccept   v2   [verified]
+    vtable 106270F4  write 101C0570  read 101C0D40  dump -  execute 101C0840
+    base TradeCommand
+    +0x0C   vector <object (inline, e.g. InstanceID)> Founder Card List
+    +0x1C   vector <object (inline, e.g. InstanceID)> Trader Card List
+    execute posts UI events: 0x2A
+
+=== 0x009D  TradeCommand_ClearAcceptState   v1   [verified]
+    vtable 10625F24  write 101BCCF0  read 101BCCB0  dump -  execute 101BCB60
+    base TradeCommand
+    execute posts UI events: 0x2B
+
+=== 0x009E  GameCommand_CanPrevent   v2   [verified]
+    vtable 1060B55C  write 101016C0  read 10101940  dump 10101440  execute 10101850
+    base GameCommand
+    +0x24   vector <int>           ?
+
+=== 0x00A0  GameCommand_ConcedeGame   v3   [verified]
+    vtable 1060BB34  write 10102BB0  read 10102B40  dump -  execute 10102A00
+    base GameCommand
+    +0x24   bool                   mAccept  (as in GameCommand_AcceptDraw)
+
+=== 0x00A1  GameCommand_AcceptDraw   v2   [verified]
+    vtable 1060ABDC  write 100FFB50  read 100FFAF0  dump 100FFAA0  execute 100FF970
+    base GameCommand
+    +0x24   bool                   mAccept
+
+=== 0x00A2  GameCommand_OfferDraw   v2   [verified]
+    vtable 1060D024  write 101074E0  read 101074A0  dump -  execute 10107300
+    base GameCommand
+
+=== 0x00A3  LobbyCommand_AdjournedGame   v1   [verified]
+    vtable 10613714  write 1013BE40  read 1013C0C0  dump 1013BBF0  execute 1013C010
+    base LobbyCommand
+    +0x08   int                    GameID
+    +0x0C   int                    MatchID
+    +0x10   vector <int>           ?
+
+=== 0x00A4  LobbyCommand_RemoveAdjournedGame   v1   [verified]
+    vtable 1061551C  write 10147950  read 101478F0  dump 10147850  execute 10147750
+    base LobbyCommand
+    +0x08   int                    GameID
+    +0x0C   int                    MatchID
+
+=== 0x00A5  GameCommand_FinishMultiaction   v2   [verified]
+    vtable 1060C75C  write 10105B10  read 10105AC0  dump 10105A70  execute 101058D0
+    base GameCommand
+    +0x24   int                    mGetTargetStateID
+
+=== 0x00A7  PlayElement   v?   [UNVERIFIED (table says PersistentComponent)]
+    vtable 1061EA3C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00A8  Card   v5   [factory]
+    vtable 105FA270  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00A9  AttributeModifier   v?   [factory]
+    vtable 105F7C2C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00AA  EvaluationEnvironment   v19   [verified]
+    vtable 10605A48  write 100BB890  read 100BDD20  dump -
+      ?     int                    GameID
+    +0x08   int                    OriginCardID
+    +0x0C   int                    TargetID
+    +0x10   int                    Target2ID
+      ?     int                    PlayerID
+    +0x18   int                    CurrentEvaluationState
+    +0x1C   vector <int>           CostCommandObjects
+    +0x2C   vector <int>           EffectCommandObjects
+      ?     vector <int>           Target1 Card List
+      ?     vector <int>           Target2 Card List
+    +0x78   int                    Current Depth
+    +0x7C   bool                   Debugging Enabled
+    +0x7D   int                    Count Tracing Enabled
+    +0x80   map <int, object inline> ?
+
+=== 0x00AB  ValidAttrModFilter   v?   [factory]
+    vtable 10628EEC  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00AC  PlayElement   v?   [UNVERIFIED (table says PlayArea)]
+    vtable 1061EA3C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00AD  PlayElement   v?   [UNVERIFIED (table says PilePlayArea)]
+    vtable 1061EA3C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00AE  PlayElement   v?   [UNVERIFIED (table says PlayerPlayArea)]
+    vtable 1061EA3C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00B2  CommandObject   v?   [factory]
+    vtable 105FB864  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00B3  CommandObject_AddKeyword   v?   [factory]
+    vtable 105FBD7C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00B4  CommandObject_RemoveKeyword   v?   [factory]
+    vtable 10600764  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00B5  CommandObject_ModifyProperty   v?   [factory]
+    vtable 105FEDF4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00B6  CommandObject_Shuffle   v?   [factory]
+    vtable 10601784  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00B7  CommandObject_AddToken   v?   [factory]
+    vtable 105FC0AC  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00B8  CommandObject_RemoveToken   v?   [factory]
+    vtable 10600C94  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00BA  CommandObject_CancelCommand   v?   [factory]
+    vtable 105FC55C  write -  read -  dump -  execute 10078C50
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00BB  CommandObject_Attach   v?   [factory]
+    vtable 105FC404  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00BE  CommandObject_Kill   v?   [factory]
+    vtable 105FEB0C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00C1  CommandObject_DrawCard   v?   [factory]
+    vtable 105FD3D4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00C5  CommandObject_Discard   v?   [factory]
+    vtable 105FCF14  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00C6  CommandObject_Prevent   v?   [factory]
+    vtable 105FFDD4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00C9  CommandObject_Move   v?   [factory]
+    vtable 105FF064  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00CA  CommandObject_InstallActionMap   v?   [factory]
+    vtable 105FE74C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00CB  CommandObject_UnInstallActionMap   v?   [factory]
+    vtable 10601C3C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00CE  CommandObject_PlayCard   v?   [factory]
+    vtable 105FFB14  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00CF  CommandObject_ChainedAction   v?   [factory]
+    vtable 105FC6D4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00D0  CommandObject_Reveal   v?   [factory]
+    vtable 10600F64  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00D1  CommandObject_MultiAction   v?   [factory]
+    vtable 105FF594  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00D2  CommandObject_GameProperties   v?   [factory]
+    vtable 105FDD0C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00D3  CommandObject_EmitTextMessage   v?   [factory]
+    vtable 105FD944  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00D4  CommandObject_InstallActionFilter   v?   [factory]
+    vtable 105FE53C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00D5  PlayElement   v?   [UNVERIFIED (table says ValidActionFilter)]
+    vtable 1061EA3C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00D6  CommandObject_GetTarget   v?   [factory]
+    vtable 105FDE64  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00D9  CommandObject_AddSuppressEffect   v?   [factory]
+    vtable 105FBF3C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00DA  CommandObject_RemoveSuppressEffect   v?   [factory]
+    vtable 10600B1C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00DB  CommandObject_AddAttrModFilter   v?   [factory]
+    vtable 105FBA94  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00DC  CommandObject_RemoveAttrModFilter   v?   [factory]
+    vtable 106001CC  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00DD  CommandObject_DiscardPile   v?   [factory]
+    vtable 105FD214  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00DE  CommandObject_SendCardIntroductions   v?   [factory]
+    vtable 106010A4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00E0  CommandObject_CustomChoiceDialog   v?   [factory]
+    vtable 105FCD8C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00E1  CommandObject_AddGameText   v?   [factory]
+    vtable 105FBBEC  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00E2  CommandObject_RemoveInheritedGameText   v?   [factory]
+    vtable 1060033C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00E3  CommandObject_MultiPlayer   v?   [factory]
+    vtable 105FF73C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00E8  GameTurn   v17   [verified]
+    vtable 1060EB4C  write 101169E0  read 10116210  dump -
+      ?     int                    GameID
+      ?     int                    ActivePlayer
+    +0x0C   int                    Current Phase
+    +0x10   int                    Current Event
+    +0x14   int                    Current Turn number
+    +0x1C   map <int, int>         CardsDrawnCountMap
+    +0x28   int                    Cards Taken into Hand
+    +0x2C   map <int, int>         SkipPhaseMap
+      ?     call FUN_10113180      Last Owner Card Map
+      ?     call FUN_10112cf0      map entry [key 0]
+      ?     call FUN_10112cf0      ?
+      ?     map <int, int>         ?
+    +0x44   bool                   CanceledCommand
+      ?     call FUN_10039900      PhaseCardPlayedMap
+      ?     call FUN_1003eb60      map entry [key 0]
+      ?     call FUN_10112d70      ?
+      ?     vector <FUN_10006620,FUN_101781e0> ?
+    +0x54   bool                   EndPhase
+    +0x68   bool                   EndMultiAction
+    +0x69   int                    PreventCardPlay   (since v6)
+    +0x6C   vector <int>           SuspendedCards   (since v7)
+    +0x7C   bool                   PhaseSuspended   (since v7)
+    +0x80   int                    SuspenedPhaseID   (since v9)
+    +0x84   bool                   PreventByPrevented   (since v10)
+    +0x8C   string                 ?
+      ?     call FUN_1003ec60      ?
+
+=== 0x00E9  StateMachine   v14   [verified]
+    vtable 10622034  write 101AA140  read 101A9690  dump -
+      ?     int                    GameID
+      ?     call FUN_100397b0      StateStack, classID
+    zlib block {   -- on the wire: varint rawLength, varint compressedLength, zlib bytes
+      ?     object (nullable)      ?
+    +0x04   call FUN_100d0140      ?
+      ?     map <int, int>         ?
+      ?     vector <FUN_101778f0,FUN_100d83b0> StateStack, buffer
+      ?     call FUN_100d83b0      ?
+      ?     vector <int>           StateStack: intList
+      ?     int                    ?
+    +0x20   vector <object*>       ReturnValueStack
+    +0x40   string                 SavedStateName
+    +0x5C   string                 SavedPhaseName
+    +0xA8   string                 SavedButton1
+    +0xC4   string                 SavedButton2
+    +0xFC   int                    TopStateID
+    +0x10C  string                 RestoreStateName
+    +0x128  string                 RestorePhaseName
+    +0x174  string                 RestoreButton1
+    +0x190  string                 RestoreButton2
+    +0xE0   string                 SavedButton3
+      ?     call FUN_100e1340      map entry [key 0]
+
+=== 0x00EA  StateMachineState   v10   [verified]
+    vtable 1062287C  write 101ABC00  read 101AB720  dump -
+      ?     int                    GameID
+    +0xE4   int                    StateID
+      ?     int                    mPreviousState
+    +0x0C   int                    Active Card
+    +0x10   int                    TokenType
+    +0x14   int                    TokenNumber
+    +0x18   int                    Phase
+    +0x1C   string                 StateName
+    +0x38   string                 PhaseName
+    +0x84   string                 Button1
+    +0xA0   string                 Button2
+    +0xBC   string                 Button3
+    +0xD8   int                    PlayerID
+    +0xDC   bool                   No ValidTargets
+      ?     call FUN_100bc050      mEnvironment
+
+=== 0x00F5  CancellableStateMachineState   v11   [verified]
+    vtable 105F9214  write 1004E1F0  read 1004E190  dump -
+    base StateMachineState
+    +0xEC   int                    Cancel Strategy
+
+=== 0x00F7  PlayCardState   v12   [verified]
+    vtable 1061E454  write 101813B0  read 10181320  dump -
+    base CancellableStateMachineState
+    +0xF0   bool                   ActionPlayed
+    +0xF1   int                    Confirm
+
+=== 0x00F9  DoublePassState   v11   [verified]
+    vtable 106047FC  write 100B2D30  read 100B3020  dump -
+    base CancellableStateMachineState
+    +0xF0   map <int, int>         PassedList
+      ?     int                    OriginalActivePlayer
+      ?     int                    CurrentPlayer
+      ?     vector <int>           OrderedPlayerList
+    +0x114  bool                   MaySkip
+    +0x118  int                    LookStrategy
+    +0x120  int                    State
+
+=== 0x00FA  GetTargetState   v14   [verified]
+    vtable 1060F484  write 1011A100  read 1011AAD0  dump -
+    base CancellableStateMachineState
+    +0xF0   bool                   ValidTargets
+      ?     vector <int>           ValidTargetsList
+    +0x104  bool                   ValidTargetsAsPlayElements
+    +0x108  vector <int>           ValidPlayElements
+    +0x118  bool                   Cancelable
+    +0x119  int                    ?
+    +0x11C  int                    GetTargetID
+    +0x120  vector <int>           HintingIDs
+    +0x130  int                    ?
+
+=== 0x00FB  ActionPlayedState   v15   [verified]
+    vtable 105F639C  write 10031670  read 10032050  dump -
+    base CancellableStateMachineState
+    +0xF0   int                    PlayedCardID
+    +0xF4   int                    PlayerID
+    +0xF8   int                    mTargetID
+    +0xFC   int                    mTargetID2
+    +0x100  int                    mActionID
+    +0x104  bool                   mNeedTarget
+    +0x105  int                    mNeedTarget2
+    +0x108  int                    mNextState
+    +0x10C  int                    mCurrentState
+    +0x110  int                    mResponseState
+    +0x114  bool                   UserWantsToPrevent
+    +0x115  int                    PreventedBySucceeded
+    +0x116  int                    CanBePrevented
+      ?     int                    PreventingPlayer
+    +0x11C  bool                   ActionIsPlayActin
+    +0x11D  int                    IgnorePlayer
+    +0x150  bool                   DependentAction
+    +0x151  int                    AllowGetTarget
+    +0x152  int                    SendCardSelected
+    +0x154  int                    FirstTargetSelected
+      ?     int                    mTarget1Holder
+      ?     int                    mTarget2Holder
+      ?     vector <int>           mPreventingPlayerList
+      ?     int                    mPreventingPlayerIter
+    +0x17C  int                    Event Holder
+      ?     int                    ?
+      ?     int                    LastActionHolder
+    +0x188  bool                   DoExpireEvent   (since v2)
+    +0x189  int                    SkipPayingCosts   (since v3)
+    +0x18A  int                    SkipPrePlayEvent   (since v4)
+    +0x18B  int                    SkipPreconditions   (since v5)
+
+=== 0x00FC  ProcessEventEmissionState   v11   [verified]
+    vtable 1061F82C  write -  read 1018E5B0  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00FD  HandleResponseState   v14   [verified]
+    vtable 106111BC  write -  read 10128E20  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x00FE  MultiActionState   v15   [verified]
+    vtable 1061AC54  write 10168670  read 1016A570  dump -
+    base CancellableStateMachineState
+      ?     int                    Player
+    +0xF4   int                    CommandType
+    +0xF8   int                    PlayerID
+    +0xFC   int                    PlayedCardID
+    +0x100  int                    ActionID
+    +0x104  int                    Max Num Actions
+    +0x108  int                    ACtions Left
+    +0x10C  bool                   Cancelable
+    +0x120  int                    State
+      ?     int                    Selected Target
+      ?     int                    Selected Target2
+      ?     vector <int>           ValidTargets
+    +0x13C  vector <int>           ValidPlayElements
+    +0x14C  int                    Button Pressed
+    +0x160  bool                   GetSecondTarget
+    +0x161  int                    Cost EvaulationState   (since v2)
+    +0x164  int                    Reveal ID
+    +0x16C  bool                   mUseUntil   (since v4)
+    +0x168  object (nullable)      ?   (since v4)
+    +0x170  int                    mNumActionsDone
+
+=== 0x00FF  RevealState   v14   [verified]
+    vtable 10620E4C  write 10199C70  read 1019B110  dump -
+    base CancellableStateMachineState
+    +0xF0   int                    PlayerID
+      ?     int                    Player
+    +0xF8   int                    PlayArea
+    +0xFC   vector <int>           ValidTargetsIDs
+      ?     int                    Selected Target
+    +0x110  int                    State
+    +0x124  bool                   Random
+    +0x128  int                    Num Shown
+    +0x12C  bool                   Get Target
+    +0x12D  int                    ShowAll
+    +0x12E  int                    until
+    +0x140  int                    CardDrawPosition
+      ?     vector <int>           RevealedCArdList
+    +0x158  bool                   Close On Button
+    +0x154  int                    mRevealID
+    +0x159  int                    mClosable   (since v3)
+    +0x15A  int                    mAutoClose
+
+=== 0x0100  ChainedActionState   v12   [verified]
+    vtable 105FA5FC  write 10066B80  read 10068020  dump -
+    base CancellableStateMachineState
+    +0xF0   int                    State
+      ?     vector <object*>       ValueDataList
+      ?     int                    ListIter
+    +0x10C  vector <int>           RevealedCards
+    +0x11C  int                    SelectedCardID
+    +0x120  bool                   TargetGotten
+    +0x124  vector <int>           RevealIDList
+
+=== 0x0102  CustomChoiceDialogState   v11   [verified]
+    vtable 106023F4  write 10095410  read 10095300  dump -
+    base CancellableStateMachineState
+    +0xF0   int                    PlayerID
+    +0x124  int                    Do Effect
+    +0x128  int                    state
+    +0x12C  bool                   HasThirdButton
+    +0x12D  int                    NoAutoAction
+
+=== 0x0103  MultiPlayerState   v11   [verified]
+    vtable 1061B654  write -  read 1016BC70  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0105  Player   v4   [verified (not registered)]
+    vtable 1061EE8C  write 10187010  read 10186DF0  dump 10186BB0
+    +0x34   int                    mPlayerID
+    +0x38   int                    mAccountID
+    +0x3C   int                    mGameID
+    +0x40   int                    PreferredLanguage
+    +0x44   int                    Gender
+    +0x08   call FUN_100d0140      ?
+      ?     int                    PlayArea
+      ?     int                    GameID
+    +0x0C   string                 DeckID
+    +0x28   object (nullable)      Deck
+      ?     int                    PlayerCard
+
+=== 0x0106  GameCommand_SendSerializedGame   v2   [verified]
+    vtable 1060DDAC  write 1010A7C0  read 1010A730  dump 1010A610  execute 1010A340
+    base GameCommand
+    +0x28   int                    Length
+    +0x2C   int                    CompressedLength
+    }
+
+=== 0x0107  GameCommand_AcceptAdjournment   v2   [verified]
+    vtable 1060AA84  write 100FF790  read 100FF730  dump 100FF6E0  execute 100FF5B0
+    base GameCommand
+    +0x24   bool                   mAccept
+
+=== 0x0108  GameCommand_OfferAdjournment   v3   [verified]
+    vtable 1060CEDC  write 10107100  read 10107030  dump -  execute 10106E50
+    base GameCommand
+    +0x24   int                    Message
+
+=== 0x0109  LobbyCommand_OfferAdjournedGame   v2   [verified]
+    vtable 106153AC  write 10147530  read 101474B0  dump 101473F0  execute 101472F0
+    base LobbyCommand
+    +0x08   int                    GameID
+    +0x0C   int                    MatchID
+    +0x10   int                    CurrentLobbyID   (since v2)
+
+=== 0x010A  LobbyCommand_AcceptAdjournedGame   v2   [verified]
+    vtable 10612A24  write 101389A0  read 10138910  dump 10138830  execute 10138730
+    base LobbyCommand
+    +0x08   int                    GameID
+    +0x0C   int                    MatchID
+    +0x10   bool                   Accept
+    +0x14   int                    CurrentLobbyID   (since v2)
+
+=== 0x010B  GameCommand_RemovePlayer   v4   [verified]
+    vtable 1060D734  write 10108A70  read 10108990  dump 10108930  execute 10108820
+    base GameCommand
+    +0x24   int                    Loss Type
+
+=== 0x010E  TradeCommand_ChangeTradeSession   v1   [verified]
+    vtable 10625DF4  write 101BC980  read 101BC930  dump -  execute 101BC7C0
+    base TradeCommand
+    +0x0C   int                    OldTradeSessionID
+    execute posts UI events: 0x35
+
+=== 0x010F  SynchronizationCommand_SetDesired   v2   [verified]
+    vtable 106239EC  write 101B0DD0  read 101B1130  dump 101B0CF0  execute 101B0CB0
+    base SynchronizationCommand
+    +0x04   map <int, int>         Instances
+
+=== 0x0110  TradeCommand_StartTradeSync   v1   [verified]
+    vtable 106272A4  write 101C1750  read 101C1700  dump 101C1680  execute 101C1250
+    base TradeCommand
+    +0x0C   int                    Issued From AccountID
+    execute posts UI events: 0x2, 0x23
+
+=== 0x0111  TradeCommand_LockTrade   v1   [verified]
+    vtable 10626654  write 101BE6B0  read 101BE650  dump -  execute 101BE390
+    base TradeCommand
+    +0x0C   bool                   mLock
+    execute posts UI events: 0x2, 0x37
+
+=== 0x0112  DivideExpression   v1   [verified]
+    vtable 10603E04  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0113  AlternateMultiActionState   v15   [verified]
+    vtable 105F6EF4  write 100330E0  read 10033080  dump -
+    base MultiActionState
+
+=== 0x0114  CommandObject_AlternateMultiAction   v?   [factory]
+    vtable 105FC28C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0115  AccountCommand_BulkIntroduceAccount   v2   [verified]
+    vtable 105F277C  write 1000C280  read 1000D370  dump 1000AF30  execute 1000BCE0
+    base AccountCommand
+    +0x08   vector <int>           ?
+    +0x18   vector <string>        ?
+    +0x28   vector <int>           ?
+    +0x38   vector <object*>       ?
+    execute posts UI events: 0x10
+
+=== 0x0116  NetworkCommand_Disconnect   v1   [verified]
+    vtable 1061BD6C  write 1016CE30  read 1016CDE0  dump 1016CD60  execute 1016CC90
+    base NetworkCommand
+    +0x04   string                 Message
+
+=== 0x0117  LobbyCommand_ChangeBulkStatus   v1   [verified]
+    vtable 10613F94  write 101400C0  read 10140400  dump -  execute 1013FF20
+    base LobbyCommand
+    +0x08   vector <int>           ?
+    +0x18   vector <int>           ?
+    execute posts UI events: 0x19
+
+=== 0x0118  LobbyCommand_SendPing   v2   [verified]
+    vtable 106160D4  write 1014A410  read 1014A3B0  dump 1014A310  execute 1014A1B0
+    base LobbyCommand
+    +0x08   int                    Target UserID
+    +0x0C   int                    Group ID   (since v2)
+    execute posts UI events: 0x3B
+
+=== 0x0119  LobbyCommand_NotifyOfIgnore   v1   [verified]
+    vtable 10615234  write 101470C0  read 10147050  dump 10146FB0  execute 10146E40
+    base LobbyCommand
+    +0x08   int                    Target UserID
+    +0x0C   bool                   Ignore status
+    execute posts UI events: 0x3C
+
+=== 0x011B  LobbyCommand_RequestAddBuddy   v1   [verified]
+    vtable 10615A8C  write 10148E60  read 10148E10  dump 10148D90  execute 10148C30
+    base LobbyCommand
+    +0x08   int                    Target UserID
+    execute posts UI events: 0x3E
+
+=== 0x011C  LobbyCommand_RespondAddBuddy   v1   [verified]
+    vtable 10615BF4  write 10149320  read 101492B0  dump 101491F0  execute 10149070
+    base LobbyCommand
+    +0x08   int                    Requesting UserID
+    +0x0C   int                    Target UserID
+    +0x10   int                    Yes or no
+    execute posts UI events: 0x3F
+
+=== 0x011D  LobbyCommand_AddIgnoreByName   v1   [verified]
+    vtable 10613194  write 1013AD90  read 1013AD40  dump 1013ACC0  execute 1013ABF0
+    base LobbyCommand
+    +0x08   string                 Ignore Name
+
+=== 0x011E  LobbyCommand_AddIgnoreByNameResponse   v1   [verified]
+    vtable 10613324  write 1013B400  read 1013B380  dump 1013B290  execute 1013B050
+    base LobbyCommand
+    +0x08   int                    Ignore Account ID
+    +0x0C   string                 Ignore Name
+    +0x28   int                    Results
+    +0x2C   string                 Explanation
+    execute posts UI events: 0x40, 0x43
+
+=== 0x0121  LobbyCommand_NotifyOfBuddy   v1   [verified]
+    vtable 10615094  write 10146C30  read 10146BC0  dump 10146B20  execute 101469B0
+    base LobbyCommand
+    +0x08   int                    Target UserID
+    +0x0C   bool                   Buddy status
+    execute posts UI events: 0x42
+
+=== 0x0122  AccountCommand_BulkBriefIntroduceAccount   v2   [verified]
+    vtable 105F262C  write 10009E40  read 1000A530  dump 100097D0  execute 10009A20
+    base AccountCommand
+    +0x08   vector <int>           ?
+    +0x18   vector <string>        ?
+    execute posts UI events: 0x43
+
+=== 0x0123  LobbyCommand_ChangeLobbyDisplay   v1   [verified]
+    vtable 1061406C  write 10140760  read 10140710  dump 10140690  execute 10140520
+    base LobbyCommand
+    +0x08   int                    GroupID
+    execute posts UI events: 0x46
+
+=== 0x0124  LobbyCommand_DisplayStats   v2   [verified]
+    vtable 10614844  write 10142B50  read 10143B10  dump 10141B00  execute 10143E60
+    base LobbyCommand
+    +0x24   int                    groupID
+    +0x08   int                    TournamentID
+    +0x1C   int                    Round
+    +0x0C   map <int, (int, int)>  ?
+    +0x20   int                    Message
+    +0x28   int                    Duration
+    +0x2C   string                 MessageArg
+    +0x48   map <int, string>      ?   (since v2)
+    execute posts UI events: 0x47
+
+=== 0x0125  LobbyCommand_UpdateTournament   v1   [verified]
+    vtable 106177EC  write 101503D0  read 10150750  dump 101502F0  execute 101507E0
+    base LobbyCommand
+    +0x1C   int                    GroupID
+    +0x08   int                    TournamentID
+    +0x0C   map <int, (int, int)>  ?
+    +0x20   int                    Round
+    +0x24   int                    SubState
+    execute posts UI events: 0x48
+
+=== 0x0126  MatchCommand_SetBulkMatchState   v1   [verified]
+    vtable 10619CB4  write 101617C0  read 101619C0  dump -  execute 101614C0
+    base MatchCommand
+    +0x0C   vector <int>           GroupID List
+    +0x1C   vector <int>           Match State List
+    execute posts UI events: 0x7E
+
+=== 0x0127  MatchCommand_SetTimer   v1   [verified]
+    vtable 1061A26C  write 10162960  read 10162910  dump -  execute 10162750
+    base MatchCommand
+    +0x0C   int                    Duration
+    execute posts UI events: 0x49
+
+=== 0x0128  LobbyCommand_InfoEnumMessage   v1   [verified]
+    vtable 10614B24  write 10145090  read 10145020  dump 10144BC0  execute 10144970
+    base LobbyCommand
+    +0x08   int                    Message
+    +0x0C   object (nullable)      Arg1
+    +0x10   object (nullable)      Arg2
+    execute posts UI events: 0x61
+
+=== 0x0129  AccountCommand_GetAccountInfo   v2   [verified]
+    vtable 105F2974  write 1000DF80  read 1000DF10  dump 1000DCF0  execute 1000DBA0
+    base AccountCommand
+    +0x08   object (nullable)      Properties
+    +0x0C   int                    Group ID   (since v2)
+    execute posts UI events: 0x4B
+
+=== 0x012A  LobbyCommand_Concede   v1   [verified]
+    vtable 1061435C  write 10140EA0  read 10140E50  dump -  execute 10140D20
+    base LobbyCommand
+    +0x08   int                    Lobby Status  (as in LobbyCommand_ChangeStatus)
+
+=== 0x012B  LobbyCommand_SetTournament   v2   [verified]
+    vtable 106170D4  write 1014EBB0  read 1014EB30  dump -  execute 1014E9E0
+    base LobbyCommand
+    +0x08   int                    tournamentID
+    +0x10   int                    round
+    +0x0C   int                    timer
+    +0x14   int                    groupID   (since v2)
+
+=== 0x012C  LobbyCommand_StartTournamentRound   v1   [verified]
+    vtable 1061748C  write 1014F9E0  read 1014F980  dump -  execute 1014F7C0
+    base LobbyCommand
+    +0x08   int                    tournamentID
+    +0x0C   int                    round
+    execute posts UI events: 0x4E
+
+=== 0x012D  SynchronizationCommand_AddNonTradable   v1   [verified]
+    vtable 10622DB4  write 101AEAA0  read 101AEA60  dump 101AEBD0  execute 101AE9C0
+    base SynchronizationCommand_ChangeFlags
+
+=== 0x012E  SynchronizationCommand_RemoveNonTradable   v1   [verified]
+    vtable 1062358C  write 101AFFF0  read 101AFFB0  dump 101B00F0  execute 101AFF10
+    base SynchronizationCommand_ChangeFlags
+
+=== 0x012F  LobbyCommand_SetDraft   v2   [verified]
+    vtable 106167DC  write 1014C370  read 1014C750  dump 1014B870  execute 1014B870
+    base LobbyCommand
+    +0x08   int                    tournamentID
+    +0x0C   int                    round
+    +0x10   int                    timer
+    +0x18   vector <object (inline, e.g. InstanceID)> ?
+    +0x14   int                    groupID
+    +0x28   bool                   SendDeck   (since v2)
+    execute posts UI events: 0x2, 0x36, 0x52
+
+=== 0x0130  LobbyCommand_SelectCard   v1   [verified]
+    vtable 10615DA4  write 10149680  read 10149600  dump -  execute 10149540
+    base LobbyCommand
+    +0x08   int                    tournamentID
+    +0x14   int                    groupID
+    +0x0C   int                    InstanceID
+    +0x10   int                    ?
+
+=== 0x0131  LobbyCommand_SetDraftReady   v1   [verified]
+    vtable 10616854  write 1014CAB0  read 1014CA40  dump -  execute 1014C900
+    base LobbyCommand
+    +0x08   int                    tournamentID
+    +0x10   int                    GroupID
+    +0x0C   int                    Ready
+
+=== 0x0132  LobbyCommand_SetupDraft   v1   [verified]
+    vtable 1061723C  write 1014EF00  read 1014F2B0  dump -  execute 1014F080
+    base LobbyCommand
+    +0x08   int                    tournamentID
+    +0x0C   vector <int>           ?
+    +0x1C   vector <int>           ?
+    +0x2C   int                    GroupID
+
+=== 0x0133  LobbyCommand_SelectTournamentDeck   v1   [verified]
+    vtable 10615F14  write 1014A000  read 10149F60  dump 10149CA0  execute 10149CA0
+    base LobbyCommand
+    +0x08   string                 Deck ID
+    +0x24   object (nullable)      Deck
+    +0x28   int                    TournamentID
+    +0x2C   int                    GroupID
+    +0x30   bool                   Overwrite
+    execute posts UI events: 0x7D
+
+=== 0x0134  GameCommand_Reshuffle   v2   [verified]
+    vtable 1060DA14  write 10109500  read 101094C0  dump -  execute 10109390
+    base GameCommand
+
+=== 0x0135  LoginCommand_DisplayMOTD   v1   [verified]
+    vtable 10617E3C  write 101574E0  read 10157460  dump -  execute 101572A0
+    base LoginCommand
+    +0x04   string                 ?
+    +0x20   int                    ?
+    +0x24   int                    ?
+    +0x28   string                 ?
+    execute posts UI events: 0x54
+
+=== 0x0136  ReshuffleState   v11   [verified]
+    vtable 10620AF4  write 10196480  read 10196430  dump -
+    base CancellableStateMachineState
+    +0xF0   string                 OtherPlayerText
+
+=== 0x0137  CommandObject_Reshuffle   v?   [factory]
+    vtable 10600E1C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0138  NetworkCommand_Time   v2   [verified]
+    vtable 1061C95C  write 10172E40  read 10172C70  dump 10172BF0  execute 10172A30
+    base NetworkCommand
+    +0x04   int                    Server Time
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x10   int                    ?
+    +0x14   int                    ?
+    +0x18   int                    ?
+    +0x1C   string                 ?
+    +0x38   int                    Login Duration
+    +0x3C   int                    Group ID
+    execute posts UI events: 0x55
+
+=== 0x0139  SynchronizationCommand_ProcessBulkFulfillment   v1   [verified]
+    vtable 10623194  write 101AF0F0  read 101AF460  dump -  execute 101AF090
+    base SynchronizationCommand
+    +0x04   vector <object (inline, e.g. InstanceID)> Instances
+
+=== 0x013A  GameCommand_FinishCustomChoice   v3   [verified]
+    vtable 1060C5E4  write 10105690  read 10105620  dump 101055D0  execute 10105460
+    base GameCommand
+    +0x24   int                    mButtonID
+    +0x28   int                    mStateID   (since v3)
+
+=== 0x013B  CommandObject_Clone   v?   [factory]
+    vtable 105FC83C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x013C  SynchronizationCommand_SetModID   v1   [verified]
+    vtable 10623AC4  write 101B1400  read 101B13B0  dump 101B1330  execute 101B1240
+    base SynchronizationCommand
+    +0x04   int                    ModID
+
+=== 0x013D  CloneState   v11   [verified]
+    vtable 105FB204  write 1006CD50  read 1006CCC0  dump -
+    base CancellableStateMachineState
+    +0xF8   int                    CloneID
+    +0xF0   int                    CommandObjectID
+    +0xF4   int                    PlayerID
+    +0xFC   int                    OriginCard
+
+=== 0x013E  PickListState   v13   [verified]
+    vtable 1061D6B4  write 101790C0  read 10178FE0  dump 1017BEB0
+    base CancellableStateMachineState
+    +0xF0   int                    PlayerID
+    +0xF4   int                    OriginCard
+    +0xF8   int                    LowerBound
+    +0xFC   int                    UppderBound
+    +0x144  bool                   mValueIsInt   (since v2)
+    +0x145  int                    mDoActionOnce   (since v3)
+
+=== 0x013F  CommandObject_PickList   v?   [factory]
+    vtable 105FF9CC  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0140  GameCommand_ValueList   v2   [verified]
+    vtable 1060E834  write 1010CF40  read 1010D370  dump -  execute 1010D160
+    base GameCommand
+    +0x24   vector <string>        ?
+
+=== 0x0142  GameCommand_ForceEndGetTarget   v2   [verified]
+    vtable 1060C8FC  write 10105F00  read 10105EB0  dump 10105E60  execute 10105D10
+    base GameCommand
+    +0x24   int                    mStateID
+
+=== 0x0143  LoginCommand_GuestLogin   v2   [verified]
+    vtable 1061847C  write 10159730  read 10159AE0  dump -  execute 10158270
+    base LoginCommand
+    +0x04   map <int, int>         VersionTypeMap
+    +0x10   string                 Locale   (since v2)
+
+=== 0x0145  GameCommand_PrePass   v2   [verified]
+    vtable 1060D38C  write 10107F90  read 10107F50  dump -  execute 10107E20
+    base GameCommand
+
+=== 0x0146  GameCommand_PrePassCancel   v2   [verified]
+    vtable 1060D49C  write 101082F0  read 101082B0  dump -  execute 10108160
+    base GameCommand
+
+=== 0x0147  CommandObject_SuppressGameText   v?   [factory]
+    vtable 10601904  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0148  CommandObject_PushPhase   v?   [factory]
+    vtable 105FFEFC  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0149  CommandObject_DummyEvent   v?   [factory]
+    vtable 105FD5D4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x014A  DiscardCardState   v12   [verified]
+    vtable 106038BC  write 100AB6C0  read 100AC6C0  dump -
+    base CancellableStateMachineState
+    +0xF0   int                    PlayerID
+    +0xF4   int                    OriginCard
+    +0xF8   int                    Discard Reason
+    +0xFC   int                    Num Cards
+    +0x100  int                    Play Area
+    +0x104  bool                   Random
+    +0x105  int                    Cost Effect
+    +0x108  int                    Emitted Event
+    +0x110  vector <int>           ?
+
+=== 0x014B  PlaySingleCardState   v11   [verified]
+    vtable 1061EC04  write 10185B60  read 10185FF0  dump -
+    base CancellableStateMachineState
+    +0xF0   vector <int>           ?
+
+=== 0x014F  LobbyCommand_SetLeagueCards   v1   [verified]
+    vtable 10616CAC  write 1014D570  read 1014D600  dump -  execute 1014D4B0
+    base LobbyCommand
+    +0x08   int                    leagueID
+    +0x0C   vector <FUN_10006620,FUN_101781e0> ?
+
+=== 0x0150  LobbyCommand_SetLeagueInfo   v2   [verified]
+    vtable 1061700C  write 1014E0E0  read 1014E7A0  dump -  execute 1014E550
+    base LobbyCommand
+    +0x08   int                    leagueID
+    +0x0C   int                    groupID
+    +0x28   int                    leaguePoints
+    +0x10   map <int, int>         ?
+    +0x1C   map <int, int>         ?
+    +0x2C   int                    PurchaseableBooster
+    +0x30   int                    Booster Cost
+    +0x34   int                    Booster Week
+    +0x38   int                    Booster Avail To Purchase
+    +0x3C   vector <int>           ChallengedPlayers   (since v2)
+
+=== 0x0151  MessageText   v2   [verified]
+    vtable 105F6D90  write 10163170  read 10163290  dump -
+    +0x04   int                    Message
+
+=== 0x0152  LobbyCommand_ChallengeLeaguePlayer   v1   [verified]
+    vtable 10613AEC  write 1013F4A0  read 1013F410  dump -  execute 1013F230
+    base LobbyCommand
+    +0x08   int                    leagueID
+    +0x0C   int                    ?
+    +0x10   int                    ?
+    +0x14   bool                   ?
+    execute posts UI events: 0x57
+
+=== 0x0153  LobbyCommand_ChallengeLeaguePlayerResponse   v2   [verified]
+    vtable 10613C74  write 1013FDE0  read 1013FD20  dump -  execute 1013F860
+    base LobbyCommand
+    +0x08   int                    leagueID
+    +0x0C   int                    ?
+    +0x10   int                    ?
+    +0x14   int                    ?
+    +0x18   string                 Deck ID
+    +0x34   object (nullable)      Deck
+    +0x38   bool                   AllowObserver
+    execute posts UI events: 0x2, 0x58
+
+=== 0x0154  LobbyCommand_JoinLeague   v4   [verified]
+    vtable 10614DC4  write 10145EE0  read 10145EA0  dump -  execute 10145DC0
+      ?     object embedded        ?
+
+=== 0x0155  LobbyCommand_LeaveLeague   v3   [verified]
+    vtable 10614F9C  write 101467F0  read 101467B0  dump -  execute 101466D0
+      ?     call FUN_101461f0      ?
+
+=== 0x0156  LobbyCommand_AddBooster   v1   [verified]
+    vtable 10612BEC  write 10138D90  read 10138D30  dump -  execute 10138BF0
+    base LobbyCommand
+    +0x08   int                    leagueID
+    +0x0C   int                    Booster Week
+
+=== 0x0157  LobbyCommand_BuyLeagueActions   v1   [verified]
+    vtable 106139C4  write 1013EEC0  read 1013F0C0  dump -  execute 1013ED10
+    base LobbyCommand
+    +0x08   int                    leagueID
+    +0x0C   int                    ?
+    +0x10   vector <int>           ?
+    +0x20   int                    ?
+
+=== 0x0159  CommandObject_SetProperty   v?   [factory]
+    vtable 1060139C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x015A  LobbyCommand_SetLeagueCollection   v2   [verified]
+    vtable 10616E84  write 1014DC40  read 1014DFA0  dump 1014D9D0  execute 1014D9D0
+    base LobbyCommand
+    +0x08   int                    leagueID
+    +0x10   vector <object (inline, e.g. InstanceID)> ?
+    +0x0C   int                    ?   (since v2)
+
+=== 0x015B  LobbyCommand_AddLeagueCards   v1   [verified]
+    vtable 1061365C  write 1013B7E0  read 1013BB30  dump -  execute 1013B5D0
+    base LobbyCommand
+    +0x08   int                    leagueID
+    +0x0C   vector <object (inline, e.g. InstanceID)> ?
+    execute posts UI events: 0x59
+
+=== 0x015C  TradeCommand_SetTradeAllowed   v1   [verified]
+    vtable 10626FA4  write 101BFFB0  read 101C02B0  dump -  execute 101BFC50
+    base TradeCommand
+    +0x0C   map <int, int>         ?
+    execute posts UI events: 0x5A
+
+=== 0x015D  DivideRoundExpression   v1   [verified]
+    vtable 10603ED4  write 100AE5C0  read 100AE560  dump -
+    base Expression
+    +0x24   bool                   RoundUp
+
+=== 0x015E  InstanceID   v1   [verified (not registered)]
+    vtable 10611934  write 1012B880  read 1012B820  dump -
+    +0x04   int                    Archetype ID
+    +0x08   int                    Series ID
+    +0x0C   int                    Instance Number
+
+=== 0x0160  LobbyCommand_DeleteAdjournedGame   v2   [verified]
+    vtable 106145E4  write 101418F0  read 10141870  dump 101417B0  execute 101416B0
+    base LobbyCommand
+    +0x08   int                    GameID
+    +0x0C   int                    MatchID
+    +0x10   int                    CurrentLobbyID   (since v2)
+
+=== 0x0167  ArgTree   v4   [verified]
+    vtable 105F7B94  write 10046960  read 10047730  dump -
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x20   map <int, object*>     ?
+    +0x2C   int                    ?   (since v2)
+    +0x30   int                    ?   (since v3)
+    +0x34   bool                   ?   (since v4)
+
+=== 0x0168  NetworkCommand   v?   [UNVERIFIED (table says DeckCommand)]
+    vtable 1061BB9C  write 1016C6A0  read 1016C670  dump -  execute 1016C480
+    (no fields of its own)
+
+=== 0x0169  DeckCommand_AddOnlineDeck   v1   [verified]
+    vtable 106032CC  write 100A5380  read 100A52F0  dump 100A4F70  execute 100A4E70
+    base DeckCommand
+    +0x04   int                    SerializedDeckLength
+    }
+    +0x0C   int                    Archetype
+
+=== 0x016A  DeckCommand_DeleteOnlineDeck   v1   [verified]
+    vtable 1060346C  write 100A56F0  read 100A56A0  dump 100A5620  execute 100A5550
+    base DeckCommand
+    +0x04   string                 DeckID
+
+=== 0x016B  DeckCommand_PopulateOnlineDeckData   v1   [verified]
+    vtable 106036A4  write -  read 100A6C00  dump 100A6130  execute 100A6020
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+    execute posts UI events: 0xC2
+
+=== 0x016C  LobbyCommand_SetFlag   v1   [verified]
+    vtable 10616AEC  write 1014D340  read 1014D2F0  dump -  execute 1014D180
+    base LobbyCommand
+    +0x08   int                    Lobby Status  (as in LobbyCommand_ChangeStatus)
+
+=== 0x016D  DrawCardState   v12   [verified]
+    vtable 106049F4  write 100B3780  read 100B3660  dump -
+    base CancellableStateMachineState
+    +0xF0   int                    PlayerID
+    +0xF4   int                    OriginCard
+    +0xF8   int                    ?
+    +0xFC   int                    ?
+    +0x100  int                    ?
+    +0x114  int                    ?
+    +0x118  bool                   ?
+    +0x11C  int                    ?   (since v2)
+
+=== 0x016E  MacroNode   v1   [verified]
+    vtable 10618F84  write 1015ED00  read 1015ECA0  dump -
+    base ExpressionTreeNode
+    +0x10   int                    Macro
+
+=== 0x016F  RepeatExpression   v1   [verified]
+    vtable 106209FC  write 10195A40  read 10195A00  dump -
+    base Expression
+
+=== 0x0170  SumExpression   v1   [verified]
+    vtable 10622B14  write 101ADE20  read 101ADDA0  dump -
+    base Expression
+    +0x24   int                    PlayArea
+    +0x28   int                    Key
+
+=== 0x0171  CommandObject_InstallAction   v?   [factory]
+    vtable 105FE2C4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0172  ConcatExpression   v1   [verified]
+    vtable 10602324  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x0173  CommandObject_IntroduceCard   v?   [factory]
+    vtable 105FE98C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0174  IntroduceCardState   v11   [verified (not registered)]
+    vtable 1061197C  write 1012BDB0  read 1012BD70  dump -
+    base CancellableStateMachineState
+
+=== 0x0175  CommandObject_RemoveProperty   v?   [factory]
+    vtable 1060092C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0176  PhaseState   v11   [verified]
+    vtable 1061D3EC  write 10178E60  read 10178DD0  dump -
+    base StateMachineState
+    +0xEC   int                    State
+
+=== 0x0177  CommandObject_ReadyCard   v?   [factory]
+    vtable 10600044  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0178  CommandObject_UnreadyCard   v?   [factory]
+    vtable 10601DC4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0179  ReturnValueMap   v1   [verified]
+    vtable 10620DBC  write 10197C80  read -  dump -
+    +0x04   map <int, object inline> Storage
+
+=== 0x017A  GetSimultaneousTargetState   v12   [verified]
+    vtable 1060F2FC  write 10118060  read 10118980  dump -
+    base CancellableStateMachineState
+    +0xF0   vector <FUN_10006620,FUN_101781e0> ?
+    +0xFC   map <int, int>         ?
+
+=== 0x017B  ExecuteRuleState   v12   [verified]
+    vtable 10607824  write 100CAA00  read 100CA990  dump -
+    base CancellableStateMachineState
+    +0xF0   int                    ?
+    +0xF4   bool                   ?
+
+=== 0x017C  WhileExpression   v1   [verified]
+    vtable 1062990C  write 101DA060  read 101DA020  dump -
+    base Expression
+
+=== 0x017D  ModulusExpression   v1   [verified]
+    vtable 1061A5D4  write 100CAF30  read 100CAED0  dump -
+    base QueryNode
+    +0x1C   object (nullable)      LHS
+    +0x20   object (nullable)      RHS
+
+=== 0x017E  CommandObject_Pause   v?   [factory]
+    vtable 105FF8A4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x017F  GameCommand_GameOverReached   v2   [verified]
+    vtable 1060CA54  write 10106250  read 10106210  dump -  execute 10106100
+    base GameCommand
+
+=== 0x0180  CommandObject_SetPhaseDialog   v?   [factory]
+    vtable 1060123C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0181  CommandObject_LoseGame   v?   [factory]
+    vtable 105FEC64  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0182  CommandObject_WinGame   v?   [factory]
+    vtable 106021D4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0183  CommandObject_EmitSound   v?   [factory]
+    vtable 105FD724  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0184  Guild   v2   [verified]
+    vtable 1060FC04  write 1011E980  read 1011F150  dump -
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x10   int                    ?
+    +0x14   string                 ?
+    +0x30   vector <int>           ?
+    +0x4C   object (nullable)      ?
+    +0x40   map <int, int>         ?   (since v2)
+
+=== 0x0185  Poll   v1   [verified]
+    vtable 1061F0AC  write 10188F10  read 10189810  dump -
+    +0x04   int                    ?
+    +0x08   string                 ?
+    +0x24   string                 ?
+    +0x40   vector <object*>       ?
+    +0x50   bool                   ?
+    +0x51   int                    ?
+    +0x52   int                    ?
+
+=== 0x0186  PollChoice   v1   [verified]
+    vtable 1061F108  write 10189A50  read 101899D0  dump -
+    +0x04   int                    ?
+    +0x08   int                    ?
+    +0x0C   string                 ?
+    +0x28   int                    ?
+    +0x2C   int                    ?
+
+=== 0x0187  PollCommand   v1   [verified]
+    vtable 1061F154  write 10189E80  read 10189E40  dump -  execute 10189D40
+    base NetworkCommand
+
+=== 0x0188  PollCommand_AddPoll   v1   [verified]
+    vtable 1061F244  write 1018A3B0  read 1018A360  dump -  execute 1018A010
+    base PollCommand
+    +0x04   object (nullable)      ?
+    execute posts UI events: 0x83
+
+=== 0x0189  PollCommand_AddPollControl   v1   [verified]
+    vtable 1061F38C  write 1018A680  read 1018A620  dump -  execute 1018A790
+    base PollCommand
+    +0x04   int                    ?
+
+=== 0x018A  PollCommand_PollResponse   v1   [verified]
+    vtable 1061F50C  write 1018AB30  read 1018AAD0  dump -  execute 1018A930
+    base PollCommand
+    +0x04   int                    ?
+    +0x08   int                    ?
+
+=== 0x018B  CommandObject_InfoBox   v?   [factory]
+    vtable 105FE13C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x018C  CommandObject_WaitFor   v?   [factory]
+    vtable 10601F4C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x018D  TradeCommand_AcceptPostedTrade   v1   [verified]
+    vtable 10625174  write 101BA180  read 101BA110  dump 101BA070  execute 101B9F20
+    base TradeCommand
+    +0x0C   int                    Posted Trade ID
+    +0x10   int                    Response
+    execute posts UI events: 0x8A
+
+=== 0x018E  TradeCommand_AddPostedTrade   v1   [verified]
+    vtable 10625914  write 101BBB20  read 101BBAD0  dump -  execute 101BB760
+    base TradeCommand
+    +0x0C   object (nullable)      ?
+    execute posts UI events: 0x8B
+
+=== 0x018F  TradeCommand_CancelPostedTrade   v1   [verified]
+    vtable 10625A1C  write 101BBE50  read 101BBE00  dump 101BBD80  execute 101BBC40
+    base TradeCommand
+    +0x0C   int                    Posted Trade ID
+    execute posts UI events: 0x8C
+
+=== 0x0190  TradeCommand_EndPostedTrades   v1   [verified]
+    vtable 10626124  write 101BD390  read 101BD350  dump -  execute 101BD1F0
+    base TradeCommand
+    execute posts UI events: 0x8D
+
+=== 0x0191  TradeCommand_RequestPostedTrades   v1   [verified]
+    vtable 10626CD4  write 101BF730  read 101BF6F0  dump -  execute 101BF5F0
+    base TradeCommand
+
+=== 0x0192  TradeCommand_StartPostedTrades   v1   [verified]
+    vtable 10627174  write 101C1050  read 101C1000  dump 101C0F80  execute 101C0E50
+    base TradeCommand
+    +0x0C   int                    Posted Trade Count
+    execute posts UI events: 0x8E
+
+=== 0x0193  TradeCommand_TransferPostedTrade   v2   [verified]
+    vtable 106274AC  write 101C23A0  read 101C2DC0  dump -  execute 101C2220
+    base TradeCommand
+    +0x0C   object (nullable)      ?
+    +0x10   vector <object*>       ?
+    execute posts UI events: 0x8F
+
+=== 0x0194  PostedTrade   v3   [verified]
+    vtable 1061F6B4  write 1018C6B0  read 1018D560  dump -
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x2C   string                 ?
+    +0x48   int                    ?
+    +0x4C   map <int, int>         ?
+    +0x58   map <int, int>         ?
+    +0x64   int                    ?
+    +0x84   string                 ?
+    +0xA0   int                    ?
+    +0xA4   string                 ?
+    +0x10   string                 ?   (since v2)
+    +0x68   string                 ?   (since v2)
+    +0xF8   vector <string>        ?   (since v3)
+
+=== 0x0195  TradeCommand_PostedTradeError   v1   [verified]
+    vtable 10626804  write 101BEAD0  read 101BEA50  dump 101BE9B0  execute 101BE870
+    base TradeCommand
+    +0x0C   int                    Error
+    +0x10   bool                   From Add
+    execute posts UI events: 0x90
+
+=== 0x0196  WhileState   v12   [verified]
+    vtable 10629ACC  write 101DA950  read 101DB990  dump -
+    base CancellableStateMachineState
+    +0xF0   int                    State
+    +0x114  vector <int>           RevealedCards
+    +0x124  int                    SelectedCardID
+    +0x128  bool                   TargetGotten
+    +0x12C  vector <int>           RevealIDList
+
+=== 0x0197  CommandObject_While   v?   [factory]
+    vtable 1060209C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0198  LoginCommand_RegisterUsername   v3   [verified]
+    vtable 10618544  write 1015A1D0  read 1015A120  dump 1015A030  execute 10159F50
+    base LoginCommand
+    +0x04   string                 Username
+    +0x20   string                 Password   (since v2)
+    +0x3C   bool                   ?   (since v2)
+    +0x3D   int                    ?   (since v3)
+
+=== 0x0199  LoginCommand_RegisterUsernameResults   v1   [verified]
+    vtable 106186F4  write 1015A650  read 1015A5D0  dump 1015A530  execute 1015A3C0
+    base LoginCommand
+    +0x04   bool                   Registration Succeeded
+    +0x08   int                    Explanation
+    execute posts UI events: 0x91
+
+=== 0x019A  LoginCommand_SendPassword   v7   [verified]
+    vtable 10618D2C  write 1015CAF0  read 1015CD40  dump 1015C8C0  execute 1015C8B0
+    base LoginCommand
+    +0x04   string                 Username
+    +0x20   string                 Password
+    +0x3C   map <int, int>         ?
+    +0x48   string                 Platform
+    +0x64   string                 Match Challenge Key
+    +0x80   bool                   ?
+    +0x84   string                 Login Client
+    +0xA0   string                 Locale
+    +0xBC   string                 CharacterName
+    +0xD8   string                 CharacterID
+    +0xF4   string                 Ticket
+
+=== 0x019B  LoginCommand_SendSessionID   v7   [verified]
+    vtable 10618E54  write 1015D600  read 1015D830  dump 1015D3D0  execute 1015D3C0
+    base LoginCommand
+    +0x04   string                 SessionID
+    +0x20   map <int, int>         ?
+    +0x2C   string                 Platform
+    +0x48   string                 Match Challenge Key
+    +0x64   bool                   Is Parent Session ID
+    +0x68   string                 Login Client
+    +0x84   string                 Locale
+    +0xA0   string                 CharacterName
+    +0xBC   string                 CharacterID
+    +0xD8   string                 Ticket
+
+=== 0x019C  LobbyCommand_UpdateLobbyStats   v3   [verified]
+    vtable 10617674  write 1014FC50  read 1014FCE0  dump -  execute 1014FB40
+    base LobbyCommand
+    +0x08   map <int, int>         ?
+    +0x14   map <int, int>         ?
+    +0x20   map <int, int>         ?
+    +0x2C   int                    ?   (since v2)
+    +0x30   map <int, int>         ?   (since v3)
+    execute posts UI events: 0xD2
+
+=== 0x019D  NetworkCommand   v?   [UNVERIFIED (table says GatewayCommand)]
+    vtable 1061BB9C  write 1016C6A0  read 1016C670  dump -  execute 1016C480
+    (no fields of its own)
+
+=== 0x019E  GatewayCommand_GetConnectionServer   v1   [verified]
+    vtable 1060EE84  write 10117A80  read 101179C0  dump 10117890  execute 101176E0
+    base GatewayCommand
+    +0x04   string                 SessionID
+    +0x20   string                 Username
+    +0x3C   string                 Host
+    +0x58   int                    Port
+    +0x5C   bool                   Success
+    +0x60   int                    Error Type
+    execute posts UI events: 0x95, 0x96
+
+=== 0x019F  AccountCommand_SetCampaignStatus   v3   [verified]
+    vtable 105F407C  write 10013CB0  read 10013C10  dump 10013B30  execute 10013A50
+    base AccountCommand
+    +0x08   int                    Campaign ID
+    +0x0C   int                    Status
+    +0x10   int                    Difficulty Level
+    +0x14   int                    CustomInt   (since v2)
+    +0x18   string                 ?   (since v3)
+
+=== 0x01A0  NetworkCommand_Gift   v1   [verified]
+    vtable 1061C0FC  write -  read 1016F4E0  dump -  execute 1016F410
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x01A1  GuildCommand   v1   [verified]
+    vtable 1060FC4C  write 1011F690  read 1011F640  dump 1011F5D0  execute 1011F530
+    base NetworkCommand
+    +0x04   int                    AccountID
+
+=== 0x01A2  GuildCommand_EndGuilds   v1   [verified]
+    vtable 10610164  write 10120C60  read 10120C20  dump -  execute 10120AC0
+    base GuildCommand
+    execute posts UI events: 0x97
+
+=== 0x01A3  GuildCommand_RequestGuilds   v2   [verified]
+    vtable 1061096C  write 10122FD0  read 10122F70  dump 10122EF0  execute 10122E30
+    base GuildCommand
+    +0x08   int                    GuildID   (since v2)
+
+=== 0x01A4  GuildCommand_StartGuilds   v1   [verified]
+    vtable 10610E74  write 10124410  read 101243C0  dump 10124340  execute 10124210
+    base GuildCommand
+    +0x08   int                    Guild Count
+    execute posts UI events: 0x98
+
+=== 0x01A5  GuildCommand_TransferGuild   v1   [verified]
+    vtable 1061100C  write 10125080  read 10125C00  dump -  execute 10124F60
+    base GuildCommand
+    +0x08   vector <object*>       ?
+    +0x18   bool                   ?
+
+=== 0x01A6  GuildCommand_CreateGuild   v1   [verified]
+    vtable 10610064  write 10120950  read 10120900  dump -  execute 101207C0
+    base GuildCommand
+    +0x08   string                 ?
+
+=== 0x01A7  GuildCommand_LeaveGuild   v1   [verified]
+    vtable 1061051C  write 10121B40  read 10121AF0  dump -  execute 101219C0
+    base GuildCommand
+    +0x08   int                    ?
+
+=== 0x01A8  GuildCommand_AskToJoinGuild   v1   [verified]
+    vtable 1060FCFC  write 1011FAE0  read 1011FA70  dump -  execute 1011F890
+    base GuildCommand
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x10   int                    ?
+    execute posts UI events: 0x5B
+
+=== 0x01A9  GuildCommand_AskToJoinGuildResponse   v1   [verified]
+    vtable 1060FE0C  write 1011FEA0  read 1011FE20  dump -  execute 1011FCE0
+    base GuildCommand
+    +0x08   int                    ?
+    +0x10   bool                   ?
+    +0x0C   int                    ?
+
+=== 0x01AA  GuildCommand_Kick   v1   [verified]
+    vtable 10610424  write 10121830  read 101217D0  dump -  execute 101216A0
+    base GuildCommand
+    +0x08   int                    ?
+    +0x0C   string                 ?
+
+=== 0x01AB  GuildCommand_Notify   v1   [verified]
+    vtable 10610764  write 10122910  read 10122860  dump 101223F0  execute 101221A0
+    base GuildCommand
+    +0x08   int                    Message
+    +0x0C   bool                   ?
+    +0x10   int                    ?
+    +0x14   object (nullable)      \nArg1
+    +0x18   object (nullable)      \nArg2
+    execute posts UI events: 0x9B, 0x9C
+
+=== 0x01AC  GuildCommand_Remove   v1   [verified]
+    vtable 10610884  write 10122C80  read 10122C30  dump -  execute 10122A80
+    base GuildCommand
+    +0x08   int                    ?
+    execute posts UI events: 0x9D
+
+=== 0x01AD  GuildCommand_SetListenStatus   v1   [verified]
+    vtable 10610A34  write 10123300  read 101232A0  dump -  execute 10123180
+    base GuildCommand
+    +0x08   bool                   ?
+
+=== 0x01AF  TradeCommand_SetListenStatus   v1   [verified]
+    vtable 10626DFC  write 101BFA50  read 101BF9F0  dump -  execute 101BF8D0
+    base TradeCommand
+    +0x0C   bool                   Trade Button  (as in TradeCommand_AcceptTrade)
+
+=== 0x01B0  AccountCommand_RedeemCode   v1   [verified]
+    vtable 105F33B4  write 10010850  read 100107C0  dump 100106E0  execute 10010590
+    base AccountCommand
+    +0x08   string                 ?
+    +0x24   bool                   Response
+    +0x28   int                    Error Code
+    execute posts UI events: 0x9F
+
+=== 0x01B1  HasPropertyExpression   v1   [verified]
+    vtable 10611694  write 1012AD80  read 1012AD00  dump -
+    base Expression
+    +0x24   int                    ?
+    +0x28   int                    ?
+
+=== 0x01B2  LoginCommand_ForgotPassword   v1   [verified]
+    vtable 10617F8C  write 10157900  read 101578B0  dump 10157830  execute 10157760
+    base LoginCommand
+    +0x04   string                 Username
+
+=== 0x01B3  LoginCommand_ForgotPasswordResults   v1   [verified]
+    vtable 106180E4  write 10157D50  read 10157CD0  dump 10157C30  execute 10157AC0
+    base LoginCommand
+    +0x04   bool                   Reset Succeeded
+    +0x08   int                    Explanation
+    execute posts UI events: 0xA0
+
+=== 0x01B4  GetTopCardState   v11   [verified]
+    vtable 1060F7DC  write 1011BB70  read 1011BB30  dump -
+    base CancellableStateMachineState
+
+=== 0x01B5  CommandObject_GetTopCard   v?   [factory]
+    vtable 105FDFAC  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x01B6  CommandObject_RemoveInstalledAction   v?   [factory]
+    vtable 106004C4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x01B7  ECommCommand   v1   [verified]
+    vtable 10604F24  write 100B4970  read 100B4930  dump 100B48B0  execute 100B47F0
+    +0x04   int                    AccountID
+
+=== 0x01B8  ECommCommand_OrderHistory   v1   [verified]
+    vtable 10605084  write 100B4B20  read 100B4AE0  dump 100B4CE0  execute 100B4A80
+    base ECommCommand
+
+=== 0x01B9  ECommCommand_RedeemItemGrant   v3   [verified]
+    vtable 106050FC  write 100B5B80  read 100B5A90  dump 100B5830  execute 100B56C0
+    base ECommCommand
+    +0x08   int                    Item Grant Archetype ID
+    +0x10   object (nullable)      ?
+    +0x14   bool                   Response
+    +0x18   int                    Error Code
+    +0x1C   bool                   Is Conversion
+    +0x0C   int                    Alternate Item Grant Archetype ID   (since v2)
+    +0x20   int                    Tradable State   (since v3)
+    execute posts UI events: 0xA3
+
+=== 0x01BA  Order   v1   [verified]
+    vtable 1061D328  write -  read 10175FB0  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x01BB  OrderItem   v1   [verified]
+    vtable 1061D380  write -  read 101768E0  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x01BC  AccountCommand_SetOptIn   v1   [verified]
+    vtable 105F430C  write 10015EB0  read 10015E10  dump 10015D50  execute 10015C00
+    base AccountCommand
+    +0x08   bool                   Opt In?
+    +0x09   int                    Response
+    +0x0C   int                    Error Code
+    execute posts UI events: 0xA5
+
+=== 0x01BD  LobbyCommand_SendUChatError   v1   [verified]
+    vtable 10616344  write 1014AFD0  read 1014AF70  dump -  execute 1014AD70
+    base LobbyCommand
+    +0x08   int                    Lobby Status  (as in LobbyCommand_ChangeStatus)
+    execute posts UI events: 0xA7
+
+=== 0x01BE  LobbyCommand_SendUChatText   v2   [verified]
+    vtable 1061645C  write 1014B6C0  read 1014B610  dump -  execute 1014B310
+    base LobbyCommand
+    +0x08   string                 ?
+    +0x24   string                 ?
+    +0x40   string                 ?
+    +0x5C   string                 ?
+    +0x78   string                 ?
+    +0x94   bool                   ?
+    execute posts UI events: 0xA6
+
+=== 0x01BF  ArchCommand   v1   [verified]
+    vtable 1062A13C  write 101DBE20  read 101DBDE0  dump 101DBD60  execute 101DBC80
+    +0x04   int                    AccountID
+
+=== 0x01C0  ArchCommand_GetArchetypeID   v1   [verified]
+    vtable 1062A474  write 101DCF60  read 101DCEF0  dump 101DCE50  execute 101DCCE0
+    base ArchCommand
+    +0x0C   int                    Error Code
+    +0x08   int                    ArchID
+    execute posts UI events: 0xAA
+
+=== 0x01C1  ArchCommand_StoreArchetype   v1   [verified]
+    vtable 1062A6A4  write 101DD900  read 101DD890  dump 101DD730  execute 101DD5B0
+    base ArchCommand
+    +0x0C   int                    Error Code
+    +0x08   object (nullable)      ?
+
+=== 0x01C2  ArchCommand_DeleteArchetype   v1   [verified]
+    vtable 1062A354  write 101DCB20  read 101DCAB0  dump 101DCA10  execute 101DC920
+    base ArchCommand
+    +0x0C   int                    Error Code
+    +0x08   int                    ArchID
+
+=== 0x01C3  ArchCommand_AddArchetypesToDB   v2   [verified]
+    vtable 1062A284  write -  read 101DC630  dump -  execute 101DBFE0
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x01C4  ArchCommand_ValidateUsername   v1   [verified]
+    vtable 1062A7B4  write 101DDD40  read 101DDCC0  dump 101DDC00  execute 101DDAB0
+    base ArchCommand
+    +0x24   int                    Error Code
+    +0x08   string                 username
+    +0x28   int                    ArchetypeID
+    execute posts UI events: 0xB0
+
+=== 0x01C5  Campaign   v4   [verified]
+    vtable 105F905C  write 1004B2B0  read 1004BD00  dump -
+    +0x04   int                    ?
+    +0x08   bool                   Enabled
+    +0x0C   string                 Title
+    +0x28   string                 ImageName
+    +0x44   string                 Description
+    +0x60   vector <object*>       ?
+    +0x70   int                    AccountKey   (since v2)
+    +0x09   int                    Premium Only   (since v3)
+    +0x74   int                    Archetype ID   (since v4)
+
+=== 0x01C6  CampaignScenario   v7   [verified]
+    vtable 105F9150  write 1004C4E0  read 1004C330  dump -
+    +0x04   int                    ?
+    +0x0C   string                 ?
+    +0x28   string                 ?
+    +0x44   string                 ?
+    +0x7C   string                 ?
+    +0x60   string                 ?   (since v2)
+    +0xB4   bool                   ?   (since v2)
+    +0xB5   int                    ?   (since v3)
+    +0xB6   int                    ?   (since v3)
+    +0xB8   int                    ?   (since v4)
+    +0x08   int                    ?   (since v5)
+    +0xBD   int                    ?   (since v6)
+    +0xBC   bool                   ?   (since v6)
+    +0x98   string                 ?   (since v7)
+
+=== 0x01C7  CommandObject_CreateCard   v?   [factory]
+    vtable 105FC984  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x01C8  NetworkCommand_EULA   v2   [verified]
+    vtable 1061BF2C  write 1016E500  read 1016E8A0  dump -  execute 1016CF60
+    +0x04   string                 ?
+    +0x20   int                    ?
+    +0x24   int                    ?
+    +0x28   map <string, string>   ?
+    +0x34   map <string, int>      ?
+    +0x40   map <string, int>      ?
+    execute posts UI events: 0xAD
+
+=== 0x01C9  NetworkCommand_News   v1   [verified]
+    vtable 1061C2C4  write -  read 101712B0  dump -  execute 101713E0
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x01CA  NetworkCommand_LeaderBoardData   v1   [verified]
+    vtable 1061C1CC  write -  read 10170260  dump -  execute 101703C0
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x01CB  AccountCommand_GetAccountsByPartialName   v2   [verified]
+    vtable 105F2C84  write 1000E270  read 1000E750  dump 1000E1E0  execute 1000E060
+    base AccountCommand
+    +0x38   string                 Partial Account Name
+    +0x54   int                    ?
+    zlib block {   -- on the wire: varint rawLength, varint compressedLength, zlib bytes
+    +0x08   vector <int>           ?
+    +0x18   vector <string>        ?
+    +0x28   vector <string>        ?
+    }
+    execute posts UI events: 0xB1
+
+=== 0x01CC  LobbyCommand_StartTournamentMsg   v1   [verified]
+    vtable 10617344  write 1014F600  read 1014F5A0  dump -  execute 1014F3E0
+    base LobbyCommand
+    +0x08   int                    GameID  (as in LobbyCommand_RemoveAdjournedGame)
+    +0x0C   int                    MatchID  (as in LobbyCommand_RemoveAdjournedGame)
+    execute posts UI events: 0xB3
+
+=== 0x01CD  GuildCommand_GetGuildsByPartialName   v1   [verified]
+    vtable 106103A4  write 10120ED0  read 10121370  dump 10120E40  execute 10120D90
+    base GuildCommand
+    +0x28   string                 Partial Guild Name
+    +0x44   int                    ?
+    zlib block {   -- on the wire: varint rawLength, varint compressedLength, zlib bytes
+    +0x08   vector <int>           ?
+    +0x18   vector <string>        ?
+    }
+    execute posts UI events: 0xB2
+
+=== 0x01CE  AccountCommand_ModifyRestrictions   v1   [verified]
+    vtable 105F2F5C  write 1000F440  read 1000F720  dump 1000F240  execute 1000F1F0
+    base AccountCommand
+    +0x08   int                    AccountID
+    zlib block {   -- on the wire: varint rawLength, varint compressedLength, zlib bytes
+    +0x0C   vector <int>           ?
+    }
+
+=== 0x01CF  LobbyCommand_SetDraftedCards   v2   [verified]
+    vtable 10616A1C  write 1014CCF0  read 1014CD60  dump -  execute 1014CC10
+    base LobbyCommand
+    +0x08   int                    tournamentID
+    +0x0C   map <int, int>         ?
+    execute posts UI events: 0xB4
+
+=== 0x01D0  GuildCommand_Chat   v2   [verified]
+    vtable 1060FF3C  write 10120570  read 10120490  dump 101203D0  execute 10120200
+    base GuildCommand
+    +0x08   int                    ?
+    +0x0C   int                    Target Account ID
+    +0x10   int                    ?
+    +0x14   int                    Text disposition
+    +0x18   string                 Text
+    +0x34   string                 ?
+    +0x50   string                 ?
+    +0x6C   bool                   ?   (since v2)
+    execute posts UI events: 0xB5
+
+=== 0x01D1  GuildCommand_ModifyGuildStatus   v1   [verified]
+    vtable 1061061C  write 10121F50  read 10121EE0  dump -  execute 10121D30
+    base GuildCommand
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x10   int                    ?
+
+=== 0x01D2  GuildCommand_SetMOTD   v1   [verified]
+    vtable 10610B4C  write 10123730  read 101236B0  dump -  execute 10123580
+    base GuildCommand
+    +0x08   int                    ?
+    +0x0C   string                 ?
+    +0x28   bool                   ?
+
+=== 0x01D3  GuildCommand_ShowMOTD   v1   [verified]
+    vtable 10610D6C  write 10124060  read 10123FB0  dump -  execute 10123DB0
+    base GuildCommand
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x10   int                    ?
+    +0x14   string                 ?
+    +0x30   string                 ?
+    +0x4C   bool                   ?
+    execute posts UI events: 0xB6
+
+=== 0x01D4  GuildCommand_SetMOTDResponse   v1   [verified]
+    vtable 10610C4C  write 10123B00  read 10123A90  dump -  execute 101238D0
+    base GuildCommand
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    execute posts UI events: 0xB8
+
+=== 0x01D5  ArchCommand_SetEnabledArchetypes   v1   [verified]
+    vtable 1062A5CC  write -  read 101DD450  dump -  execute 101DD070
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+    execute posts UI events: 0xB7
+
+=== 0x01D6  MatchCommand_SetDeckArchetype   v1   [verified]
+    vtable 10619E04  write 10161CD0  read 10161C80  dump 10161BB0  execute 10161D30
+    base MatchCommand
+    +0x0C   int                    Deck Archetype
+
+=== 0x01D7  GameCommand_EndGame   v1   [verified]
+    vtable 1060C1E4  write 101046F0  read 10104680  dump -  execute 10104550
+    base GameCommand
+    +0x24   bool                   mAccept  (as in GameCommand_AcceptDraw)
+
+=== 0x01D8  CommandObject_UIEffect   v?   [factory]
+    vtable 10601A9C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x01D9  InstanceSubID   v1   [verified (not registered)]
+    vtable 10658D00  write 1030C4F0  read 1030C4A0  dump -
+    +0x04   int                    Series ID
+    +0x08   int                    Instance Number
+
+=== 0x01DA  InstanceSubIDFlags   v1   [verified]
+    vtable 10658D4C  write 1030C8A0  read 1030C850  dump -
+    base InstanceSubID
+    +0x0C   int                    Flags
+
+=== 0x01DB  SynchronizationCommand_ChangeFlags   v1   [verified]
+    vtable 10660744  write 103220C0  read 10322880  dump 10321E60  execute 10321FA0
+    base SynchronizationCommand
+    +0x04   vector <object (inline, e.g. InstanceID)> Instances
+    +0x18   int                    Flags
+    +0x1C   int                    Operation
+    +0x14   int                    AccountID
+
+=== 0x01DC  SynchronizationCommand_LockTournament   v1   [verified]
+    vtable 1066081C  write 10322AB0  read 10322A70  dump 10322BB0  execute 103229D0
+    base SynchronizationCommand_ChangeFlags
+
+=== 0x01DD  SynchronizationCommand_UnlockTournament   v1   [verified]
+    vtable 1066095C  write 10322E70  read 10322E30  dump 10322F70  execute 10322D90
+    base SynchronizationCommand_ChangeFlags
+
+=== 0x01DE  EventCommand   v1   [verified]
+    vtable 10605C44  write 100BFCA0  read 100BFC60  dump 100BFBE0  execute 100BFB20
+    +0x04   int                    AccountID
+
+=== 0x01DF  EventCommand_SetReady   v1   [verified]
+    vtable 10607634  write 100CA130  read 100CA0D0  dump 100CA050  execute 100C9F80
+      ?     int                    ?
+    +0x08   bool                   Is Ready
+
+=== 0x01E0  Achievement   v1   [verified]
+    vtable 105F488C  write 10018B00  read 10018D10  dump -
+    +0x04   int                    ?
+    +0x08   int                    ?
+    +0x0C   string                 ?
+    +0x28   int                    ?
+    +0x2C   int                    ?
+    +0x30   int                    ?
+    +0x34   int                    ?
+    +0x38   int                    ?
+    +0x3C   vector <int>           ?
+    +0x4C   int                    ?
+    +0x50   int                    ?
+    +0x54   string                 ?
+    +0x70   int                    ?
+    +0x74   int                    ?
+    +0x78   int                    ?
+
+=== 0x01E1  AccountCommand_NotifyAchievement   v1   [verified]
+    vtable 105F3094  write 1000FD70  read 1000FD20  dump -  execute 1000F9B0
+    base AccountCommand
+    +0x08   object (nullable)      ?
+    execute posts UI events: 0xBE
+
+=== 0x01E2  AccountCommand_SendAchievementList   v1   [verified]
+    vtable 105F3E84  write -  read 10013330  dump -  execute 10012A20
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+    execute posts UI events: 0xBF
+
+=== 0x01E3  AccountCommand_RequestGameplayAchievement   v1   [verified]
+    vtable 105F3754  write 10011510  read 100114B0  dump -  execute 10011390
+    base AccountCommand
+    +0x08   string                 ?
+    +0x24   int                    ?
+
+=== 0x01E4  ProcessEventEmissionStateForActivePlayer   v1   [verified (not registered)]
+    vtable 1061FBD4  write -  read 1018FDA0  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x01E5  AccountCommand_ValidateUsername   v1   [verified]
+    vtable 105F46EC  write 10016C80  read 10016BF0  dump -  execute 10016A40
+    base AccountCommand
+    +0x08   string                 ?
+    +0x24   bool                   ?
+    +0x25   int                    ?
+    execute posts UI events: 0xC0
+
+=== 0x01E6  MatchCommand_InitiateChallenge   v2   [verified]
+    vtable 10619594  write 10160080  read 10160010  dump -  execute 1015FE20
+    base MatchCommand
+    +0x0C   int                    ?
+    +0x10   int                    ?
+    +0x14   int                    ?
+    execute posts UI events: 0xC1
+
+=== 0x01E7  AccountCommand_RecordSinglePlayerGame   v1   [verified]
+    vtable 105F31B4  write 10010300  read 10010230  dump 100100B0  execute 1000FFC0
+    base AccountCommand
+    +0x08   int                    Activity Type
+            values: 1=Begin Game, 2=End Game
+    +0x0C   int                    Game Type
+            values: 1=Tutorial, 2=Scenario, 3=Skirmish
+    +0x10   int                    Game Result Type
+            values: 1=Win, 2=Lose
+    +0x14   int                    Number of turns at finish
+    +0x18   int                    Unique game id
+    +0x1C   string                 ?
+
+=== 0x01E8  AccountCommand_SetChallengeStatus   v1   [verified]
+    vtable 105F428C  write 10014C50  read 100156E0  dump -  execute 10013DB0
+    base AccountCommand
+    +0x20   int                    ?
+      ?     string                 ?
+      ?     int                    ?
+      ?     call FUN_10014410      ?
+
+=== 0x01E9  UChatCommand_RequestAddFriend   v1   [verified]
+    vtable 10627E6C  write 101C8210  read 101C8180  dump -  execute 101C7EF0
+    base UChatCommand
+    +0x44   string                 ?
+    +0x60   string                 ?
+    +0x7C   string                 ?
+    +0x98   bool                   ?
+    execute posts UI events: 0xC8
+
+=== 0x01EA  UChatCommand_RequestAddIgnore   v1   [verified]
+    vtable 1062809C  write 101C8DE0  read 101C8D80  dump -  execute 101C8B80
+    base UChatCommand
+    +0x44   string                 ?
+    +0x60   string                 ?
+    execute posts UI events: 0xC9
+
+=== 0x01EB  UChatCommand_RequestFriendConfirm   v1   [verified]
+    vtable 106281BC  write 101C9400  read 101C9370  dump -  execute 101C9110
+    base UChatCommand
+    +0x44   int                    ?
+    +0x4C   string                 ?
+    +0x68   string                 ?
+    +0x48   bool                   ?
+    execute posts UI events: 0xD1
+
+=== 0x01EC  UChatCommand_RequestFriendStatus   v1   [verified]
+    vtable 10628544  write 101CA650  read 101CB4F0  dump -  execute 101CB270
+    zlib block {   -- on the wire: varint rawLength, varint compressedLength, zlib bytes
+    base UChatCommand
+    +0x44   vector <object*>       ?
+    }
+    execute posts UI events: 0xCA
+
+=== 0x01ED  UChatCommand_RequestIgnoreStatus   v1   [verified]
+    vtable 1062865C  write -  read 101CCE70  dump -  execute 101CCC90
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+    execute posts UI events: 0xCB
+
+=== 0x01EE  UChatCommand_RequestRemoveFriend   v1   [verified]
+    vtable 10628734  write 101CD340  read 101CD2E0  dump -  execute 101CD0D0
+    base UChatCommand
+    +0x44   string                 ?
+    +0x60   string                 ?
+    execute posts UI events: 0xCC
+
+=== 0x01EF  UChatCommand_RequestRemoveIgnore   v1   [verified]
+    vtable 10628944  write 101CDDE0  read 101CDD80  dump -  execute 101CDB70
+    base UChatCommand
+    +0x44   string                 ?
+    +0x60   string                 ?
+    execute posts UI events: 0xCD
+
+=== 0x01F0  UChatCommand_RequestSetFriendComment   v1   [verified]
+    vtable 10628A6C  write 101CE3D0  read 101CE360  dump -  execute 101CE0F0
+    base UChatCommand
+    +0x44   string                 ?
+    +0x60   string                 ?
+    +0x7C   string                 ?
+    execute posts UI events: 0xCE
+
+=== 0x01F1  UChatCommand_OnReceiveFriendConfirmRequest   v1   [verified]
+    vtable 10627A3C  write -  read 101C7120  dump -  execute 101C6F80
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+    execute posts UI events: 0xC4
+
+=== 0x01F2  UChatCommand_OnReceiveFriendConfirmResponse   v1   [verified]
+    vtable 10627B24  write 101C7520  read 101C74C0  dump -  execute 101C72E0
+    base UChatCommand
+    +0x44   bool                   ?
+    execute posts UI events: 0xC5
+
+=== 0x01F3  UChatCommand_OnReceiveFriendLogin   v1   [verified]
+    vtable 10627C0C  write -  read 101C7850  dump -  execute 101C76B0
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+    execute posts UI events: 0xC6
+
+=== 0x01F4  UChatCommand_OnReceiveFriendLogout   v1   [verified]
+    vtable 10627D3C  write -  read 101C7B90  dump -  execute 101C79F0
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+    execute posts UI events: 0xC7
+
+=== 0x01F5  AccountCommand_RequestAvatarImages   v1   [verified]
+    vtable 105F367C  write -  read 100111D0  dump -  execute 10010E60
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x01F6  AccountCommand_SendAvatarImage   v1   [verified]
+    vtable 105F3F5C  write 10013840  read 100137C0  dump -  execute 10013490
+    base AccountCommand
+    +0x08   int                    ?
+    }
+    execute posts UI events: 0xC3
+
+=== 0x01F7  AccountCommand_UploadAvatarImage   v1   [verified]
+    vtable 105F45C4  write 10016890  read 10016810  dump -  execute 100165D0
+    base AccountCommand
+    +0x08   int                    ?
+    }
+
+=== 0x01F8  UChatCommand   v2   [verified]
+    vtable 10627604  write 101C6600  read 101C6580  dump 101C63B0  execute 101C6260
+    base NetworkCommand
+    +0x04   int                    AccountID
+    +0x08   int                    Result
+    +0x0C   string                 SourceAvatarName
+    +0x28   string                 SourceAddress
+    execute posts UI events: 0x7
+
+=== 0x01F9  FriendStatus   v1   [verified]
+    vtable 10607D2C  write 100CE9D0  read 100CE950  dump -
+    +0x04   int                    ?
+    +0x08   string                 ?
+    +0x24   string                 ?
+    +0x40   string                 ?
+    +0x5C   int                    ?
+
+=== 0x01FA  IgnoreStatus   v1   [verified]
+    vtable 1061189C  write 1012B540  read 1012B4E0  dump -
+    +0x04   int                    ?
+    +0x08   string                 ?
+    +0x24   string                 ?
+
+=== 0x01FB  NetworkCommand_SessionKick   v1   [verified]
+    vtable 1061C70C  write 10172330  read 101722E0  dump 10172260  execute 10172110
+    base NetworkCommand
+    +0x04   int                    Reason
+    execute posts UI events: 0xCF
+
+=== 0x01FC  NetworkCommand_PendingSessionKick   v1   [verified]
+    vtable 1061C374  write 101718A0  read 10171840  dump 101717A0  execute 101716B0
+    base NetworkCommand
+    +0x04   int                    Reason
+    +0x08   int                    Time Remaining
+
+=== 0x01FD  UChatCommand_RequestAddFriendReciprocate   v1   [verified]
+    vtable 10627FB4  write 101C8880  read 101C87F0  dump -  execute 101C8560
+    base UChatCommand
+    +0x44   string                 ?
+    +0x60   string                 ?
+    +0x7C   string                 ?
+    +0x98   bool                   ?
+    execute posts UI events: 0xC8
+
+=== 0x01FE  UChatCommand_RequestFriendConfirmReciprocate   v1   [verified]
+    vtable 106282FC  write 101C9A40  read 101C99B0  dump -  execute 101C9750
+    base UChatCommand
+    +0x44   int                    ?
+    +0x4C   string                 ?
+    +0x68   string                 ?
+    +0x48   bool                   ?
+    execute posts UI events: 0xD1
+
+=== 0x01FF  UChatCommand_RequestRemoveFriendReciprocate   v1   [verified]
+    vtable 1062885C  write 101CD890  read 101CD830  dump -  execute 101CD620
+    base UChatCommand
+    +0x44   string                 ?
+    +0x60   string                 ?
+    execute posts UI events: 0xCC
+
+=== 0x0200  UChatCommand_OnReceiveFriendConfirmReciprocateRequest   v1   [verified]
+    vtable 1062774C  write -  read 101C69F0  dump -  execute 101C6850
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+    execute posts UI events: 0xC4
+
+=== 0x0201  UChatCommand_OnReceiveFriendConfirmReciprocateResponse   v1   [verified]
+    vtable 106278BC  write 101C6DF0  read 101C6D90  dump -  execute 101C6BB0
+    base UChatCommand
+    +0x44   bool                   ?
+    execute posts UI events: 0xC5
+
+=== 0x0202  EventCommand_NextMatchingTime   v1   [verified]
+    vtable 10605E3C  write 100C0440  read 100C03E0  dump -  execute 100C0220
+      ?     int                    ?
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    execute posts UI events: 0xD3
+
+=== 0x0203  EventCommand_RequestEventLeaderBoard   v1   [verified]
+    vtable 10606294  write 100C1150  read 100C10F0  dump -  execute 100C0FC0
+      ?     int                    ?
+    +0x08   int                    ?   (since v1)
+
+=== 0x0204  EventCommand_RequestEventSessionInfo   v1   [verified]
+    vtable 106063CC  write 100C1480  read 100C1420  dump -  execute 100C1300
+      ?     int                    ?
+    +0x08   int                    ?   (since v1)
+
+=== 0x0205  EventCommand_RequestEventTotalPlayers   v?   [verified]
+    vtable 1060666C  write -  read 100C1B30  dump -  execute 100C1A10
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0206  EventCommand_RespondEventLeaderBoard   v4   [verified]
+    vtable 10606C84  write 100C4B80  read 100C6540  dump -  execute 100C4650
+      ?     int                    ?
+    +0x08   int                    ?
+    +0x18   vector <int>           ?
+    +0x28   vector <string>        ?
+    +0x38   vector <int>           ?
+    +0x88   int                    ?
+    +0x8C   int                    ?
+    +0x0C   int                    ?   (since v2)
+    +0x48   vector <int>           ?   (since v2)
+    +0x58   vector <int>           ?   (since v2)
+    +0x78   vector <int>           ?   (since v2)
+    +0x10   int                    ?   (since v2)
+    +0x14   int                    ?   (since v2)
+    +0x68   vector <int>           ?   (since v3)
+    +0x90   int                    ?   (since v4)
+    execute posts UI events: 0xD4
+
+=== 0x0207  EventCommand_RespondEventSessionInfo   v2   [verified]
+    vtable 10606DBC  write 100C6BB0  read 100C70B0  dump -  execute 100C6C70
+      ?     int                    ?
+    +0x08   int                    ?
+    +0x24   int                    ?
+    +0x28   bool                   ?
+    +0x2C   int                    ?
+    +0x30   int                    ?
+    +0x34   int                    ?
+    +0x38   int                    ?
+    +0x3C   string                 ?
+    +0x58   string                 ?
+    +0x0C   vector <FUN_10006620,FUN_101781e0> ?
+    +0x18   vector <FUN_10006620,FUN_101781e0> ?
+    +0x74   int                    ?
+    +0x78   int                    ?
+    execute posts UI events: 0xD5
+
+=== 0x0208  EventCommand_RespondEventTotalPlayers   v1   [verified]
+    vtable 10606FFC  write 100C8370  read 100C8320  dump -  execute 100C8180
+      ?     int                    ?
+    +0x08   int                    ?
+    execute posts UI events: 0xD6
+
+=== 0x0209  EventCommand_RequestTimedDeckSelection   v1   [verified]
+    vtable 10606884  write 100C2400  read 100C2390  dump -  execute 100C21A0
+      ?     int                    ?
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x10   string                 ?
+    execute posts UI events: 0xD7
+
+=== 0x020A  EventCommand_SendDontPlay   v1   [verified]
+    vtable 1060732C  write -  read 100C9370  dump -  execute 100C9250
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x020B  EventCommand_SendByeNotification   v1   [verified]
+    vtable 10607254  write 100C90D0  read 100C9060  dump -  execute 100C8E70
+      ?     int                    ?
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x10   string                 ?
+    execute posts UI events: 0xD8
+
+=== 0x020C  EventCommand_ForceIntoEvent   v2   [verified]
+    vtable 10605D1C  write 100C0050  read 100BFFD0  dump -  execute 100BFE50
+      ?     int                    ?
+    +0x08   int                    ?
+    +0x0C   bool                   ?
+
+=== 0x020D  EventCommand_RequestPlayerStats   v1   [verified]
+    vtable 106067AC  write 100C1EB0  read 100C1E50  dump -  execute 100C1D10
+      ?     int                    ?
+    +0x08   int                    ?
+    +0x0C   int                    ?
+
+=== 0x020E  EventCommand_RespondPlayerStats   v2   [verified]
+    vtable 1060713C  write 100C8AE0  read 100C89A0  dump -  execute 100C86E0
+      ?     int                    ?
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x10   int                    ?
+    +0x14   int                    ?
+    +0x18   int                    ?
+    +0x1C   int                    ?
+    +0x24   int                    ?
+    +0x28   int                    ?
+    +0x2C   int                    ?
+    +0x30   int                    ?
+    +0x34   int                    ?
+    +0x38   int                    ?
+    +0x3C   int                    ?
+    +0x20   int                    ?   (since v2)
+    execute posts UI events: 0xD9
+
+=== 0x020F  EventCommand_RequestDuelistStats   v?   [verified]
+    vtable 10606174  write -  read 100C0E00  dump -  execute 100C0CE0
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0210  EventCommand_RespondDuelistStats   v1   [verified]
+    vtable 10606B54  write 100C2B90  read 100C2E50  dump -  execute 100C2C00
+      ?     int                    ?
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x10   int                    ?
+    +0x14   int                    ?
+    +0x18   vector <FUN_10006620,FUN_101781e0> ?
+    execute posts UI events: 0xDA
+
+=== 0x0211  EventCommand_SendReadyStatus   v1   [verified]
+    vtable 10607554  write 100C9DD0  read 100C9D70  dump 100C9CF0  execute 100C9BA0
+      ?     int                    ?
+    +0x08   bool                   Is Ready
+    execute posts UI events: 0xDB
+
+=== 0x0212  EventCommand_SendEventPlayerFlags   v1   [verified]
+    vtable 1060747C  write -  read 100C9660  dump -  execute 100C9480
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+    execute posts UI events: 0xDC
+
+=== 0x0213  EventCommand_NotifyMatchEnded   v2   [verified]
+    vtable 10605F5C  write 100C0880  read 100C0800  dump -  execute 100C0640
+      ?     int                    ?
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x10   int                    ?
+    execute posts UI events: 0xE2
+
+=== 0x0214  EventCommand_RequestCurrentSessionInfo   v?   [verified]
+    vtable 10606034  write -  read 100C0B40  dump -  execute 100C0A20
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0215  EventCommand_RespondCurrentSessionInfo   v?   [verified]
+    vtable 1060696C  write 100C2970  read 100C28D0  dump 100C27D0  execute 100C2630
+      ?     int                    ?
+    +0x08   int                    SessionID
+    +0x0C   int                    Num Players
+    +0x10   int                    Num Running Matches
+    +0x14   int                    Num Finished Matches
+    +0x18   bool                   Is Running
+    execute posts UI events: 0xDD
+
+=== 0x0216  EventCommand_RequestEventSessionsOnDay   v?   [verified]
+    vtable 10606504  write 100C1870  read 100C1800  dump 100C1740  execute 100C1650
+      ?     int                    ?
+    +0x08   int                    Year
+    +0x0C   int                    Month
+    +0x10   int                    Day
+
+=== 0x0217  EventCommand_RespondEventSessionsOnDay   v?   [verified]
+    vtable 10606F14  write 100C7DF0  read 100C8040  dump 100C7B50  execute 100C7A90
+      ?     int                    ?
+    +0x08   int                    Year
+    +0x0C   int                    Month
+    +0x10   int                    Day
+    +0x14   vector <int>           ?
+    execute posts UI events: 0xDE
+
+=== 0x0218  AccountCommand_RequestActivateStadiumPiece   v1   [verified]
+    vtable 105F3544  write -  read 10010DF0  dump -  execute 10010940
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x0219  AccountCommand_RespondActivateStadiumPiece   v1   [verified]
+    vtable 105F3AF4  write 10011FF0  read 10011FA0  dump -  execute 10011E00
+    base AccountCommand
+    +0x08   int                    ?
+    execute posts UI events: 0xDF
+
+=== 0x021A  AccountCommand_RequestStadiumInfo   v1   [verified]
+    vtable 105F389C  write 10011820  read 100117D0  dump -  execute 100116A0
+    base AccountCommand
+    +0x08   int                    ?
+
+=== 0x021B  AccountCommand_RespondStadiumInfo   v1   [verified]
+    vtable 105F3C2C  write 10012580  read 10012500  dump -  execute 100122F0
+    base AccountCommand
+    +0x08   int                    ?
+    +0x0C   int                    ?
+    +0x10   int                    ?
+    +0x14   string                 ?
+    execute posts UI events: 0xE0
+
+=== 0x021C  AccountCommand_RequestUpdateStadium   v1   [verified]
+    vtable 105F39C4  write 10011C70  read 10011C20  dump -  execute 10011AB0
+    base AccountCommand
+    +0x08   string                 ?
+
+=== 0x021D  AccountCommand_RespondUpdateStadium   v1   [verified]
+    vtable 105F3D54  write 10012920  read 100128D0  dump -  execute 10012730
+    base AccountCommand
+    +0x08   int                    ?
+    execute posts UI events: 0xE1
+
+=== 0x11171  EQCard   v?   [factory]
+    vtable 106304CC  write -  read -  dump 1004F0C0
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x11172  EQDeck   v10   [verified]
+    vtable 106374FC  write 102410B0  read 102423F0  dump -
+      ?     call FUN_10098bb0      ?
+    +0x94   int                    ?
+    +0x98   int                    ?
+    +0x9C   map <int, int>         ?
+
+=== 0x11174  EQGameTurn   v18   [verified]
+    vtable 10645BFC  write 102BE580  read 102BE7F0  dump -
+    base GameTurn
+    +0xA8   int                    ?
+    +0xAC   map <int, int>         ?
+
+=== 0x11175  EQPlayer   v6   [verified]
+    vtable 1064B284  write 102CCE30  read 102CCC40  dump 102CCEF0
+    base Player
+    +0x4C   int                    DeploymentLimbo
+    +0x50   int                    MainVehicle
+    +0x64   int                    Team   (since v6)
+    +0x54   int                    Position   (since v6)
+
+=== 0x11176  EQStateMachine   v14   [verified]
+    vtable 10655D6C  write 103012B0  read 10301250  dump -
+    base StateMachine
+
+=== 0x11177  EQGameCommand_SetupGame   v12   [verified]
+    vtable 10641664  write 10273430  read 102734B0  dump 102737E0  execute 102737E0
+    base GameCommand_SetupGame
+    +0x98   int                    ?
+    +0x80   map <int, int>         ?
+    +0x8C   map <int, int>         ?
+    execute posts UI events: 0x14
+
+=== 0x11178  EQMatchCommand_LaunchGame   v1   [verified]
+    vtable 10648044  write 102C5FD0  read 102C5F90  dump -  execute 102C5DA0
+    base MatchCommand_LaunchGame
+    execute posts UI events: 0x11
+
+=== 0x11179  PlayerPlayArea   v?   [UNVERIFIED (table says EQPlayerPlayArea)]
+    vtable 1061E1BC  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x1117F  PlayArea   v?   [UNVERIFIED (table says EQMissionPlayArea)]
+    vtable 1061E094  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x11180  EQStartOfGameState   v13   [verified]
+    vtable 106555FC  write 102FE7C0  read 102FE9B0  dump -
+    base StateMachineState
+    +0xEC   int                    State
+    +0xF0   map <int, bool>        DecksSelected
+    +0xFC   map <int, bool>        ?
+
+=== 0x11181  EQStartingLandscapeState   v12   [verified]
+    vtable 106550EC  write 102FC500  read 102FE310  dump -
+    base StateMachineState
+    +0x110  int                    ?
+    +0xEC   map <int, int>         ?
+    +0xF8   map <int, int>         ?
+    +0x104  map <int, int>         ?
+    +0x114  vector <int>           playersDone
+
+=== 0x11182  EQActionPlayedState   v15   [verified]
+    vtable 1062C23C  write 101E9740  read 101E96F0  dump -
+    base ActionPlayedState
+    +0x18C  int                    ?
+
+=== 0x11183  EQCombatState   v13   [verified]
+    vtable 106346A4  write 10231590  read 102372D0  dump -
+    base StateMachineState
+    +0xF0   int                    ?
+    +0xF4   vector <int>           ?
+    +0x104  vector <int>           ?
+    +0x114  int                    ?
+    +0x118  int                    ?
+    +0x11C  int                    ?
+    +0x120  int                    ?
+    +0x128  bool                   ?
+    +0x129  int                    ?
+    +0x12A  int                    ?
+    +0x130  int                    ?
+
+=== 0x11184  EQCommandObject_Destroy   v?   [factory]
+    vtable 1063578C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x11185  EQCommandObject_DoDamage   v?   [factory]
+    vtable 10635A3C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x11187  EQMacroNode   v1   [verified]
+    vtable 106478AC  write 102C20E0  read 102C20A0  dump -
+    base MacroNode
+
+=== 0x11188  EQCommandObject_MeleeBattle   v?   [factory]
+    vtable 10635D34  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x11189  EQActionNode   v3   [verified]
+    vtable 1062BF94  write 101E7E60  read 101E7E20  dump -
+    base ActionNode
+
+=== 0x1118A  EQHandleResponseState   v14   [verified]
+    vtable 10645C64  write 102BF120  read 102BF0E0  dump -
+    base HandleResponseState
+
+=== 0x1118B  EQProcessEventEmissionState   v11   [verified]
+    vtable 10653094  write 102D8100  read 102D80C0  dump -
+    base ProcessEventEmissionState
+
+=== 0x1118C  EQCommandObject_AddToken   v?   [factory]
+    vtable 10635644  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x1118D  EQCommandObject_AddCostMod   v?   [factory]
+    vtable 106352D4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x1118E  EQCommandObject_AddCostModForTarget   v?   [factory]
+    vtable 10635474  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x1118F  EQCommandObject_RemoveToken   v?   [factory]
+    vtable 106360D4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x11190  EQCommandObject_RemoveDamage   v?   [factory]
+    vtable 10635EBC  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x11191  EQPileQueryNode   v1   [verified]
+    vtable 1064AFC4  write 102CC070  read 102CC030  dump -
+    base PileQueryNode
+
+=== 0x11192  EQEachExpression   v1   [verified]
+    vtable 1063CAF4  write 1025C700  read 1025C6C0  dump -
+    base EachExpression
+
+=== 0x11193  EQSumExpression   v1   [verified]
+    vtable 10655EE4  write 103016F0  read 103016B0  dump -
+    base SumExpression
+
+=== 0x11194  EQLastActionQueryNode   v1   [verified]
+    vtable 10645E14  write 102BF520  read 102BF4E0  dump -
+    base LastActionQueryNode
+
+=== 0x11195  EQArchetype   v7   [verified]
+    vtable 1062DA9C  write 10214370  read 10214330  dump -
+    base Archetype
+
+=== 0x11196  EQTargetQueryNode   v2   [verified]
+    vtable 10655FA4  write 10301C20  read 10301BE0  dump -
+    base TargetQueryNode
+
+=== 0x11197  EQActionPlayNode   v4   [verified]
+    vtable 1062CE9C  write 101ED050  read 101ED010  dump -
+    base ActionPlayNode
+
+=== 0x11198  EQMeleeCombatState   v12   [verified]
+    vtable 1064881C  write 102C7A60  read 102C7A00  dump -
+    base EQCombatState
+
+=== 0x11199  EQRangedCombatState   v12   [verified]
+    vtable 10653D9C  write 102F6350  read 102F62F0  dump -
+    base EQCombatState
+
+=== 0x1119A  EQDoublePassState   v12   [verified]
+    vtable 1063C1F4  write 10259190  read 10259150  dump -
+    base DoublePassState
+
+=== 0x1119B  EQMultiActionState   v15   [verified]
+    vtable 10649464  write 102C8240  read -  dump -
+    base MultiActionState
+
+=== 0x1119C  EQCommandObject_Withdraw   v?   [factory]
+    vtable 10636774  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x1119D  EQDrawCardState   v12   [verified]
+    vtable 1063C5A4  write 1025B530  read 1025B4F0  dump -
+    base DrawCardState
+
+=== 0x1119E  EQCommandObject_RevealCard   v?   [factory]
+    vtable 10636224  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x1119F  EQCommandObject_UIEffect   v?   [factory]
+    vtable 106364E4  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x111A0  EQCommandObject_UnreadyCard   v?   [factory]
+    vtable 1063662C  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+
+=== 0x111A1  EQValueNode   v1   [verified]
+    vtable 106586CC  write 103086D0  read 10308690  dump -
+    base ValueNode
+
+=== 0x111A2  EQCommandObject_Shift   v?   [factory]
+    vtable 106363AC  write -  read -  dump -
+    (no serializer found in the vtable -- not sent on the wire, or abstract)
+

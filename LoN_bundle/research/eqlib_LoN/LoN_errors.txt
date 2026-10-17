@@ -1,0 +1,123 @@
+# Legends of Norrath -- the client's error-code message table
+# Extracted 2026-10-06 from LegendsOfNorrath.dll, FUN_1046c940 (RVA 0x46C940,
+# "wamessagefactory.cpp"): switch(code) -> (text, PUID string id).
+# Any command's ErrorCode / ErrorType field is shown through this table
+# (e.g. ECommCommand_RedeemItemGrant Response=0 -> ErrorCode). Unlisted = "An unknown error has occurred."
+#
+CODE  DEC  TEXT
+0x01    1  Authentication Failure. Please verify the entered login information is correct.
+0x02    2  Connection Failure. (internet down / server servicing)
+0x03    3  Connection to game service failed.
+0x04    4  Lost connection to game service.
+0x05    5  Login host not found.  Please try again later.
+0x06    6  Your connection to the server has been refused.
+0x07    7  An error occurred while communicating with your proxy server.
+0x08    8  Your proxy server does not support either unauthenticated connections or ... username and password.
+0x09    9  Your proxy username and password were incorrect.
+0x0A   10  You do not have permission to connect to the server through this proxy.
+0x0B   11  Proxy host not found.
+0x0C   12  Connection Failure. (proxy unreachable / settings wrong)
+0x0D   13  Your connection to the proxy server has been refused.
+0x0E   14  Invalid client version. Please re-patch.
+0x0F   15  Invalid data version. Please re-patch.
+0x10   16  Invalid action data version. Please re-patch.
+0x11   17  You must purchase a registration package before you can play.
+0x12   18  You were unable to correctly pay the entry fee.
+0x13   19  An error has occurred collecting the entry fee.
+0x14   20  Sorry, seats in this tournament are reserved for a selected group of players.
+0x15   21  You are already in a tournament or tournament queue.
+0x16   22  You must select an entry fee.
+0x17   23  You didn't specify the correct match password.
+0x18   24  The match is full.
+0x19   25  You are in a tournament and may not join or observe matches.
+0x1A   26  The game server has crashed.
+0x1B   27  The game server has been stopped.
+0x1C   28  Sorry, all game servers are currently down.
+0x1D   29  The lobby server has crashed.
+0x1E   30  Sorry, this lobby is currently unavailable.
+0x1F   31  Your deck selection was not received by the server, please leave the match and rejoin.
+0x20   32  Your deck does not meet the format requirements or contains cards that you do not own.
+0x21   33  You do not own all the cards in that deck.
+0x22   34  Unable to lock card, it is tied up in another trade.
+0x23   35  You may not add more than 50 items to the trade.
+0x24   36  A card is still in the process of being added to the trade.
+0x25   37  You already have a trade request pending. Cancel it before asking for another trade.
+0x26   38  He is already in a trade session.
+0x27   39  You may not challenge someone when you or he is not in this league.
+0x29   41  You may not challenge this person as you have used all your games versus this person this week.
+0x2A   42  You do not have enough points to purchase the selected abilities.
+0x2B   43  An unknown error has caused the connection to the server to fail. Please contact support at %1 ("CHANGE ME")
+0x2C   44  ERROR! Game is Out Of Sync with the server! You will need to reconnect to continue your game.
+0x2D   45  ERROR! An error has occurred in your game, you will need to reconnect to continue your game.
+0x2E   46  You are unable to trade cards away.
+0x2F   47  The League has been stopped by an admin. Please leave the league room.
+0x30   48  You may not create a guild because you are already in one.
+0x31   49  You must specify a title for your guild.
+0x32   50  Your title is not valid.
+0x33   51  Your guild has reached its max size, you may not invite anyone new.
+0x34   52  You may not ask this person to join your guild as he already has a pending guild invite.
+0x35   53  You must be a guild officer in order to invite someone to join your guild.
+0x36   54  You may not invite this person to join your guild as they are already in a guild.
+0x37   55  Due to high server volume, the server is not currently accepting new connections.
+0x3B   59  Your login attempt has been canceled.
+0x3C   60  Your login attempt has timed out.
+0x3D   61  You have specified an invalid username or password.
+0x3E   62  Your account is not valid.
+0x3F   63  Your session is not valid.
+0x40   64  Your session has an invalid parent session.
+0x41   65  An invalid session type has been supplied.
+0x42   66  An invalid game code has been supplied.
+0x43   67  You do not have a valid subscription.
+0x44   68  Your account has not been activated.
+0x45   69  You must log out before logging in.
+0x46   70  This session has already been used. Please log in again.
+0x47   71  Your login requires the next SecureID code.
+0x48   72  Your login requires a new SecureID pin.
+0x49   73  Your SecureID pin has been accepted.
+0x4A   74  Your SecureID pin has been rejected.
+0x4B   75  You've exceeded your defined usage limit.
+0x50   80  Login Error: Your account has been banned.
+0x51   81  Login Error: Login access is restricted to game staff.
+0x52   82  Migration Error: No account with that username exists to be migrated.
+0x53   83  Migration Error: An incorrect password has been supplied.
+0x54   84  Migration Error: This account has already been migrated.
+0x55   85  Migration Error: We can't find your Station account info!
+0x56   86  Migration Error: An unknown error has occurred.
+0x57   87  Gateway Error: An unknown error has occurred.
+0x58   88  Gateway Error: There are no available connection servers.
+0x59   89  Gateway Connection Failure.
+0x5A   90  Your connection to the gateway server has been refused.
+0x5B   91  Your account is not currently flagged to allow trading.
+0x5C   92  He is not allowed to trade.
+0x5D   93  Guild Error: You must be registered to perform that action.
+0x5E   94  Guild Error: The user that you tried to invite must be registered.
+0x5F   95  This code is not valid.
+0x60   96  This code class is not yet supported on the server.
+0x61   97  This code has already been redeemed.
+0x62   98  This code has been assigned to someone else.
+0x63   99  You are not eligible to redeem this code.
+0x64  100  An unknown error has occurred while attempting to redeem this code.
+0x65  101  Migration Error: This account has been banned and may not be migrated.
+0x66  102  An unknown error has occurred while attempting to redeem this item.
+0x67  103  You did not own the item that you attempted to redeem.
+0x68  104  You did not meet the requirements to redeem this item.
+0x69  105  The data that you entered was not valid. The item will not be redeemed.
+0x6A  106  UChat Error: An unknown error has occurred.
+0x6B  107  UChat timed out. Please try again in a couple of moments.
+0x6C  108  UChat could not find your information.
+0x6D  109  UChat could not find that username on the remote server.
+0x6E  110  UChat could not find that remote server.
+0x6F  111  UChat Error: Address not room.
+0x70  112  UChat Error: Address not an ID.
+0x71  113  You are being ignored.
+0x72  114  UChat Error: The remote server is not active.
+0x73  115  UChat Error: The remote server is down.
+0x74  116  You have redeemed too many items without consuming them.
+0x75  117  You must be a subscriber on the target game.
+0x76  118  A timeout occurred while attempting to redeem this item. Please try again later.
+0x77  119  (empty string)
+0x78  120  You did not choose which item you wanted to receive.
+0x79  121  You have been blocked from participating in trades.
+0x7A  122  The item that you are attempting to redeem is not yet available. Please try again later.
+0x7B  123  Authentication Failure. Parent authentication for underage account is not approved.
+0x98  152  You have been blocked from redeeming loot.

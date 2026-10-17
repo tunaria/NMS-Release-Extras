@@ -1,0 +1,11 @@
+diff --git a/world/main.cpp b/world/main.cpp
+--- a/world/main.cpp
++++ b/world/main.cpp
+@@ -47,0 +48,1 @@
++#include "world/lon_service.h"
+@@ -461,0 +463,1 @@
++		LoNService::Process();
+@@ -482,0 +485,3 @@
++	// The Legends of Norrath card service (off unless Custom:LoNEnabled).
++	LoNService::Start();
++

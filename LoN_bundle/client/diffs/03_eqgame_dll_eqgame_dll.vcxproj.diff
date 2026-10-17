@@ -1,0 +1,7 @@
+diff --git a/eqgame_dll/eqgame_dll.vcxproj b/eqgame_dll/eqgame_dll.vcxproj
+--- a/eqgame_dll/eqgame_dll.vcxproj
++++ b/eqgame_dll/eqgame_dll.vcxproj
+@@ -201,0 +202,1 @@
++    <ClCompile Include="nms_lon_link.cpp" />
+@@ -244,0 +246,1 @@
++    <ClInclude Include="nms_lon_link.h" />

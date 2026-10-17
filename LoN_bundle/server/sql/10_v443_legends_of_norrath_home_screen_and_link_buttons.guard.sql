@@ -1,0 +1,2 @@
+-- Guard for 10_v443_legends_of_norrath_home_screen_and_link_buttons.sql: apply that file only when this returns NO rows.
+SELECT 1 FROM DUAL WHERE (SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'lon_news' AND COLUMN_NAME IN ('id','sort_key','title','body','enabled')) = 5 AND (SELECT COUNT(*) FROM `rule_values` WHERE `ruleset_id` = 1 AND `rule_name` IN ('Custom:LoNLinkButtons','Custom:LoNHelpUrl','Custom:LoNForumsUrl','Custom:LoNLeaderboardUrl','Custom:LoNWebsiteUrl','Custom:LoNMOTD')) = 6;

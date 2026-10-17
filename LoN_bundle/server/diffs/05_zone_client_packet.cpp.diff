@@ -1,0 +1,7 @@
+diff --git a/zone/client_packet.cpp b/zone/client_packet.cpp
+--- a/zone/client_packet.cpp
++++ b/zone/client_packet.cpp
+@@ -5820,0 +5821,3 @@
++
++	// The Legends of Norrath card game logs in with a token only our DLL receives.
++	SendLoNSession();

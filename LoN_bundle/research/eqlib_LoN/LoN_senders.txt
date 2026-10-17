@@ -1,0 +1,191 @@
+# Legends of Norrath -- which UI / game code CREATES each message (= what sends it)
+# Generated 2026-10-06 (internal tool, not included). Constructors = functions storing the class
+# vtable; creators = callers of those, named by the RTTI class owning the calling function.
+# Only UI/game creators are listed (WA* / EQ* classes, or FUN_ in the UI code region
+# >= 0x10390000, usually Qt slots); factories, clones, destructors and other messages are
+# dropped. Base classes are omitted. "-" = nothing in the client builds it: the message is
+# SERVER -> CLIENT only (or built in non-UI code, see LoN_messages.txt execute column).
+
+0x2      PersistentComponent                                WAPostedTradeBuilder
+0x16     ValueData                                          EQCardSprite, EQCardTranslator, EQDBDeckController, EQDeckBuilderUtilities, EQDeckBuilderWizard, EQDeckStatisticsDialog, EQDraftedCardsDialog, EQFilterPanel, EQGame, EQGameScreen, EQMatchConfiguration, EQMatchGraphicsItem, EQNavigator, EQPlayerTipFactory, EQPreferencesDialog, EQScenarioDialog, EQTestDrawDialog, EQTutorialDialog, FUN_1039E7B0, FUN_1039EA50, FUN_1039F450, FUN_1039F600, FUN_1039F7B0, FUN_103A68E0, FUN_103B11D0, FUN_103B1D60, FUN_103B1E50, FUN_103B5350, FUN_103B57B0, FUN_103B5880, FUN_103B5970, FUN_103B5F70, FUN_103B61A0, FUN_103BC990, FUN_103C2290, FUN_103C8140, FUN_103C9960, FUN_103CCC70, FUN_103D0890, FUN_103D2DE0, FUN_103D4CB0, FUN_103E13B0, FUN_103E5BB0, FUN_103E5C70, FUN_103E5D30, FUN_103E5DF0, FUN_103E5EB0, FUN_103E64F0, FUN_103E65E0, FUN_103E66E0, FUN_103E6800, FUN_103E6BD0, FUN_103EF890, FUN_103F50D0, FUN_103F52E0, FUN_10407610, FUN_10407870, FUN_104087E0, FUN_10410950, FUN_10419D00, FUN_1041A6F0, FUN_1041C0D0, FUN_1041C330, FUN_1041C660, FUN_1041D4F0, FUN_10447950, FUN_10448190, FUN_10448F10, FUN_1044E710, FUN_1044EBC0, FUN_104500F0, FUN_10453700, FUN_10454100, FUN_10459400, FUN_1045A5F0, FUN_10465870, FUN_104671F0, FUN_104688D0, FUN_10469F40, FUN_1048A330, FUN_1048BA20, FUN_1048BE40, FUN_1048D270, FUN_1048DC20, FUN_1048E010, FUN_1048EA00, FUN_1048FFF0, FUN_10490880, FUN_104917C0, FUN_1049A700, FUN_1049A7B0, FUN_1049A910, FUN_1049E530, FUN_104A3B10, FUN_104A4050, FUN_104B2FE0, FUN_104B3510, FUN_104B4EB0, FUN_104B63D0, FUN_104BC500, FUN_104C86F0, WABaseMatchDialog, WABaseModel, WACardSprite, WACardTranslator, WAChallengeDialog, WACollectionModel, WACreateMatchDialog, WAEntryFeeModel, WAEventManager, WAGraphicsEventRewardItem, WAItemGrantChoiceDialog, WAJoinMatchDialog, WAJoinTournamentDialog, WALobbyGroupModel, WALobbyScreen, WALobbyTranslator, WAMatchConfiguration, WAMatchDialog, WAMatchInfoDialog, WAPostedTradesModel, WAPostedTradesSortFilterProxyModel, WARedemptionConfirmDialog, WARedemptionDetailDialog, WARedemptionMissingDialog, WARedemptionTermsDialog, WAScenarioDialog, WATournamentDialog, WATournamentQueueInfoDialog, WATournamentStatus, WAUserInfoDialog
+0x17     PropertySet                                        EQPreferencesDialog, FUN_103C8140, FUN_104500F0, FUN_104917C0, FUN_104C8F10, WAChallengeDialog, WACreateMatchDialog, WALobbyScreen, WAUserInfoDialog
+0x2E     Deck                                               WADBDeckController
+0x38     GameCommand_IntroduceCard                          EQGame
+0x40     GameCommand_OutOfSync                              EQGame
+0x4E     LoginCommand_GetChallenge                          FUN_1045B690
+0x5C     LobbyCommand_Join                                  EQGameScreen, FUN_10414B80, FUN_104500F0, FUN_10451490, FUN_10452C80, FUN_10452D40, FUN_10452E00, FUN_10453DB0, FUN_10453E50, FUN_10469F40, FUN_1046FB20, FUN_104BFC30, WALobbyScreen
+0x5E     LobbyCommand_AddGroups                             WACreateMatchDialog, WALobbyScreen
+0x61     LobbyCommand_SendText                              FUN_103C3890, FUN_103C3A20, FUN_103C3BB0, FUN_103C3F50, FUN_1049FEB0
+0x63     MatchCommand_SetReady                              FUN_104682E0, WAChallengeDialog
+0x65     MatchCommand_SelectDeck                            FUN_104500F0, WAChallengeDialog, WAEventScreen, WALobbyScreen
+0x66     MatchCommand_SelectStartPosition                   FUN_104682E0
+0x6D     LobbyCommand_RemoveBuddies                         FUN_1040F560
+0x6E     LobbyCommand_AddIgnore                             FUN_1040F870
+0x6F     LobbyCommand_RemoveIgnore                          FUN_1040F870
+0x75     GameCommand_ReadyForStartOfGame                    EQGame
+0x76     AccountCommand_SetPreferences                      FUN_103C8140, FUN_104A7710
+0x84     GameCommand_FatalError                             EQGame
+0x93     TradeCommand_IssueTradeRequest                     FUN_104BC500
+0x94     TradeCommand_AcceptTradeRequest                    FUN_104BE410
+0x95     TradeCommand_AddCardToTrade                        FUN_104C0E70
+0x96     TradeCommand_AcceptTrade                           WATradeScreen
+0x97     TradeCommand_RemoveCardFromTrade                   FUN_104C0E70
+0x98     TradeCommand_CancelTradeRequest                    FUN_104BC050, FUN_104BE210
+0x99     TradeCommand_EndTradeSession                       FUN_104C1570
+0x9A     TradeCommand_ClearTrade                            WATradeScreen
+0x9B     TradeCommand_FinalAcceptTrade                      WATradeScreen
+0xA0     GameCommand_ConcedeGame                            EQGame
+0xA1     GameCommand_AcceptDraw                             EQGame
+0xA2     GameCommand_OfferDraw                              FUN_10416740
+0xAA     EvaluationEnvironment                              EQCardSprite, EQGame, EQGameScreen, FUN_1041B720
+0x107    GameCommand_AcceptAdjournment                      EQGame
+0x108    GameCommand_OfferAdjournment                       FUN_10416950
+0x10B    GameCommand_RemovePlayer                           EQGame
+0x10F    SynchronizationCommand_SetDesired                  FUN_103CBB60
+0x116    NetworkCommand_Disconnect                          FUN_1045DE50
+0x118    LobbyCommand_SendPing                              FUN_103C2290
+0x11B    LobbyCommand_RequestAddBuddy                       FUN_104106C0, FUN_104128A0
+0x11C    LobbyCommand_RespondAddBuddy                       FUN_10412D10, FUN_10412E60, FUN_10413940, FUN_10414130
+0x11D    LobbyCommand_AddIgnoreByName                       FUN_1040F5F0
+0x128    LobbyCommand_InfoEnumMessage                       EQGame
+0x129    AccountCommand_GetAccountInfo                      FUN_10394130
+0x12A    LobbyCommand_Concede                               FUN_103F03A0, FUN_104B5F90
+0x130    LobbyCommand_SelectCard                            FUN_103F1170
+0x131    LobbyCommand_SetDraftReady                         WADeckBuilderScreen
+0x133    LobbyCommand_SelectTournamentDeck                  EQDBDeckController, FUN_103E13B0
+0x138    NetworkCommand_Time                                FUN_103BB100
+0x139    SynchronizationCommand_ProcessBulkFulfillment      FUN_103C76A0
+0x151    MessageText                                        WAPopupHistoryDialog
+0x18E    TradeCommand_AddPostedTrade                        WAPostedTradeBuilder
+0x194    PostedTrade                                        WAPostedTradeBuilder
+0x198    LoginCommand_RegisterUsername                      FUN_104CCBE0
+0x19A    LoginCommand_SendPassword                          FUN_1045B690
+0x19B    LoginCommand_SendSessionID                         WASessionLoginDialog
+0x1A3    GuildCommand_RequestGuilds                         FUN_10446E80, WAGuildInfoDialog
+0x1A6    GuildCommand_CreateGuild                           FUN_103D6860
+0x1A7    GuildCommand_LeaveGuild                            FUN_1040F4E0
+0x1A8    GuildCommand_AskToJoinGuild                        FUN_10410950
+0x1A9    GuildCommand_AskToJoinGuildResponse                FUN_10410F90, FUN_10411080
+0x1AA    GuildCommand_Kick                                  FUN_1040F150
+0x1AD    GuildCommand_SetListenStatus                       FUN_10445FB0, FUN_10446250
+0x1AF    TradeCommand_SetListenStatus                       FUN_10488460, FUN_10488760
+0x1B0    AccountCommand_RedeemCode                          FUN_10499DE0
+0x1B9    ECommCommand_RedeemItemGrant                       FUN_1044DA10, WARedemptionConfirmDialog
+0x1BE    LobbyCommand_SendUChatText                         FUN_103C0E50
+0x1C0    ArchCommand_GetArchetypeID                         EQAvatarCreationDialog
+0x1C1    ArchCommand_StoreArchetype                         FUN_1039ED30
+0x1C2    ArchCommand_DeleteArchetype                        FUN_103DD480
+0x1CB    AccountCommand_GetAccountsByPartialName            FUN_10482AE0
+0x1CD    GuildCommand_GetGuildsByPartialName                FUN_10482A00
+0x1D0    GuildCommand_Chat                                  FUN_103C43C0
+0x1D1    GuildCommand_ModifyGuildStatus                     FUN_1040F3A0, FUN_1040F440
+0x1D2    GuildCommand_SetMOTD                               FUN_10448C90
+0x1DF    EventCommand_SetReady                              WAEventScreen
+0x1F5    AccountCommand_RequestAvatarImages                 FUN_10395410, FUN_10395540
+0x1F7    AccountCommand_UploadAvatarImage                   FUN_10394230
+0x203    EventCommand_RequestEventLeaderBoard               FUN_103FB450, FUN_10403630, WAEventScreen
+0x204    EventCommand_RequestEventSessionInfo               FUN_103FB660
+0x20A    EventCommand_SendDontPlay                          WAEventScreen
+0x20F    EventCommand_RequestDuelistStats                   FUN_10403630
+0x214    EventCommand_RequestCurrentSessionInfo             FUN_103F7620
+0x216    EventCommand_RequestEventSessionsOnDay             FUN_103FA590
+0x11171  EQCard                                             EQGame
+0x11172  EQDeck                                             EQDBDeckController, EQGame
+0x11174  EQGameTurn                                         EQGame
+0x11175  EQPlayer                                           EQGame
+0x1117F  PlayArea                                           EQGame, EQMissionPlayArea, EQPlayerPlayArea
+0x11195  EQArchetype                                        EQMainController
+
+# Messages with no UI creator (server -> client, or engine-internal):
+#   RuleSetData, Action, FormatSpecificData, AndExpression
+#   OrExpression, IfThenExpression, LessThanExpression, GreaterThanExpression
+#   EqualToExpression, GreaterEqualExpression, LessEqualExpression, NotEqualToExpression
+#   AddExpression, SubtractExpression, MultiplyExpression, QueryPropertiesNode
+#   EmitTextMessageNode, NegateExpression, CollectionItem, QueryPlayabilityNode
+#   GameCommand_CardPlayed, GameCommand_SelectDeckForPlayer, GameCommand_ActionPlayed, GameCommand_CardSelected
+#   GameCommand_CardDeSelected, GameCommand_ButtonPressed, GameCommand_StateSpecificMessage, GameCommand_SetPlayer
+#   GameCommand_SetObserverMode, GameCommand_DrawCards, GameCommand_OutOfCards, GameCommand_BeginCardPlayed
+#   GameCommand_DragStopped, GameCommand_BatchControl, GameCommand_SynchPoint, SetEnvironmentNode
+#   LoginCommand_SendChallenge, LoginCommand_RespondToChallenge, LoginCommand_Results, SynchronizationCommand_Start
+#   SynchronizationCommand_StartInstances, SynchronizationCommand_SendInstances, SynchronizationCommand_Complete, SynchronizationCommand_Update
+#   LobbyCommand_Leave, LobbyCommand_RemoveGroups, LobbyCommand_ConfigureGroup, MatchCommand_SetBid
+#   Lobby, Lobby, NetworkCommand_UpdateLag, LobbyCommand_BulkJoin
+#   NetworkCommand_ErrorMsg, LobbyCommand_AddBuddies, NetworkCommand_Ping, AccountCommand_IntroduceAccount
+#   MoveActionNode, AccountCommand_ChangePassword, MatchCommand_SetMatchState, MatchCommand_BidPlaced
+#   MinExpression, GameCommand_RevealCards, GameCommand_DiscardCard, Exception
+#   NetworkCommand_QueryDisconnect, NetworkCommand_ConnectionTimedout, IsBorneByExpression, NetworkCommand_SystemMessage
+#   LobbyCommand_ChangeStatus, LobbyCommand_GameServiceError, GameCommand_LostPlayer, GameCommand_EndObserverMode
+#   SynchronizationCommand_StartDelivery, SynchronizationCommand_ProcessFulfillment, SynchronizationCommand_RemoveInstances, GameCommand_ReplaceCard
+#   MaxExpression, TradeCommand_SetupFinalTradeAccept, TradeCommand_ClearAcceptState, GameCommand_CanPrevent
+#   LobbyCommand_AdjournedGame, LobbyCommand_RemoveAdjournedGame, GameCommand_FinishMultiaction, PlayElement
+#   Card, AttributeModifier, ValidAttrModFilter, PlayElement
+#   PlayElement, PlayElement, CommandObject, CommandObject_AddKeyword
+#   CommandObject_RemoveKeyword, CommandObject_ModifyProperty, CommandObject_Shuffle, CommandObject_AddToken
+#   CommandObject_RemoveToken, CommandObject_CancelCommand, CommandObject_Attach, CommandObject_Kill
+#   CommandObject_DrawCard, CommandObject_Discard, CommandObject_Prevent, CommandObject_Move
+#   CommandObject_InstallActionMap, CommandObject_UnInstallActionMap, CommandObject_PlayCard, CommandObject_ChainedAction
+#   CommandObject_Reveal, CommandObject_MultiAction, CommandObject_GameProperties, CommandObject_EmitTextMessage
+#   CommandObject_InstallActionFilter, PlayElement, CommandObject_GetTarget, CommandObject_AddSuppressEffect
+#   CommandObject_RemoveSuppressEffect, CommandObject_AddAttrModFilter, CommandObject_RemoveAttrModFilter, CommandObject_DiscardPile
+#   CommandObject_SendCardIntroductions, CommandObject_CustomChoiceDialog, CommandObject_AddGameText, CommandObject_RemoveInheritedGameText
+#   CommandObject_MultiPlayer, PlayCardState, GetTargetState, RevealState
+#   ChainedActionState, CustomChoiceDialogState, MultiPlayerState, GameCommand_SendSerializedGame
+#   LobbyCommand_OfferAdjournedGame, LobbyCommand_AcceptAdjournedGame, TradeCommand_ChangeTradeSession, TradeCommand_StartTradeSync
+#   TradeCommand_LockTrade, DivideExpression, AlternateMultiActionState, CommandObject_AlternateMultiAction
+#   AccountCommand_BulkIntroduceAccount, LobbyCommand_ChangeBulkStatus, LobbyCommand_NotifyOfIgnore, LobbyCommand_AddIgnoreByNameResponse
+#   LobbyCommand_NotifyOfBuddy, AccountCommand_BulkBriefIntroduceAccount, LobbyCommand_ChangeLobbyDisplay, LobbyCommand_DisplayStats
+#   LobbyCommand_UpdateTournament, MatchCommand_SetBulkMatchState, MatchCommand_SetTimer, LobbyCommand_SetTournament
+#   LobbyCommand_StartTournamentRound, SynchronizationCommand_AddNonTradable, SynchronizationCommand_RemoveNonTradable, LobbyCommand_SetDraft
+#   LobbyCommand_SetupDraft, GameCommand_Reshuffle, LoginCommand_DisplayMOTD, ReshuffleState
+#   CommandObject_Reshuffle, GameCommand_FinishCustomChoice, CommandObject_Clone, SynchronizationCommand_SetModID
+#   CloneState, PickListState, CommandObject_PickList, GameCommand_ValueList
+#   GameCommand_ForceEndGetTarget, LoginCommand_GuestLogin, GameCommand_PrePass, GameCommand_PrePassCancel
+#   CommandObject_SuppressGameText, CommandObject_PushPhase, CommandObject_DummyEvent, DiscardCardState
+#   PlaySingleCardState, LobbyCommand_SetLeagueCards, LobbyCommand_SetLeagueInfo, LobbyCommand_ChallengeLeaguePlayer
+#   LobbyCommand_ChallengeLeaguePlayerResponse, LobbyCommand_JoinLeague, LobbyCommand_LeaveLeague, LobbyCommand_AddBooster
+#   LobbyCommand_BuyLeagueActions, CommandObject_SetProperty, LobbyCommand_SetLeagueCollection, LobbyCommand_AddLeagueCards
+#   TradeCommand_SetTradeAllowed, DivideRoundExpression, InstanceID, LobbyCommand_DeleteAdjournedGame
+#   ArgTree, DeckCommand_AddOnlineDeck, DeckCommand_DeleteOnlineDeck, DeckCommand_PopulateOnlineDeckData
+#   LobbyCommand_SetFlag, RepeatExpression, CommandObject_InstallAction, ConcatExpression
+#   CommandObject_IntroduceCard, IntroduceCardState, CommandObject_RemoveProperty, PhaseState
+#   CommandObject_ReadyCard, CommandObject_UnreadyCard, ReturnValueMap, GetSimultaneousTargetState
+#   ExecuteRuleState, WhileExpression, ModulusExpression, CommandObject_Pause
+#   GameCommand_GameOverReached, CommandObject_SetPhaseDialog, CommandObject_LoseGame, CommandObject_WinGame
+#   CommandObject_EmitSound, Guild, Poll, PollChoice
+#   PollCommand_AddPoll, PollCommand_AddPollControl, PollCommand_PollResponse, CommandObject_InfoBox
+#   CommandObject_WaitFor, TradeCommand_AcceptPostedTrade, TradeCommand_CancelPostedTrade, TradeCommand_EndPostedTrades
+#   TradeCommand_RequestPostedTrades, TradeCommand_StartPostedTrades, TradeCommand_TransferPostedTrade, TradeCommand_PostedTradeError
+#   WhileState, CommandObject_While, LoginCommand_RegisterUsernameResults, LobbyCommand_UpdateLobbyStats
+#   GatewayCommand_GetConnectionServer, AccountCommand_SetCampaignStatus, NetworkCommand_Gift, GuildCommand_EndGuilds
+#   GuildCommand_StartGuilds, GuildCommand_TransferGuild, GuildCommand_Notify, GuildCommand_Remove
+#   HasPropertyExpression, LoginCommand_ForgotPassword, LoginCommand_ForgotPasswordResults, GetTopCardState
+#   CommandObject_GetTopCard, CommandObject_RemoveInstalledAction, ECommCommand_OrderHistory, Order
+#   OrderItem, AccountCommand_SetOptIn, LobbyCommand_SendUChatError, ArchCommand_AddArchetypesToDB
+#   ArchCommand_ValidateUsername, Campaign, CampaignScenario, CommandObject_CreateCard
+#   NetworkCommand_EULA, NetworkCommand_News, NetworkCommand_LeaderBoardData, LobbyCommand_StartTournamentMsg
+#   AccountCommand_ModifyRestrictions, LobbyCommand_SetDraftedCards, GuildCommand_ShowMOTD, GuildCommand_SetMOTDResponse
+#   ArchCommand_SetEnabledArchetypes, MatchCommand_SetDeckArchetype, GameCommand_EndGame, CommandObject_UIEffect
+#   InstanceSubIDFlags, SynchronizationCommand_LockTournament, SynchronizationCommand_UnlockTournament, EventCommand
+#   Achievement, AccountCommand_NotifyAchievement, AccountCommand_SendAchievementList, AccountCommand_RequestGameplayAchievement
+#   ProcessEventEmissionStateForActivePlayer, AccountCommand_ValidateUsername, MatchCommand_InitiateChallenge, AccountCommand_RecordSinglePlayerGame
+#   AccountCommand_SetChallengeStatus, UChatCommand_RequestAddFriend, UChatCommand_RequestAddIgnore, UChatCommand_RequestFriendConfirm
+#   UChatCommand_RequestFriendStatus, UChatCommand_RequestIgnoreStatus, UChatCommand_RequestRemoveFriend, UChatCommand_RequestRemoveIgnore
+#   UChatCommand_RequestSetFriendComment, UChatCommand_OnReceiveFriendConfirmRequest, UChatCommand_OnReceiveFriendConfirmResponse, UChatCommand_OnReceiveFriendLogin
+#   UChatCommand_OnReceiveFriendLogout, AccountCommand_SendAvatarImage, FriendStatus, IgnoreStatus
+#   NetworkCommand_SessionKick, NetworkCommand_PendingSessionKick, UChatCommand_RequestAddFriendReciprocate, UChatCommand_RequestFriendConfirmReciprocate
+#   UChatCommand_RequestRemoveFriendReciprocate, UChatCommand_OnReceiveFriendConfirmReciprocateRequest, UChatCommand_OnReceiveFriendConfirmReciprocateResponse, EventCommand_NextMatchingTime
+#   EventCommand_RequestEventTotalPlayers, EventCommand_RespondEventLeaderBoard, EventCommand_RespondEventSessionInfo, EventCommand_RespondEventTotalPlayers
+#   EventCommand_RequestTimedDeckSelection, EventCommand_SendByeNotification, EventCommand_ForceIntoEvent, EventCommand_RequestPlayerStats
+#   EventCommand_RespondPlayerStats, EventCommand_RespondDuelistStats, EventCommand_SendReadyStatus, EventCommand_SendEventPlayerFlags
+#   EventCommand_NotifyMatchEnded, EventCommand_RespondCurrentSessionInfo, EventCommand_RespondEventSessionsOnDay, AccountCommand_RequestActivateStadiumPiece
+#   AccountCommand_RespondActivateStadiumPiece, AccountCommand_RequestStadiumInfo, AccountCommand_RespondStadiumInfo, AccountCommand_RequestUpdateStadium
+#   AccountCommand_RespondUpdateStadium, EQStateMachine, EQGameCommand_SetupGame, EQMatchCommand_LaunchGame
+#   PlayerPlayArea, EQStartOfGameState, EQStartingLandscapeState, EQActionPlayedState
+#   EQCommandObject_Destroy, EQCommandObject_DoDamage, EQMacroNode, EQCommandObject_MeleeBattle
+#   EQActionNode, EQHandleResponseState, EQProcessEventEmissionState, EQCommandObject_AddToken
+#   EQCommandObject_AddCostMod, EQCommandObject_AddCostModForTarget, EQCommandObject_RemoveToken, EQCommandObject_RemoveDamage
+#   EQPileQueryNode, EQEachExpression, EQSumExpression, EQLastActionQueryNode
+#   EQTargetQueryNode, EQActionPlayNode, EQMeleeCombatState, EQRangedCombatState
+#   EQDoublePassState, EQMultiActionState, EQCommandObject_Withdraw, EQDrawCardState
+#   EQCommandObject_RevealCard, EQCommandObject_UIEffect, EQCommandObject_UnreadyCard, EQValueNode
+#   EQCommandObject_Shift

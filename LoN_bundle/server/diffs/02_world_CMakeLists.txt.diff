@@ -1,0 +1,7 @@
+diff --git a/world/CMakeLists.txt b/world/CMakeLists.txt
+--- a/world/CMakeLists.txt
++++ b/world/CMakeLists.txt
+@@ -37,0 +38,1 @@
++    lon_service.cpp
+@@ -73,0 +75,1 @@
++    lon_service.h

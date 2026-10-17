@@ -7,3 +7,6 @@ $RECYCLE.BIN/
 .Spotlight-V100
 .Trashes
 *~
+
+# Card game data from the RoF2 client: copy it from your own client, never commit it
+LoN_bundle/lon_data/

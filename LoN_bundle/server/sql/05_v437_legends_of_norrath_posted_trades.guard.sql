@@ -1,0 +1,2 @@
+-- Guard for 05_v437_legends_of_norrath_posted_trades.sql: apply that file only when this returns NO rows.
+SELECT 1 FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'lon_posted_trade_escrow' AND EXISTS (SELECT 1 FROM `rule_values` WHERE `rule_name` = 'Custom:LoNPostedTradeDays') AND EXISTS (SELECT 1 FROM `rule_values` WHERE `rule_name` = 'Custom:LoNActiveLooterOnly');

@@ -1,0 +1,5 @@
+diff --git a/zone/client.h b/zone/client.h
+--- a/zone/client.h
++++ b/zone/client.h
+@@ -1293,0 +1294,1 @@
++	void   SendLoNSession();               // OP_NMSLoNSession: card game token (zone/nms_lon_session.cpp)

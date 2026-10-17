@@ -1,0 +1,5 @@
+diff --git a/zone/CMakeLists.txt b/zone/CMakeLists.txt
+--- a/zone/CMakeLists.txt
++++ b/zone/CMakeLists.txt
+@@ -67,0 +68,1 @@
++    nms_lon_session.cpp
